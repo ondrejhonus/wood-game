@@ -3,94 +3,150 @@ using UnityEngine.InputSystem;
 
 public class ChoppableLog : MonoBehaviour
 {
-[Header("Chopping Settings")]
-public GameObject logPiecePrefab;
-public int hitsToChop = 3;
-public float minPieceLength = 0.05f;
-private int currentHitCount = 0;
-private float chopPercentage = -1f;
+    [Header("Chopping Settings")]
+    public GameObject logPiecePrefab; // prefab must have ChoppableLog attached
+    public int hitsToChop = 3;
+    public float minPieceLength = 0.01f;
 
-private BoxCollider boxCollider;
+    private int currentHitCount = 0;
+    private float chopPercentage = -1f;
 
-private void Awake()
-{
-    boxCollider = GetComponent<BoxCollider>();
-    if (!boxCollider)
-        Debug.LogError("ChoppableLog: Missing BoxCollider.");
-}
+    private Transform progressBar; // this should be the **cube child of the pivot**
+    private BoxCollider boxCollider;
 
-private void Update()
-{
-    if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+    private void Awake()
     {
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        boxCollider = GetComponent<BoxCollider>();
+        if (!boxCollider)
+            Debug.LogError("ChoppableLog: Missing BoxCollider.");
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+        // Find progress bar cube (child of the pivot)
+        Transform pivot = transform.Find("ProgressBarPivot");
+        if (pivot != null)
         {
-            Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
-
-            if (hit.collider.gameObject == gameObject)
+            progressBar = pivot.Find("ProgressBar");
+            if (progressBar != null)
             {
-                HandleChop(hit.point);
+                // Keep active but scale X = 0 so it’s invisible initially
+                Vector3 s = progressBar.localScale;
+                progressBar.localScale = new Vector3(0f, s.y, s.z);
             }
         }
     }
-}
 
-public void HandleChop(Vector3 hitPoint)
-{
-    if (chopPercentage < 0f)
+    private void Update()
     {
-        Bounds bounds = boxCollider.bounds;
-        float logLength = bounds.size.z;
-        float localHitZ = transform.InverseTransformPoint(hitPoint).z;
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(mousePosition);
 
-        float normalizedZ = (localHitZ + (logLength * 0.5f)) / logLength;
-        normalizedZ = Mathf.Clamp01(normalizedZ);
-
-        chopPercentage = normalizedZ;
-
-        Debug.Log($"Chop Percentage: {chopPercentage * 100f:F1}% along log length.");
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    HandleChop(hit.point);
+                }
+            }
+        }
     }
 
-    currentHitCount++;
-    Debug.Log("Hit count: " + currentHitCount);
-
-    if (currentHitCount >= hitsToChop)
+    public void HandleChop(Vector3 hitPoint)
     {
-        SplitLog();
+        if (chopPercentage < 0f)
+        {
+            Bounds bounds = boxCollider.bounds;
+            float logLength = bounds.size.z;
+            float localHitZ = transform.InverseTransformPoint(hitPoint).z;
+
+            float normalizedZ = (localHitZ + (logLength * 0.5f)) / logLength;
+            chopPercentage = Mathf.Clamp01(normalizedZ);
+
+            Debug.Log($"Chop Percentage: {chopPercentage * 100f:F1}% along log length.");
+
+            // Show progress bar on first hit
+            if (progressBar != null)
+            {
+                progressBar.gameObject.SetActive(true);
+                Vector3 s = progressBar.localScale;
+                progressBar.localScale = new Vector3(0f, s.y, s.z); // zeroed
+            }
+        }
+
+        currentHitCount++;
+        UpdateProgressBar();
+
+        if (currentHitCount >= hitsToChop)
+        {
+            SplitLog();
+        }
     }
-}
 
-void SplitLog()
-{
-    float totalLength = boxCollider.size.z * transform.localScale.z;
-    float cutZ = totalLength * chopPercentage;
-
-    float part1Length = cutZ;
-    float part2Length = totalLength - cutZ;
-
-    if (part1Length < minPieceLength || part2Length < minPieceLength)
+    void UpdateProgressBar()
     {
-        Debug.LogWarning("One part would be too small. Aborting split.");
-        return;
+        if (progressBar != null)
+        {
+            float progress = (float)currentHitCount / hitsToChop;
+            Vector3 s = progressBar.localScale;
+            s.x = progress; // scale along X, grows from pivot
+            progressBar.localScale = s;
+        }
     }
 
-    CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
-    CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
+    void SplitLog()
+    {
+        // Hide progress bar immediately
+        if (progressBar != null)
+            progressBar.gameObject.SetActive(false);
 
-    Destroy(gameObject);
-}
+        float totalLength = boxCollider.size.z * transform.localScale.z;
+        float cutZ = totalLength * chopPercentage;
 
-void CreateLogPiece(float length, float localZOffset)
-{
-    GameObject piece = Instantiate(logPiecePrefab);
-    piece.transform.position = transform.position + transform.forward * localZOffset;
-    piece.transform.rotation = transform.rotation;
-    piece.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, length);
+        float part1Length = cutZ;
+        float part2Length = totalLength - cutZ;
 
-    Rigidbody rb = piece.GetComponent<Rigidbody>();
-    if (rb != null) rb.isKinematic = false;
-}
+        if (part1Length < minPieceLength || part2Length < minPieceLength)
+        {
+            Debug.LogWarning("One part would be too small. Aborting split.");
+            return;
+        }
+
+        CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
+        CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
+
+        Destroy(gameObject);
+    }
+
+    void CreateLogPiece(float length, float localZOffset)
+    {
+        GameObject piece = Instantiate(logPiecePrefab);
+        piece.transform.position = transform.position + transform.forward * localZOffset;
+        piece.transform.rotation = transform.rotation;
+        piece.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, length);
+
+        Rigidbody rb = piece.GetComponent<Rigidbody>();
+        if (rb != null) rb.isKinematic = false;
+
+        // Disable progress bar on spawned pieces
+        Transform pivot = piece.transform.Find("ProgressBarPivot");
+        if (pivot != null)
+        {
+            Transform bar = pivot.Find("ProgressBar");
+            if (bar != null)
+            {
+                Vector3 s = bar.localScale;
+                bar.localScale = new Vector3(s.x, 0f, s.z);
+                bar.gameObject.SetActive(false);
+            }
+        }
+
+        // Add ChoppableLog script to pieces so they can be chopped further
+        if (piece.GetComponent<ChoppableLog>() == null)
+        {
+            ChoppableLog ch = piece.AddComponent<ChoppableLog>();
+            ch.logPiecePrefab = logPiecePrefab;
+            ch.hitsToChop = hitsToChop;
+            ch.minPieceLength = minPieceLength;
+        }
+    }
 }
