@@ -5,13 +5,14 @@ public class ChoppableLog : MonoBehaviour
 {
     [Header("Chopping Settings")]
     public GameObject logPiecePrefab; // prefab must have ChoppableLog attached
-    public int hitsToChop = 3;
+    public int hitsToChop = 6;
     public float minPieceLength = 0.01f;
 
     private int currentHitCount = 0;
     private float chopPercentage = -1f;
 
     private Transform progressBar; // this should be the **cube child of the pivot**
+    private Transform progressPivot; // the pivot that will be moved to the click position
     private BoxCollider boxCollider;
 
     private void Awake()
@@ -24,12 +25,13 @@ public class ChoppableLog : MonoBehaviour
         Transform pivot = transform.Find("ProgressBarPivot");
         if (pivot != null)
         {
+            progressPivot = pivot;
             progressBar = pivot.Find("ProgressBar");
             if (progressBar != null)
             {
                 // Keep active but scale X = 0 so it’s invisible initially
                 Vector3 s = progressBar.localScale;
-                progressBar.localScale = new Vector3(0f, s.y, s.z);
+                progressBar.localScale = new Vector3(0f, 0f, 0f);
             }
         }
     }
@@ -57,12 +59,21 @@ public class ChoppableLog : MonoBehaviour
         {
             Bounds bounds = boxCollider.bounds;
             float logLength = bounds.size.z;
+            // localHitZ in local space (relative to the object's origin)
             float localHitZ = transform.InverseTransformPoint(hitPoint).z;
 
             float normalizedZ = (localHitZ + (logLength * 0.5f)) / logLength;
             chopPercentage = Mathf.Clamp01(normalizedZ);
 
             Debug.Log($"Chop Percentage: {chopPercentage * 100f:F1}% along log length.");
+
+            // Move the progress bar pivot to the clicked local Z so the bar appears at click
+            if (progressPivot != null)
+            {
+                Vector3 p = progressPivot.localPosition;
+                p.z = localHitZ;
+                progressPivot.localPosition = p;
+            }
 
             // Show progress bar on first hit
             if (progressBar != null)
@@ -135,7 +146,7 @@ public class ChoppableLog : MonoBehaviour
             if (bar != null)
             {
                 Vector3 s = bar.localScale;
-                bar.localScale = new Vector3(s.x, 0f, s.z);
+                bar.localScale = new Vector3(0f, s.y, s.z);
                 bar.gameObject.SetActive(false);
             }
         }
