@@ -29,18 +29,18 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - **Cloud saving**: Save your progress to continue another day and never lose it.
 
 ## Feature Roadmap (changes periodically) 🗺️
-✅ Movement mechanics + Collisions
-✅ Tree cutting physics with visible progress bar
-❌ Carry objects with cursor
-❌ Add rigged character sprite with animations
-❌ Implement inventory system
-❌ Enable the player to carry an axe (allow cutting only with axe, carrying with hand)
-❌ Implement game currency
-❌ Ability to sell logs at a specific location
-❌ Vehicles for transporting logs
-❌ Progress saving mechanics
-❌ A store to buy a better axe for the currency
-❌ Add sound effects and background music
+✅ Movement mechanics + Collisions  
+✅ Tree cutting physics with visible progress bar   
+❌ Carry objects with cursor    
+❌ Add rigged character sprite with animations  
+❌ Implement inventory system   
+❌ Enable the player to carry an axe (allow cutting only with axe, carrying with hand)  
+❌ Implement game currency  
+❌ Ability to sell logs at a specific location  
+❌ Vehicles for transporting logs   
+❌ Progress saving mechanics    
+❌ A store to buy a better axe for the currency     
+❌ Add sound effects and background music   
 
 ## Used Assets
 - [Unity FirstPerson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-firstperson-updates-in-new-charactercontroller-pa-196525)
