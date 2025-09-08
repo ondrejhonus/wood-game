@@ -31,6 +31,9 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ## Process 🛠️
 Start and hope it goes well.
 
+## Used Assets
+- [Unity FirstPerson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-firstperson-updates-in-new-charactercontroller-pa-196525)
+
 ## Technologies 🔧  
 - Unity engine (C#)
 - Blender
