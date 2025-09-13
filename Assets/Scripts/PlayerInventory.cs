@@ -9,6 +9,8 @@ public class PlayerInventory : MonoBehaviour
 
     private int selectedSlot = -1; // -1 = empty hand
 
+    public LayerMask pickupLayer;
+
     void Start()
     {
         slots = new GameObject[inventorySize];
@@ -18,6 +20,12 @@ public class PlayerInventory : MonoBehaviour
     {
         HandlePickup();
         HandleSlotSwitch();
+
+        if (Input.GetKeyDown(KeyCode.Q)) // Press Q to drop
+        {
+            DropSelectedItem();
+        }
+
     }
 
     void HandlePickup()
@@ -25,12 +33,10 @@ public class PlayerInventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, 10f))
+            if (Physics.Raycast(ray, out RaycastHit hit, 10f, pickupLayer))
             {
-                Debug.Log("Hit: " + hit.collider.name);
                 if (hit.collider.CompareTag("Pickup"))
                 {
-                    Debug.Log("Picking up: " + hit.collider.name);
                     GameObject item = hit.collider.gameObject;
                     if (AddItem(item))
                     {
@@ -84,20 +90,46 @@ public class PlayerInventory : MonoBehaviour
         {
             if (slots[i] != null)
             {
-                if (i == selectedSlot)
-                {
-                    slots[i].SetActive(true);
-                    // Move to hand
-                    slots[i].transform.position = handPosition.position;
-                    slots[i].transform.rotation = handPosition.rotation;
-                    slots[i].transform.parent = handPosition;
-                }
-                else
-                {
-                    slots[i].SetActive(false);
-                    slots[i].transform.parent = null; // Unparent when not in hand
-                }
+            if (i == selectedSlot)
+            {
+                slots[i].SetActive(true);
+                // Parent to hand so it moves with it
+                slots[i].transform.parent = handPosition;
+                // Fine-tune the grip position and rotation
+                slots[i].transform.localPosition = new Vector3(-0.28f, 0.63f, -0.15f); // Adjust these values as needed
+                slots[i].transform.localRotation = Quaternion.Euler(-128.5f, 82.11f, -96.8f); // Adjust these angles as needed
+            }
+            else
+            {
+                slots[i].SetActive(false);
+                slots[i].transform.parent = null; // Unparent when not in hand
+            }
             }
         }
     }
+
+    public void DropSelectedItem()
+    {
+        if (selectedSlot < 0 || slots[selectedSlot] == null) return; // Nothing to drop
+
+        GameObject item = slots[selectedSlot];
+
+        // Drop from hand
+        item.transform.parent = null;
+        item.SetActive(true);
+
+        // Enable physics
+        Rigidbody rb = item.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.AddForce(Camera.main.transform.forward * 2f, ForceMode.Impulse); // Throw it a bit
+        }
+
+        // Remove from inventory
+        slots[selectedSlot] = null;
+        selectedSlot = -1; // Empty hand
+    }
+
 }
