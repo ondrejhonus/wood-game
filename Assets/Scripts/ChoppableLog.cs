@@ -21,6 +21,7 @@ public class ChoppableLog : MonoBehaviour
     private Transform progressPivot; // the pivot that will be moved to the click position
     private BoxCollider boxCollider;
     private List<ChopPoint> chopPoints = new List<ChopPoint>();
+    public PlayerInventory playerInventory; // Assign in Inspector or find at runtime
 
     private void Awake()
     {
@@ -38,6 +39,8 @@ public class ChoppableLog : MonoBehaviour
                 progressBar.localScale = new Vector3(0f, s.y, s.z);
             }
         }
+        if (playerInventory == null)
+            playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
     }
 
     private void Update()
@@ -53,8 +56,17 @@ public class ChoppableLog : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
-                    // If the ray hits this log, handle the chop
-                    HandleChop(hit.point);
+                    // Only allow chop if holding an axe
+                    GameObject heldItem = playerInventory.GetSelectedItem();
+                    // Check if the held item is an axe
+                    if (heldItem != null && heldItem.CompareTag("Axe"))
+                    {
+                        HandleChop(hit.point);
+                    }
+                    else
+                    {
+                        Debug.Log("You need an axe to chop this log!");
+                    }
                 }
             }
         }
@@ -124,33 +136,33 @@ public class ChoppableLog : MonoBehaviour
         cp.progressBar.localScale = s;
     }
 
-void SplitLog(ChopPoint cp)
-{
-    // Hide progress bar
-    if (cp.progressBar != null)
-        cp.progressBar.gameObject.SetActive(false);
-
-    // Calculate lengths of the two new pieces
-    float totalLength = boxCollider.size.y * transform.localScale.y;
-    float cutY = totalLength * cp.chopPercentage;
-
-    float part1Length = cutY;
-    float part2Length = totalLength - cutY;
-
-    // Make sure pieces are not too small
-    if (part1Length < minPieceLength || part2Length < minPieceLength)
+    void SplitLog(ChopPoint cp)
     {
-        Debug.LogWarning("One part would be too small. Aborting split.");
-        return;
+        // Hide progress bar
+        if (cp.progressBar != null)
+            cp.progressBar.gameObject.SetActive(false);
+
+        // Calculate lengths of the two new pieces
+        float totalLength = boxCollider.size.y * transform.localScale.y;
+        float cutY = totalLength * cp.chopPercentage;
+
+        float part1Length = cutY;
+        float part2Length = totalLength - cutY;
+
+        // Make sure pieces are not too small
+        if (part1Length < minPieceLength || part2Length < minPieceLength)
+        {
+            Debug.LogWarning("One part would be too small. Aborting split.");
+            return;
+        }
+
+        // Spawn pieces
+        CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
+        CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
+
+        // Destroy original log
+        Destroy(gameObject);
     }
-
-    // Spawn pieces
-    CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
-    CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
-
-    // Destroy original log
-    Destroy(gameObject);
-}
 
     void CreateLogPiece(float length, float localYOffset)
     {

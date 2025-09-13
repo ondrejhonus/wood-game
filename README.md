@@ -32,13 +32,14 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅ Movement mechanics + Collisions  
 ✅ Tree cutting physics with visible progress bar   
 ✅ Carry objects with cursor    
-❌ Add rigged character sprite with animations  
+▶️ Add rigged character sprite with animations  
 ✅ Hide cursor in third person  
 ✅ Allow more cut points on log     
 ❌ Fix issue when switching from FP to TP to center the "hold point"    
-❌ Add Indicator of holding an object (effect)  
-❌ Implement inventory system   
-❌ Enable the player to carry an axe (allow cutting only with axe, carrying with hand)  
+✅️ Have equipped objects in your hand       
+✅️ Implement inventory system   
+✅️ Enable the player to carry an axe (allow cutting only with axe, carrying with hand)  
+❌ Add Items in inventory to UI     
 ❌ Implement game currency  
 ❌ Ability to sell logs at a specific location  
 ❌ Vehicles for transporting logs   
