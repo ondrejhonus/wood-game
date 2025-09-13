@@ -7,12 +7,12 @@ public class ObjectGrabbable : MonoBehaviour
     private float grabDistance;
 
     [SerializeField] private float followSpeed = 5f; // lower = slower
+    [SerializeField] private float massScaling = 1f; // (higher = mass slows it down more)
+    [SerializeField] private float velocityLerp = 0.2f; // (lower = more smoothing)
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        rb.interpolation = RigidbodyInterpolation.None;
     }
 
     public void Grab(Transform grabPointTransform)
@@ -25,7 +25,9 @@ public class ObjectGrabbable : MonoBehaviour
 
     public void Drop()
     {
+        // Release object
         grabPoint = null;
+        // reset its gravity
         rb.useGravity = true;
     }
 
@@ -36,11 +38,15 @@ public class ObjectGrabbable : MonoBehaviour
             // Keep object at fixed distance in front of grab point
             Vector3 targetPos = grabPoint.position + grabPoint.forward * grabDistance;
 
+            // Adjust speed based on mass
+            float adjustedSpeed = followSpeed / (rb.mass * massScaling);
+
+
             // Smooth out movement
-            Vector3 velocity = (targetPos - transform.position) * followSpeed;
+            Vector3 velocity = (targetPos - transform.position) * adjustedSpeed;
 
             // Apply linear velocity to rigidbody
-            rb.linearVelocity = velocity;
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, velocity, velocityLerp);
         }
     }
 }

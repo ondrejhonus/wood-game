@@ -148,6 +148,14 @@ public class ChoppableLog : MonoBehaviour
         piece.transform.rotation = transform.rotation;
         // Match X and Z scale, set Y scale to the length of the piece
         piece.transform.localScale = new Vector3(transform.localScale.x, length, transform.localScale.z);
+        Rigidbody pieceRb = piece.GetComponent<Rigidbody>();
+        if (pieceRb != null)
+        {
+            // Calculate mass of the log (length * width^2)
+            float width = piece.transform.localScale.x;
+            float mass = length * Mathf.Pow(width, 2);
+            pieceRb.mass = mass;
+        }
 
         // Add physics to the new piece with Rigidbody
         Rigidbody rb = piece.GetComponent<Rigidbody>();
