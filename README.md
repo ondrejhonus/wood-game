@@ -33,8 +33,8 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅ Tree cutting physics with visible progress bar   
 ✅ Carry objects with cursor    
 ❌ Add rigged character sprite with animations  
-❌ Hide cursor in third person  
-❌ Allow more cut points on log     
+✅ Hide cursor in third person  
+✅ Allow more cut points on log     
 ❌ Fix issue when switching from FP to TP to center the "hold point"    
 ❌ Add Indicator of holding an object (effect)  
 ❌ Implement inventory system   

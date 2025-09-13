@@ -1,6 +1,15 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[System.Serializable]
+public class ChopPoint
+{
+    public float chopPercentage;
+    public int currentHits;
+    public Transform progressPivot;
+    public Transform progressBar;
+}
 
 public class ChoppableLog : MonoBehaviour
 {
@@ -8,13 +17,10 @@ public class ChoppableLog : MonoBehaviour
     public GameObject logPiecePrefab;
     public int hitsToChop = 6;
     public float minPieceLength = 0.01f;
-
-    private int currentHitCount = 0;
-    private float chopPercentage = -1f;
-
     private Transform progressBar; // this should be the **cube child of the pivot**
     private Transform progressPivot; // the pivot that will be moved to the click position
     private BoxCollider boxCollider;
+    private List<ChopPoint> chopPoints = new List<ChopPoint>();
 
     private void Awake()
     {
@@ -56,88 +62,95 @@ public class ChoppableLog : MonoBehaviour
 
     public void HandleChop(Vector3 hitPoint)
     {
-        if (chopPercentage < 0f)
+        // Convert hit point to normalized Y position
+        Vector3 localHit = transform.InverseTransformPoint(hitPoint);
+        float colliderCenterY = boxCollider.center.y;
+        float colliderExtentY = boxCollider.size.y * 0.5f;
+        float normalizedY = (localHit.y - (colliderCenterY - colliderExtentY)) / boxCollider.size.y;
+        float chopPercentage = Mathf.Clamp01(normalizedY);
+
+        // Check if near an existing chop point
+        ChopPoint target = null;
+        foreach (var cp in chopPoints)
         {
-            Bounds bounds = boxCollider.bounds;
-            float logLength = bounds.size.y;
-
-            // Calculate hit point in local space relative to the collider center
-            Vector3 localHit = transform.InverseTransformPoint(hitPoint);
-            float colliderCenterY = boxCollider.center.y;
-            float colliderExtentY = boxCollider.size.y * 0.5f;
-
-            // Normalize hit position between 0 (bottom) and 1 (top) of the collider, because box collider size is in local space not world space
-            float normalizedY = (localHit.y - (colliderCenterY - colliderExtentY)) / boxCollider.size.y;
-            chopPercentage = Mathf.Clamp01(normalizedY);
-
-            Debug.Log($"Chop Percentage: {chopPercentage * 100f:F1}% along log length (Y).");
-
-            // Move the progress bar pivot to the clicked local Y so the bar appears at click position
-            if (progressPivot != null)
+            if (Mathf.Abs(cp.chopPercentage - chopPercentage) < 0.05f) // 5% tolerance
             {
-                Vector3 p = progressPivot.localPosition;
-                p.y = localHit.y;
-                progressPivot.localPosition = p;
-            }
-
-            // Show progress bar on first hit
-            if (progressBar != null)
-            {
-                progressBar.gameObject.SetActive(true);
-                Vector3 s = progressBar.localScale;
-                progressBar.localScale = new Vector3(0f, s.y, s.z); // reset scale to 0, so its invisible at first
+                target = cp;
+                break;
             }
         }
 
-        currentHitCount++;
-        UpdateProgressBar();
-
-        if (currentHitCount >= hitsToChop)
+        // If not found, create a new chop point
+        if (target == null)
         {
-            // If enough hits, split the log
-            SplitLog();
+            ChopPoint newCp = new ChopPoint();
+            newCp.chopPercentage = chopPercentage;
+            newCp.currentHits = 0;
+
+            // Create a new pivot + bar
+            Transform pivotTemplate = transform.Find("ProgressBarPivot");
+            Transform pivotInstance = Instantiate(pivotTemplate, transform);
+            pivotInstance.localPosition = new Vector3(
+                pivotTemplate.localPosition.x,
+                localHit.y,
+                pivotTemplate.localPosition.z
+            );
+
+            newCp.progressPivot = pivotInstance;
+            newCp.progressBar = pivotInstance.Find("ProgressBar");
+            Vector3 s = newCp.progressBar.localScale;
+            newCp.progressBar.localScale = new Vector3(0f, s.y, s.z);
+            newCp.progressBar.gameObject.SetActive(true);
+
+            chopPoints.Add(newCp);
+            target = newCp;
         }
+
+        // Apply hit
+        target.currentHits++;
+        UpdateProgressBar(target);
+
+        // Split if done
+        if (target.currentHits >= hitsToChop)
+            SplitLog(target);
     }
 
-    void UpdateProgressBar()
+
+    void UpdateProgressBar(ChopPoint cp)
     {
-        if (progressBar != null)
-        {
-            // Update progress bar X size based on hits
-            float progress = (float)currentHitCount / hitsToChop;
-            Vector3 s = progressBar.localScale;
-            s.x = progress; // scale along X, grows from pivot
-            progressBar.localScale = s;
-        }
+        float progress = (float)cp.currentHits / hitsToChop;
+        Vector3 s = cp.progressBar.localScale;
+        s.x = progress;
+        cp.progressBar.localScale = s;
     }
 
-    void SplitLog()
+void SplitLog(ChopPoint cp)
+{
+    // Hide progress bar
+    if (cp.progressBar != null)
+        cp.progressBar.gameObject.SetActive(false);
+
+    // Calculate lengths of the two new pieces
+    float totalLength = boxCollider.size.y * transform.localScale.y;
+    float cutY = totalLength * cp.chopPercentage;
+
+    float part1Length = cutY;
+    float part2Length = totalLength - cutY;
+
+    // Make sure pieces are not too small
+    if (part1Length < minPieceLength || part2Length < minPieceLength)
     {
-        // Hide progress bar after splitting
-        if (progressBar != null)
-            progressBar.gameObject.SetActive(false);
-
-        // Calculate lengths of the two new pieces
-        float totalLength = boxCollider.size.y * transform.localScale.y;
-        float cutY = totalLength * chopPercentage;
-
-        float part1Length = cutY;
-        float part2Length = totalLength - cutY;
-
-        // Make sure that the pieces are not too small, otherwise abort
-        if (part1Length < minPieceLength || part2Length < minPieceLength)
-        {
-            Debug.LogWarning("One part would be too small. Aborting split.");
-            return;
-        }
-
-        // Spawn the two new log pieces
-        CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
-        CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
-
-        // Destroy the original log
-        Destroy(gameObject);
+        Debug.LogWarning("One part would be too small. Aborting split.");
+        return;
     }
+
+    // Spawn pieces
+    CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
+    CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
+
+    // Destroy original log
+    Destroy(gameObject);
+}
 
     void CreateLogPiece(float length, float localYOffset)
     {
@@ -194,7 +207,7 @@ public class ChoppableLog : MonoBehaviour
             // Set the player armature as the camera switcher
             if (camSwitcher != null)
                 grabbable.cameraSwitcher = camSwitcher;
-            
+
         }
     }
 }
