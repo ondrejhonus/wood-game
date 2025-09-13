@@ -484,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2766212503428324877, guid: c8cecb6dd61c9a9eb9b4eb3dc917263d, type: 3}
       propertyPath: m_TagString
-      value: Pickup
+      value: Axe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1587,6 +1587,7 @@ MonoBehaviour:
   logPiecePrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
   hitsToChop: 6
   minPieceLength: 0.05
+  playerInventory: {fileID: 0}
 --- !u!54 &2000462713
 Rigidbody:
   m_ObjectHideFlags: 0

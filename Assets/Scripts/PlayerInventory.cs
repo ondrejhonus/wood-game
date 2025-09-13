@@ -28,6 +28,14 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
+    public GameObject GetSelectedItem()
+    {
+        if (selectedSlot < 0 || slots[selectedSlot] == null)
+            return null;
+        return slots[selectedSlot];
+    }
+
+
     void HandlePickup()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -35,7 +43,8 @@ public class PlayerInventory : MonoBehaviour
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             if (Physics.Raycast(ray, out RaycastHit hit, 10f, pickupLayer))
             {
-                if (hit.collider.CompareTag("Pickup"))
+                // Only pick up if it's a pickupable item or axe
+                if (hit.collider.CompareTag("Pickup") || hit.collider.CompareTag("Axe"))
                 {
                     GameObject item = hit.collider.gameObject;
                     if (AddItem(item))
@@ -90,20 +99,20 @@ public class PlayerInventory : MonoBehaviour
         {
             if (slots[i] != null)
             {
-            if (i == selectedSlot)
-            {
-                slots[i].SetActive(true);
-                // Parent to hand so it moves with it
-                slots[i].transform.parent = handPosition;
-                // Fine-tune the grip position and rotation
-                slots[i].transform.localPosition = new Vector3(-0.28f, 0.63f, -0.15f); // Adjust these values as needed
-                slots[i].transform.localRotation = Quaternion.Euler(-128.5f, 82.11f, -96.8f); // Adjust these angles as needed
-            }
-            else
-            {
-                slots[i].SetActive(false);
-                slots[i].transform.parent = null; // Unparent when not in hand
-            }
+                if (i == selectedSlot)
+                {
+                    slots[i].SetActive(true);
+                    // Parent to hand so it moves with it
+                    slots[i].transform.parent = handPosition;
+                    // Fine-tune the grip position and rotation
+                    slots[i].transform.localPosition = new Vector3(-0.28f, 0.63f, -0.15f); // Adjust these values as needed
+                    slots[i].transform.localRotation = Quaternion.Euler(-128.5f, 82.11f, -96.8f); // Adjust these angles as needed
+                }
+                else
+                {
+                    slots[i].SetActive(false);
+                    slots[i].transform.parent = null; // Unparent when not in hand
+                }
             }
         }
     }
