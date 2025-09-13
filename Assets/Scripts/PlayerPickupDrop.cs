@@ -6,7 +6,7 @@ public class PlayerPickupDrop : MonoBehaviour
     [SerializeField] private CameraSwitcher cameraSwitcher;
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask PickUpLayerMask;
-    [SerializeField] private float firstPersonDistance = 3f;
+    [SerializeField] private float firstPersonDistance = 4f;
     [SerializeField] private float thirdPersonDistance = 7f; // needs to be further away, coz the camera is behind the player
 
     private float grabDistance;
