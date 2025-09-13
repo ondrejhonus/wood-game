@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1485967004639088321}
   - component: {fileID: 485374078605517392}
   - component: {fileID: 5683051337204341794}
+  - component: {fileID: 7410010459705271963}
   m_Layer: 9
   m_Name: TreePartPrefab
   m_TagString: Untagged
@@ -151,7 +152,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!64 &485374078605517392
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -195,6 +196,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7410010459705271963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487388606568629506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ea6843fffe44ad8b47ea25cb46fb5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  followSpeed: 10
 --- !u!1 &8145068796703179967
 GameObject:
   m_ObjectHideFlags: 0

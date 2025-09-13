@@ -17,8 +17,10 @@ namespace StarterAssets
 		public bool analogMovement;
 
 		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
+		public bool cursorLocked = false;
 		public bool cursorInputForLook = true;
+
+		[SerializeField] private CameraSwitcher cameraSwitcher; // for checking if in first person or third person
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -28,9 +30,18 @@ namespace StarterAssets
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			// Only process look input if cursorInputForLook is true and right mouse button is held down
+			if (cursorInputForLook && Mouse.current != null && Mouse.current.rightButton.isPressed && !cameraSwitcher.IsFirstPerson)
 			{
 				LookInput(value.Get<Vector2>());
+			}
+			else if (cameraSwitcher.IsFirstPerson) // if in first person but not holding RMB, reset look input to zero
+			{
+				LookInput(value.Get<Vector2>());
+			}
+			else
+			{
+				LookInput(Vector2.zero);
 			}
 		}
 
