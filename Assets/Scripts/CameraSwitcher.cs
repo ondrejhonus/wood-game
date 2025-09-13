@@ -8,7 +8,7 @@ public class CameraSwitcher : MonoBehaviour
 
     public SkinnedMeshRenderer playerMesh;
 
-    private bool isFirstPerson;
+    public bool IsFirstPerson { get; private set; }
 
     void Start()
     {
@@ -20,14 +20,14 @@ public class CameraSwitcher : MonoBehaviour
         // If C is pressed, switch camera views
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (isFirstPerson) SwitchToThirdPerson();
+            if (IsFirstPerson) SwitchToThirdPerson();
             else SwitchToFirstPerson();
         }
     }
 
     void SwitchToFirstPerson()
     {
-        isFirstPerson = true;
+        IsFirstPerson = true;
 
         // Enable first person target and disable third person target (camera position basically)
         firstPersonTarget.SetActive(true);
@@ -43,11 +43,14 @@ public class CameraSwitcher : MonoBehaviour
 
         // Hide the player mesh in first person view
         playerMesh.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void SwitchToThirdPerson()
     {
-        isFirstPerson = false;
+        IsFirstPerson = false;
 
         // Enable third person target and disable first person target (camera position basically)
         firstPersonTarget.SetActive(false);
@@ -62,5 +65,8 @@ public class CameraSwitcher : MonoBehaviour
 
         // Show the player mesh in third person view
         playerMesh.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

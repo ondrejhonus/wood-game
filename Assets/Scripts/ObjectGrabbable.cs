@@ -7,8 +7,10 @@ public class ObjectGrabbable : MonoBehaviour
     private float grabDistance;
 
     [SerializeField] private float followSpeed = 5f; // lower = slower
+    [SerializeField] private float thirdPersonFollowSpeed = 3f; // lower = slower
     [SerializeField] private float massScaling = 1f; // (higher = mass slows it down more)
     [SerializeField] private float velocityLerp = 0.2f; // (lower = more smoothing)
+    [SerializeField] public CameraSwitcher cameraSwitcher;
 
     private void Awake()
     {
@@ -39,7 +41,15 @@ public class ObjectGrabbable : MonoBehaviour
             Vector3 targetPos = grabPoint.position + grabPoint.forward * grabDistance;
 
             // Adjust speed based on mass
-            float adjustedSpeed = followSpeed / (rb.mass * massScaling);
+            float adjustedSpeed;
+            if (!cameraSwitcher.IsFirstPerson)
+            {
+                adjustedSpeed = thirdPersonFollowSpeed / (rb.mass * massScaling);
+            }
+            else
+            {
+                adjustedSpeed = followSpeed / (rb.mass * massScaling);
+            }
 
 
             // Smooth out movement

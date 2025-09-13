@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -182,6 +183,18 @@ public class ChoppableLog : MonoBehaviour
             ch.logPiecePrefab = logPiecePrefab;
             ch.hitsToChop = hitsToChop;
             ch.minPieceLength = minPieceLength;
+        }
+
+        // Find the player armature in the scene
+        GameObject playerArmature = GameObject.FindWithTag("Player");
+        if (playerArmature != null)
+        {
+            ObjectGrabbable grabbable = piece.GetComponent<ObjectGrabbable>();
+            CameraSwitcher camSwitcher = playerArmature.GetComponent<CameraSwitcher>();
+            // Set the player armature as the camera switcher
+            if (camSwitcher != null)
+                grabbable.cameraSwitcher = camSwitcher;
+            
         }
     }
 }
