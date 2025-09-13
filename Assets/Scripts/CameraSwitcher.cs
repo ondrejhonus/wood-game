@@ -66,7 +66,13 @@ public class CameraSwitcher : MonoBehaviour
         // Show the player mesh in third person view
         playerMesh.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 
+        // Unlock + show cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        // Center the cursor on switch
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None; // "teleports" mouse to center
     }
 }
