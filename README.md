@@ -2,25 +2,28 @@
 A low poly style game developed in Unity, where you can cut down trees, collect the wood, process the wood and then maybe sell it.
 
 ## Table of Contents 📚  
-- [Features ✨](#features-✨)  
-- [Process](#process)  
+- [Features ✨](#planned-features-✨)  
+- [Game Logic](#game-logic)
+- [Roadmap](#feature-roadmap)
+- [Used Assets](#used-assets)
 - [Technologies 🔧](#technologies-🔧)  
 
 ## Planned Features ✨  
-#### **Basic:**
-- **Basic map**: With interactable elements like trees and a sell point.
+#### **Will definetly happen:**
 - **Wood Gathering**: Chop down trees, collect logs.
+- **Basic map**: With interactable elements like trees and a sell point.
+- **Player Model**: A simple humanoid character with animations.
 - **Economy Management**: Sell wood to earn money, invest in better tools.
-- **Player Model**: Simple looking blocky character.
+- **Tree generation**: Make the trees grow on random places on the map.
+- **Vehicles for transport**: Purchase a vehicle to transport logs faster and more effectively.
 
 #### **If it goes well:**
 - **Process wood**: After gathering your wood, process it to make it gain value.
-- **Random tree generation**: Make the trees grow on random places on the map.
-- **Vehicles for transport**: Use your vehicle to transport wood faster.
 - **Local saving**: Save your progress to continue another day (locally).
 - **NPCs**: Stationary NPCs throughout the map. 
+- **Fishing + Cooking**: Fish for fishies to have food, cook them so they don't taste so bland.
 
-#### **Final steps:**
+#### **If it goes really well:**
 - **Animations**: Animations corresponding to user action.
 - **Car Modification**: Car mechanic for vehicle modification.
 - **Clothing**: Make your character wear clothing of your choice. 
@@ -29,16 +32,17 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - **Cloud saving**: Save your progress to continue another day and never lose it.
 
 ## Game logic
-- The player starts on a square with shops, where he buys the default axe and gets to know the place of his own plot
-- He then goes out to gather some trees, which he will sell at the wood sell point for some Shmeckles ($H)
-- He can then use the money to buy better axes, a vehicle for transporting logs, or other items which will be implemented, etc. a wood processer
-- The vehicle will either be able to be upgraded (engine, wheel size, fuel tank size), or the player will simply buy a better one
-- You can refill your fuel for exchange for some $H at a specified gas station, that will appear at different set locations
-- There will be more types of forrests that will introduce more difficulty of getting into, and gear requirements such as better axes and more durable cars (Wood hardness, rivers for drowning small cars, hard terrain)
-- The more far away and difficult the forest will be, the better quality wood it will contain (More expensive, heavier, thicker wood)
+- The player starts on a square with shops, where they buys the default axe and gets to know the place of his own plot.
+- They then goes out to gather some trees, which they will sell at the wood sell point for some Shmeckles ($H).
+- They can then use the money to buy better axes, a vehicle for transporting logs, or other items which will be implemented, etc. a wood processer.
+- The vehicle will either be able to be upgraded (engine, wheel size, fuel tank size), or the player will simply buy a better one.
+- They can refill their fuel for exchange for some $H at a specified gas station, that will appear at different set locations.
+- There will be more types of forrests that will introduce more difficulty of getting into, and gear requirements such as better axes and more durable cars (Wood hardness, rivers for drowning small cars, hard terrain).
+- The more far away and difficult the forest will be, the better quality wood it will contain (More expensive, heavier, thicker wood).
+- There will also be a food system, they will either need to buy some food, or fish for fishies so they don't have to pay.
 
 
-## Feature Roadmap (changes periodically) 🗺️
+## Feature Roadmap
 ✅ Movement mechanics + Collisions  
 ✅ Tree cutting physics with visible progress bar   
 ✅ Carry objects with cursor    
@@ -51,8 +55,9 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Enable the player to carry an axe (allow cutting only with axe, carrying with hand)  
 ▶️ Create at least some basic game map, which has some interactable objects such as a sell point     
 ❌ Add Items in inventory to UI     
-❌ Implement game currency  
-❌ Add player HP    
+▶️ Create UI     
+▶️ Implement game currency and add to UI     
+▶️ Add player HP and add to UI   
 ❌ Ability to sell logs at a specific location  
 ❌ Allow player to hold an object on a specific point, not the mass center      
 ❌ Vehicles for transporting logs   
