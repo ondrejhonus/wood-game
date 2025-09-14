@@ -6,10 +6,13 @@ public class PlayerInventory : MonoBehaviour
     public int inventorySize = 5;
     public GameObject[] slots; // Items stored
     public Transform handPosition; // Where items appear in hand
-
     private int selectedSlot = -1; // -1 = empty hand
-
     public LayerMask pickupLayer;
+    [SerializeField] private CameraSwitcher cameraSwitcher;
+    [SerializeField] private float firstPersonDistance = 5f;
+    [SerializeField] private float thirdPersonDistance = 30f; // needs to be further away, coz the camera is behind the player
+    private bool isFP;
+
 
     void Start()
     {
@@ -25,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
         {
             DropSelectedItem();
         }
-
+        isFP = cameraSwitcher.IsFirstPerson;
     }
 
     public GameObject GetSelectedItem()
@@ -40,8 +43,12 @@ public class PlayerInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, 10f, pickupLayer))
+
+            Camera currentCam = Camera.main;
+            float grabDistance = isFP ? firstPersonDistance : thirdPersonDistance;
+            Ray ray = isFP ? currentCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)) : currentCam.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, grabDistance, pickupLayer))
             {
                 // Only pick up if it's a pickupable item or axe
                 if (hit.collider.CompareTag("Pickup") || hit.collider.CompareTag("Axe"))

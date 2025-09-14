@@ -177,9 +177,9 @@ public class ChoppableLog : MonoBehaviour
         Rigidbody pieceRb = piece.GetComponent<Rigidbody>();
         if (pieceRb != null)
         {
-            // Calculate mass of the log (length * width^2)
+            // Calculate mass of the log (length * width^2) * 8 coz it was too little
             float width = piece.transform.localScale.x;
-            float mass = length * Mathf.Pow(width, 2);
+            float mass = length * Mathf.Pow(width, 2) * 8f;
             pieceRb.mass = mass;
         }
 
