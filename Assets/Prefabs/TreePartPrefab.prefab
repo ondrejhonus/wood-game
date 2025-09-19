@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 485374078605517392}
   - component: {fileID: 5683051337204341794}
   - component: {fileID: 7410010459705271963}
+  - component: {fileID: 4272367954333596825}
   m_Layer: 9
   m_Name: TreePartPrefab
   m_TagString: Untagged
@@ -213,6 +214,21 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 0}
+--- !u!114 &4272367954333596825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487388606568629506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cc7ea721a511632ad694991e0eb1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  objectType: basicLog
+  size: 0
+  value: 0
 --- !u!1 &8145068796703179967
 GameObject:
   m_ObjectHideFlags: 0
