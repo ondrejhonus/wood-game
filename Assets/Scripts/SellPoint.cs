@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SellPoint : MonoBehaviour
 {
-    public PlayerMoney playerMoney;
+    public PlayerStats playerStats;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -10,7 +10,7 @@ public class SellPoint : MonoBehaviour
         if (item != null)
         {
             int value = CalculateValue(item);
-            playerMoney.AddMoney(value);
+            playerStats.AddMoney(value, item.transform.position);
 
             Destroy(other.gameObject); // Remove sold object
         }
@@ -18,7 +18,7 @@ public class SellPoint : MonoBehaviour
 
     private int CalculateValue(SellableObject item)
     {
-        int baseValue = 0;
+        int baseValue;
 
         switch (item.objectType)
         {
