@@ -12,6 +12,7 @@ public class ObjectGrabbable : MonoBehaviour
     [SerializeField] private float massScaling = 1f; // (higher = mass slows it down more)
     [SerializeField] private float velocityLerp = 0.2f; // (lower = more smoothing)
     [SerializeField] public CameraSwitcher cameraSwitcher;
+    public System.Action<ObjectGrabbable> OnDestroyed;
 
     private void Awake()
     {
@@ -65,5 +66,10 @@ public class ObjectGrabbable : MonoBehaviour
             // Apply linear velocity to rigidbody
             rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, velocity, velocityLerp);
         }
+    }
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
     }
 }

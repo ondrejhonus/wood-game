@@ -9,8 +9,8 @@ public class PlayerPickupDrop : MonoBehaviour
     [SerializeField] private float firstPersonDistance = 5f;
     [SerializeField] private float thirdPersonDistance = 16f; // needs to be further away, coz the camera is behind the player
     [SerializeField] private GameObject grabEffectPrefab;
-
     private GameObject grabPointInstance;
+    private Vector3 grabPointOffset;
 
 
     private float grabDistance;
@@ -18,6 +18,16 @@ public class PlayerPickupDrop : MonoBehaviour
     private bool lastIsFP = true; // to track changes in camera mode
 
     private ObjectGrabbable objectGrabbable;
+
+    private void HandleGrabbedObjectDestroyed(ObjectGrabbable obj)
+    {
+        if (grabPointInstance != null)
+        {
+            Destroy(grabPointInstance);
+            grabPointInstance = null;
+        }
+        objectGrabbable = null;
+    }
 
     void Update()
     {
@@ -48,9 +58,9 @@ public class PlayerPickupDrop : MonoBehaviour
             lastIsFP = isFP;
         }
 
-        // Dont allow camera switch while holding an object
         if (objectGrabbable != null)
         {
+            // Dont allow camera switch while holding an object
             cameraSwitcher.enabled = false;
         }
         else
@@ -87,31 +97,41 @@ public class PlayerPickupDrop : MonoBehaviour
 
                         if (grabEffectPrefab != null)
                         {
-                            // Spawn grab effect at hit point
-                            grabPointInstance = Instantiate(grabEffectPrefab, hit.point, Quaternion.identity);
+                            // Store the local offset when grabbing
+                            grabPointOffset = hit.point - objectGrabbable.transform.position;
 
-                            // Add effect to the hit object so it moves with it
-                            grabPointInstance.transform.SetParent(hit.transform);
+                            // spawn the grab point effect
+                            grabPointInstance = Instantiate(grabEffectPrefab, hit.point, Quaternion.identity);
                         }
+                        objectGrabbable.OnDestroyed += HandleGrabbedObjectDestroyed;
                     }
                 }
+                // Dont allow camera switch while holding an object
+                cameraSwitcher.enabled = false;
             }
         }
         if (Input.GetKeyUp(KeyCode.E))
         {
             if (objectGrabbable != null)
             {
+                // Drop the object
                 objectGrabbable.Drop();
+                // Unsubscribe from the event
+                objectGrabbable.OnDestroyed -= HandleGrabbedObjectDestroyed;
                 objectGrabbable = null;
+                // reset grab distance according to current camera mode
                 grabDistance = isFP ? firstPersonDistance : thirdPersonDistance;
+                // Allow camera switching again
+                cameraSwitcher.enabled = true;
 
                 // Destroy grab effect when dropping
                 if (grabEffectPrefab != null && grabPointInstance != null)
                 {
                     Destroy(grabPointInstance);
+                    grabPointInstance = null;
                 }
             }
-            }
+        }
 
         // Update grab point position while holding an object
         if (objectGrabbable != null)
@@ -130,6 +150,12 @@ public class PlayerPickupDrop : MonoBehaviour
             }
 
             objectGrabPointTransform.position = grabRay.origin + grabRay.direction * grabDistance;
+
+            // Update grab effect position
+            if (grabEffectPrefab != null && grabPointInstance != null)
+            {
+                grabPointInstance.transform.position = objectGrabbable.transform.position + grabPointOffset;
+            }
         }
     }
 }
