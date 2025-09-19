@@ -6,8 +6,12 @@ public class PlayerPickupDrop : MonoBehaviour
     [SerializeField] private CameraSwitcher cameraSwitcher;
     [SerializeField] private Transform objectGrabPointTransform; // point in front of camera where object will be held
     [SerializeField] private LayerMask PickUpLayerMask;
-    [SerializeField] private float firstPersonDistance = 4f;
-    [SerializeField] private float thirdPersonDistance = 7f; // needs to be further away, coz the camera is behind the player
+    [SerializeField] private float firstPersonDistance = 5f;
+    [SerializeField] private float thirdPersonDistance = 16f; // needs to be further away, coz the camera is behind the player
+    [SerializeField] private GameObject grabEffectPrefab;
+
+    private GameObject grabPointInstance;
+
 
     private float grabDistance;
     private bool grabDistanceInitialized = false;
@@ -44,6 +48,16 @@ public class PlayerPickupDrop : MonoBehaviour
             lastIsFP = isFP;
         }
 
+        // Dont allow camera switch while holding an object
+        if (objectGrabbable != null)
+        {
+            cameraSwitcher.enabled = false;
+        }
+        else
+        {
+            cameraSwitcher.enabled = true;
+        }
+
         // Reduce grab distance on wheel down, increase on wheel up
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0f)
@@ -59,7 +73,7 @@ public class PlayerPickupDrop : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             if (objectGrabbable == null)
             {
@@ -69,17 +83,35 @@ public class PlayerPickupDrop : MonoBehaviour
                 {
                     if (hit.transform.TryGetComponent(out objectGrabbable))
                     {
-                        objectGrabbable.Grab(objectGrabPointTransform);
+                        objectGrabbable.Grab(objectGrabPointTransform, hit.point);
+
+                        if (grabEffectPrefab != null)
+                        {
+                            // Spawn grab effect at hit point
+                            grabPointInstance = Instantiate(grabEffectPrefab, hit.point, Quaternion.identity);
+
+                            // Add effect to the hit object so it moves with it
+                            grabPointInstance.transform.SetParent(hit.transform);
+                        }
                     }
                 }
             }
-            else
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (objectGrabbable != null)
             {
                 objectGrabbable.Drop();
                 objectGrabbable = null;
                 grabDistance = isFP ? firstPersonDistance : thirdPersonDistance;
+
+                // Destroy grab effect when dropping
+                if (grabEffectPrefab != null && grabPointInstance != null)
+                {
+                    Destroy(grabPointInstance);
+                }
             }
-        }
+            }
 
         // Update grab point position while holding an object
         if (objectGrabbable != null)

@@ -5,6 +5,7 @@ public class ObjectGrabbable : MonoBehaviour
     private Rigidbody rb;
     private Transform grabPoint;
     private float grabDistance;
+    private Vector3 grabOffset;
 
     [SerializeField] private float followSpeed = 5f; // lower = slower
     [SerializeField] private float thirdPersonFollowSpeed = 3f; // lower = slower
@@ -17,12 +18,16 @@ public class ObjectGrabbable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Grab(Transform grabPointTransform)
+    public void Grab(Transform grabPointTransform, Vector3 hitPoint)
     {
         grabPoint = grabPointTransform;
         rb.useGravity = false;
+
         // Keep initial distance from camera
         grabDistance = Vector3.Dot(transform.position - grabPoint.position, grabPoint.forward);
+
+        // Calculate grab point offset
+        grabOffset = transform.position - hitPoint;
     }
 
     public void Drop()
@@ -39,6 +44,8 @@ public class ObjectGrabbable : MonoBehaviour
         {
             // Keep object at fixed distance in front of grab point
             Vector3 targetPos = grabPoint.position + grabPoint.forward * grabDistance;
+
+            targetPos += grabOffset;
 
             // Adjust speed based on mass
             float adjustedSpeed;
