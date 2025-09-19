@@ -1079,6 +1079,14 @@ PrefabInstance:
       propertyPath: cameraSwitcher
       value: 
       objectReference: {fileID: 1076590325}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 8944336655733072412}
+    - target: {fileID: 135756642000475821, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 4416926082273746347}
     - target: {fileID: 3837663348675104489, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2203,7 +2211,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   firstPersonDistance: 5
-  thirdPersonDistance: 14
+  thirdPersonDistance: 16
   grabEffectPrefab: {fileID: 4527722089690171296, guid: 7acb7a6a573eb8ff39d6b3a64a4138cc, type: 3}
 --- !u!114 &4416926082273746340
 MonoBehaviour:
@@ -2226,6 +2234,11 @@ MonoBehaviour:
   cameraSwitcher: {fileID: 1076590325}
   firstPersonDistance: 6
   thirdPersonDistance: 9
+--- !u!4 &4416926082273746347 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 689297226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4416926082273746348
 MonoBehaviour:
   m_ObjectHideFlags: 0
