@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerPickupDrop : MonoBehaviour
 {
     [SerializeField] private CameraSwitcher cameraSwitcher;
-    [SerializeField] private Transform objectGrabPointTransform;
+    [SerializeField] private Transform objectGrabPointTransform; // point in front of camera where object will be held
     [SerializeField] private LayerMask PickUpLayerMask;
     [SerializeField] private float firstPersonDistance = 4f;
     [SerializeField] private float thirdPersonDistance = 7f; // needs to be further away, coz the camera is behind the player
