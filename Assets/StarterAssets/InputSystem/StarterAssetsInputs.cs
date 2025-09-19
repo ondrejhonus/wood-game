@@ -21,6 +21,8 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 
 		[SerializeField] private CameraSwitcher cameraSwitcher; // for checking if in first person or third person
+		[SerializeField] private Transform playerTransform; // Assign your player GameObject here
+		[SerializeField] private Transform cameraTransform; // Assign your camera GameObject here
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -60,7 +62,7 @@ namespace StarterAssets
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
-		} 
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -86,6 +88,18 @@ namespace StarterAssets
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
+
+		void Update()
+		{
+			if (cameraSwitcher != null && playerTransform != null && cameraTransform != null)
+			{
+				Vector3 cameraForward = cameraTransform.forward;
+				cameraForward.y = 0f;
+				if (cameraForward.sqrMagnitude > 0.001f)
+				{
+					playerTransform.forward = cameraForward.normalized;
+				}
+			}
+		}
 	}
-	
 }
