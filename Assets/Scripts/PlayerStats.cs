@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour
     {
         money += amount;
         UpdateUI();
-        ShowPopup("+" + amount + "$", worldPosition, Color.green);
+        ShowPopup("+" + amount + "$H", worldPosition, Color.green);
     }
 
     public void TakeDamage(int amount, Vector3 worldPosition)
@@ -37,8 +37,8 @@ public class PlayerStats : MonoBehaviour
 
     private void UpdateUI()
     {
-        moneyText.text = "Money: $" + money;
-        healthText.text = "Health: " + health;
+        moneyText.text = money.ToString() + " $H";
+        healthText.text = health.ToString() + " HP";
     }
 
     private void ShowPopup(string text, Vector3 worldPosition, Color color)
