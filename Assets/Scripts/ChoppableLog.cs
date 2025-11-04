@@ -22,6 +22,8 @@ public class ChoppableLog : MonoBehaviour
     private BoxCollider boxCollider;
     private List<ChopPoint> chopPoints = new List<ChopPoint>();
     public PlayerInventory playerInventory; // Assign in Inspector or find at runtime
+    public AudioSource audioSource; // For chopping sound
+
 
     private void Awake()
     {
@@ -62,10 +64,12 @@ public class ChoppableLog : MonoBehaviour
                     if (heldItem != null && heldItem.CompareTag("Axe"))
                     {
                         HandleChop(hit.point);
-                    }
-                    else
-                    {
-                        Debug.Log("You need an axe to chop this log!");
+                        // Play chopping sound
+                        if (audioSource != null)
+                        {
+                            audioSource.Play();
+                            audioSource.pitch = Random.Range(0.8f, 1.2f); // Randomize pitch for variety of sounds
+                        }
                     }
                 }
             }
@@ -208,6 +212,8 @@ public class ChoppableLog : MonoBehaviour
             ch.logPiecePrefab = logPiecePrefab;
             ch.hitsToChop = hitsToChop;
             ch.minPieceLength = minPieceLength;
+            ch.playerInventory = playerInventory;
+            ch.audioSource = audioSource;
         }
 
         // Find the player armature in the scene
