@@ -59,7 +59,7 @@ public class ChoppableLog : MonoBehaviour
             Vector2 mousePosition = Mouse.current.position.ReadValue();
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f)) // 100f = max distance
             {
                 if (hit.collider.gameObject == gameObject)
                 {

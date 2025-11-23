@@ -33,7 +33,7 @@ public class LeafController : MonoBehaviour
         rb.AddForce(Vector3.up * 2f + Random.insideUnitSphere * 2f, ForceMode.Impulse);
         rb.AddTorque(Random.insideUnitSphere * 5f, ForceMode.Impulse);
 
-        // 4. Destroy leaves after 10 seconds to clean up the scene
+        // 4. Destroy leaves after 10 seconds
         Destroy(gameObject, 10f);
     }
 }
