@@ -14,22 +14,22 @@ public class LeafController : MonoBehaviour
         col = GetComponent<Collider>();
         if (col == null) col = gameObject.AddComponent<BoxCollider>();
 
-        // Start kinematic so they stick to the tree and don't fall yet
+        // Disable physics so they dont fall down
         rb.isKinematic = true;
-        // Optional: Disable collider so it doesn't interfere with chopping raycasts
+        // Disable collider so it doesn't interfere with chopping raycasts
         col.enabled = false; 
     }
 
     public void DropLeaves()
     {
-        // 1. Detach from the tree so we don't get destroyed with it
+        // Detach from the tree
         transform.SetParent(null);
 
-        // 2. Enable physics
+        // Enable physics
         rb.isKinematic = false;
         col.enabled = true;
 
-        // 3. Add a little push so they don't fall perfectly straight down
+        // Add a little push so they don't fall perfectly straight down
         rb.AddForce(Vector3.up * 2f + Random.insideUnitSphere * 2f, ForceMode.Impulse);
         rb.AddTorque(Random.insideUnitSphere * 5f, ForceMode.Impulse);
 

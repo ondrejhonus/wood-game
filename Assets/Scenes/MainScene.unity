@@ -839,7 +839,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 5
+  treeCount: 100
+  minTreeSpacing: 10
   trunkHeightRange: {x: 4, y: 10}
   trunkWidthRange: {x: 0.3, y: 0.6}
   leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
@@ -870,8 +871,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20.531921, y: 18.206589, z: 9.02919}
-  m_Center: {x: -25.51947, y: -8.603294, z: -127.84606}
+  m_Size: {x: 65.38623, y: 18.206589, z: 102.306244}
+  m_Center: {x: -3.0923157, y: -8.603294, z: -81.207535}
 --- !u!4 &418392124
 Transform:
   m_ObjectHideFlags: 0
