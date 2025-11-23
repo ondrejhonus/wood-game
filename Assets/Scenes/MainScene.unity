@@ -808,6 +808,84 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &418392121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 418392124}
+  - component: {fileID: 418392123}
+  - component: {fileID: 418392122}
+  m_Layer: 0
+  m_Name: TreeSpawnArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &418392122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418392121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
+  treeCount: 200
+  trunkHeightRange: {x: 3, y: 7}
+  trunkWidthRange: {x: 0.2, y: 0.5}
+  hitsToChop: 6
+  minPieceLength: 0.05
+  playerInventory: {fileID: 4416926082273746340}
+  audioSource: {fileID: 8944336655733072416}
+  leavesPrefab: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!65 &418392123
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418392121}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 150.15652, y: 18.206589, z: 148.31853}
+  m_Center: {x: 39.29283, y: -8.603294, z: -58.201378}
+--- !u!4 &418392124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418392121}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 359.6, y: 18, z: 314.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439478797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,14 +1979,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000462711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13718516, y: 0, z: 0, w: 0.99054545}
-  m_LocalPosition: {x: 345.5259, y: 2.364, z: 159.078}
+  m_LocalRotation: {x: 0.055298727, y: 0, z: 0, w: 0.99846995}
+  m_LocalPosition: {x: 345.5259, y: 2.26, z: 159.01}
   m_LocalScale: {x: 0.5, y: 4.65, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 479342696}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 15.77, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.34, y: 0, z: 0}
 --- !u!1 &2011065055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,7 +1999,7 @@ GameObject:
   - component: {fileID: 2011065057}
   - component: {fileID: 2011065056}
   - component: {fileID: 2011065059}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2683,3 +2761,4 @@ SceneRoots:
   - {fileID: 3893294198566536993}
   - {fileID: 1302301798}
   - {fileID: 2011065058}
+  - {fileID: 418392124}

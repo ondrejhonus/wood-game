@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public class LeafController : MonoBehaviour
+{
+    private Rigidbody rb;
+    private Collider col;
+
+    void Awake()
+    {
+        // Ensure components exist or add them
+        rb = GetComponent<Rigidbody>();
+        if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
+
+        col = GetComponent<Collider>();
+        if (col == null) col = gameObject.AddComponent<BoxCollider>();
+
+        // Start kinematic so they stick to the tree and don't fall yet
+        rb.isKinematic = true;
+        // Optional: Disable collider so it doesn't interfere with chopping raycasts
+        col.enabled = false; 
+    }
+
+    public void DropLeaves()
+    {
+        // 1. Detach from the tree so we don't get destroyed with it
+        transform.SetParent(null);
+
+        // 2. Enable physics
+        rb.isKinematic = false;
+        col.enabled = true;
+
+        // 3. Add a little push so they don't fall perfectly straight down
+        rb.AddForce(Vector3.up * 2f + Random.insideUnitSphere * 2f, ForceMode.Impulse);
+        rb.AddTorque(Random.insideUnitSphere * 5f, ForceMode.Impulse);
+
+        // 4. Destroy leaves after 10 seconds to clean up the scene
+        Destroy(gameObject, 10f);
+    }
+}

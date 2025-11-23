@@ -3,17 +3,19 @@ using UnityEngine;
 public class SellPoint : MonoBehaviour
 {
     public PlayerStats playerStats;
+    private class SoldMarker : MonoBehaviour { } // Prevent double selling by marking sold items
 
     private void OnTriggerEnter(Collider other)
     {
-        SellableObject item = other.GetComponent<SellableObject>();
-        if (item != null)
-        {
-            int value = CalculateValue(item);
-            playerStats.AddMoney(value, item.transform.position);
+        if (!other.TryGetComponent<SellableObject>(out var item)) return;
+        if (other.GetComponent<SoldMarker>() != null) return; // already sold
 
-            Destroy(other.gameObject); // Remove sold object
-        }
+        other.gameObject.AddComponent<SoldMarker>(); // mark as sold
+
+        int value = CalculateValue(item);
+        playerStats.AddMoney(value, item.transform.position);
+
+        Destroy(other.gameObject);
     }
 
     private int CalculateValue(SellableObject item)
@@ -30,6 +32,7 @@ public class SellPoint : MonoBehaviour
                 break;
         }
 
-        return Mathf.RoundToInt(baseValue * item.transform.localScale.x * (item.transform.localScale.y * 2)); // my custom formula that doesnt make that much sense i just like it
+        return Mathf.RoundToInt(baseValue * item.transform.localScale.x * (item.transform.localScale.y * 2)); // my custom formula that doesnt make that much 
+                                                                                                            // sense i just like it
     }
 }
