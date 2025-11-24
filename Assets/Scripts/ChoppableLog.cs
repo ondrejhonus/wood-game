@@ -19,6 +19,9 @@ public class ChoppableLog : MonoBehaviour
     public int hitsToChop = 6;
     public float minPieceLength = 0.01f;
 
+    public float chopRange = 3.5f; 
+    public LayerMask chopLayer = ~0; 
+
     public LeafController connectedLeaves;
 
     private Transform progressBar;
@@ -31,7 +34,7 @@ public class ChoppableLog : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
-        // Find progress bar cube (child of the pivot)
+        // Find progress bar cube
         Transform pivot = transform.Find("ProgressBarPivot");
         if (pivot != null)
         {
@@ -60,9 +63,11 @@ public class ChoppableLog : MonoBehaviour
             Vector2 mousePosition = Mouse.current.position.ReadValue();
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f)) // 100f = max distance
+            // Only check raycast against chopLayer, 100f is max distance
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f, chopLayer))
             {
-                if (hit.collider.gameObject == gameObject)
+                // Check if player is within range of log
+                if (hit.collider.gameObject == gameObject && hit.distance <= chopRange)
                 {
                     GameObject heldItem = playerInventory.GetSelectedItem();
                     if (heldItem != null && heldItem.CompareTag("Axe"))
@@ -70,6 +75,7 @@ public class ChoppableLog : MonoBehaviour
                         HandleChop(hit.point);
                         if (audioSource != null)
                         {
+                            // Play chop sound with random pitch
                             audioSource.Play();
                             audioSource.pitch = Random.Range(0.8f, 1.2f);
                         }
@@ -81,6 +87,13 @@ public class ChoppableLog : MonoBehaviour
 
     public void HandleChop(Vector3 hitPoint)
     {
+        // If the tree is stil growing, break it in one chop
+        if (transform.localScale.y < 2.0f)
+        {
+            SplitLog(new ChopPoint { chopPercentage = 0.5f });
+            return;
+        }
+
         Vector3 localHit = transform.InverseTransformPoint(hitPoint);
         float colliderCenterY = boxCollider.center.y;
         float colliderExtentY = boxCollider.size.y * 0.5f;
@@ -114,10 +127,15 @@ public class ChoppableLog : MonoBehaviour
                     pivotTemplate.localPosition.z
                 );
 
+                // Set up progress bar references
                 newCp.progressPivot = pivotInstance;
+                // Find progress bar
                 newCp.progressBar = pivotInstance.Find("ProgressBar");
+                // Set initial scale
                 Vector3 s = newCp.progressBar.localScale;
+                // Set X scale to 0 to make it invisible at first
                 newCp.progressBar.localScale = new Vector3(0f, s.y, s.z);
+                // ACtivate it
                 newCp.progressBar.gameObject.SetActive(true);
             }
 
@@ -135,11 +153,13 @@ public class ChoppableLog : MonoBehaviour
 
     void UpdateProgressBar(ChopPoint cp)
     {
+        // Scale progress bar based on hits
         float progress = (float)cp.currentHits / hitsToChop;
         Vector3 s = cp.progressBar.localScale;
         s.x = progress;
         cp.progressBar.localScale = s;
     }
+
     // Indicate if the log is planted in the ground, if yes, then its a tree stump
     public bool isPlanted = false;
 
@@ -165,11 +185,6 @@ public class ChoppableLog : MonoBehaviour
             connectedLeaves.DropLeaves();
             connectedLeaves = null; // Clear reference so we don't call it twice
         }
-
-
-        // Spawn pieces old logic
-        // CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
-        // CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
 
         // Spawn pieces new logic
         CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f, isPlanted); 
@@ -211,15 +226,19 @@ public class ChoppableLog : MonoBehaviour
         if (ch == null)
         {
             ch = piece.AddComponent<ChoppableLog>();
-            ch.logPiecePrefab = logPiecePrefab;
-            ch.hitsToChop = hitsToChop;
-            ch.minPieceLength = minPieceLength;
-            ch.playerInventory = playerInventory;
-            ch.audioSource = audioSource;
-
-            // Set if the piece is planted
-            ch.isPlanted = planted;
         }
+
+        // Pass all the settings
+        ch.logPiecePrefab = logPiecePrefab;
+        ch.hitsToChop = hitsToChop;
+        ch.minPieceLength = minPieceLength;
+        ch.playerInventory = playerInventory;
+        ch.audioSource = audioSource;
+        ch.chopLayer = chopLayer; // pass layer to cut in
+        ch.chopRange = chopRange; // pass range to cut in
+
+        // set if the piece is planted
+        ch.isPlanted = planted;
 
         GameObject playerArmature = GameObject.FindWithTag("Player");
         if (playerArmature != null)
@@ -231,7 +250,10 @@ public class ChoppableLog : MonoBehaviour
                 if (grabbable != null)
                     Destroy(grabbable);
                 // Start regrow routine
-                ch.StartCoroutine(ch.RegrowRoutine());
+                if (TreeGenerator.instance != null && TreeGenerator.instance.treesCanRegrow)
+                {
+                    ch.StartCoroutine(ch.RegrowRoutine());
+                }
             }
             else
             {
