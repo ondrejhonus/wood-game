@@ -840,11 +840,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
   treeCount: 100
-  minTreeSpacing: 10
-  trunkHeightRange: {x: 4, y: 10}
-  trunkWidthRange: {x: 0.3, y: 0.6}
+  minTreeSpacing: 8
+  treesCanRegrow: 1
+  timeBeforeRegrow: 300
+  growthDuration: 300
+  trunkHeightRange: {x: 6, y: 12}
+  trunkWidthRange: {x: 0.4, y: 1}
   leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
+  targetLeafSize: 6
   hitsToChop: 6
   minPieceLength: 0.05
   playerInventory: {fileID: 4416926082273746340}
@@ -1870,6 +1873,7 @@ MonoBehaviour:
   connectedLeaves: {fileID: 0}
   playerInventory: {fileID: 4416926082273746340}
   audioSource: {fileID: 8944336655733072416}
+  isPlanted: 0
 --- !u!54 &2000462713
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -92,16 +92,16 @@ public class TreeGenerator : MonoBehaviour
         if (animateGrowth)
         {
             // Start tiny!
-            tree.transform.localScale = Vector3.zero; 
+            tree.transform.localScale = Vector3.zero;
             // Position at ground level
-            tree.transform.position = position; 
+            tree.transform.position = position;
         }
         else
         {
             // no animation, set final size directly, this happens at the start of the game
             tree.transform.localScale = new Vector3(finalWidth, finalHeight, finalWidth);
             float halfHeight = finalHeight * 0.5f;
-            tree.transform.position = position + Vector3.up * (halfHeight - 0.001f);
+            tree.transform.position = position + Vector3.up * (halfHeight - 0.1f); // Slightly push into ground to avoid floating
         }
 
         // Random Y Rotation
@@ -120,12 +120,19 @@ public class TreeGenerator : MonoBehaviour
         // Setup ChoppableLog
         ChoppableLog ch = tree.GetComponent<ChoppableLog>();
         if (ch == null) ch = tree.AddComponent<ChoppableLog>();
+
+        // Width * 8
+        // (e.g., 0.4 * 8 = 3 hits.  1 * 8 = 8 hits.)
+        int calculatedHits = Mathf.RoundToInt(finalWidth * 8f);
+
+        // 2. Safety Clamp: Ensure it's never less than 3 or more than 10
+        ch.hitsToChop = Mathf.Clamp(calculatedHits, 3, 10);
+
         ch.logPiecePrefab = logPrefab;
-        ch.hitsToChop = hitsToChop;
         ch.minPieceLength = minPieceLength;
         ch.playerInventory = playerInventory;
         ch.audioSource = audioSource;
-        ch.isPlanted = true; // IMPORTANT
+        ch.isPlanted = true;
 
         // Setup Grabbable
         GameObject playerArmature = GameObject.FindWithTag("Player");
@@ -142,15 +149,15 @@ public class TreeGenerator : MonoBehaviour
             // Position relative to the FINAL height
             // This is so the leaves grow with the trunk during animation
             Vector3 localLeafPos = Vector3.up * 0.5f; // Top of the cube is 0.5f because pivot is in center, so we only go half way up
-            
+
             GameObject leaves = Instantiate(leavesPrefab, tree.transform);
-            leaves.transform.localPosition = localLeafPos; 
+            leaves.transform.localPosition = localLeafPos;
             leaves.transform.localRotation = Quaternion.identity;
 
             // Calculate inverse scale based on FINAL dimensions
             Vector3 inverseScale = new Vector3(
-                targetLeafSize / finalWidth, 
-                targetLeafSize / finalHeight, 
+                targetLeafSize / finalWidth,
+                targetLeafSize / finalHeight,
                 targetLeafSize / finalWidth
             );
             leaves.transform.localScale = inverseScale;
@@ -175,9 +182,9 @@ public class TreeGenerator : MonoBehaviour
         {
             timer += Time.deltaTime;
             float t = timer / growthDuration;
-            
+
             // Smoothstep makes it grow fast at start and end, slow in middle
-            t = Mathf.SmoothStep(0f, 1f, t); 
+            t = Mathf.SmoothStep(0f, 1f, t);
 
             float currentHeight = Mathf.Lerp(0.1f, targetHeight, t);
             float currentWidth = Mathf.Lerp(0.05f, targetWidth, t);
@@ -202,7 +209,7 @@ public class TreeGenerator : MonoBehaviour
             tree.position = groundPos + Vector3.up * (targetHeight * 0.5f);
         }
     }
-Vector3 RandomPointInArea()
+    Vector3 RandomPointInArea()
     {
         Vector3 c = transform.position + area.center;
         Vector3 s = area.size;
