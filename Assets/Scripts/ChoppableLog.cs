@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -103,7 +104,7 @@ public class ChoppableLog : MonoBehaviour
             newCp.currentHits = 0;
 
             Transform pivotTemplate = transform.Find("ProgressBarPivot");
-            // Safety check in case pivotTemplate is missing (e.g. on prefabs)
+            // check if template exists
             if (pivotTemplate != null)
             {
                 Transform pivotInstance = Instantiate(pivotTemplate, transform);
@@ -155,7 +156,7 @@ public class ChoppableLog : MonoBehaviour
 
         if (part1Length < minPieceLength || part2Length < minPieceLength)
         {
-            Debug.LogWarning("One part would be too small. Aborting split.");
+            // Debug.LogWarning("One part would be too small. Aborting split.");
             return;
         }
 
@@ -206,9 +207,10 @@ public class ChoppableLog : MonoBehaviour
             }
         }
 
-        if (piece.GetComponent<ChoppableLog>() == null)
+        ChoppableLog ch = piece.GetComponent<ChoppableLog>();
+        if (ch == null)
         {
-            ChoppableLog ch = piece.AddComponent<ChoppableLog>();
+            ch = piece.AddComponent<ChoppableLog>();
             ch.logPiecePrefab = logPiecePrefab;
             ch.hitsToChop = hitsToChop;
             ch.minPieceLength = minPieceLength;
@@ -228,6 +230,8 @@ public class ChoppableLog : MonoBehaviour
             {
                 if (grabbable != null)
                     Destroy(grabbable);
+                // Start regrow routine
+                ch.StartCoroutine(ch.RegrowRoutine());
             }
             else
             {
@@ -236,5 +240,26 @@ public class ChoppableLog : MonoBehaviour
                     grabbable.cameraSwitcher = camSwitcher;
             }
         }
+    }
+
+    public IEnumerator RegrowRoutine()
+    {
+        // Wait for some time before regrowing a new tree
+        yield return new WaitForSeconds(TreeGenerator.instance.timeBeforeRegrow);
+
+        // Transform.position is the center of the log piece 
+        // We subtract Half Height to find the exact point on the dirt where the tree should regrow
+        float halfHeight = transform.localScale.y * 0.5f;
+        // Calculate Ground Position
+        Vector3 groundPos = transform.position - (transform.up * halfHeight);
+
+        // Spawn new tree at this position with growth animation
+        if (TreeGenerator.instance != null)
+        {
+            TreeGenerator.instance.SpawnTree(groundPos, true);
+        }
+
+        // Destroy the remaining stump
+        Destroy(gameObject);
     }
 }

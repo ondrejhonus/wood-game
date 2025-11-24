@@ -1,33 +1,35 @@
 using UnityEngine;
-using System.Collections.Generic; // Required for Lists
+using System.Collections;
+using System.Collections.Generic;
 
 public class TreeGenerator : MonoBehaviour
 {
+    public static TreeGenerator instance;
+
     public GameObject logPrefab;
     public int treeCount = 50;
-    
-    [Tooltip("Minimum distance between trees")]
-    public float minTreeSpacing = 2.5f; 
+    public float minTreeSpacing = 2.5f;
+
+    [Header("Regrowth Settings")]
+    public bool treesCanRegrow = true;
+    public float timeBeforeRegrow = 300f;   // Time stump sits there (300 = 5 minutes)
+    public float growthDuration = 300f;    // Time to grow a full tree (300 = 5 minutes)
 
     [Header("Tree Size")]
     public Vector2 trunkHeightRange = new Vector2(3f, 7f);
     public Vector2 trunkWidthRange = new Vector2(0.2f, 0.5f);
-
-    [Header("Leaves Settings")]
     public GameObject leavesPrefab;
-    [Tooltip("The global size you want the leaves to be, regardless of trunk size")]
-    public float targetLeafSize = 1.5f; 
+    public float targetLeafSize = 1.5f;
 
-    [Header("References for ChoppableLog")]
+    [Header("References")]
     public int hitsToChop = 3;
     public float minPieceLength = 0.3f;
     public PlayerInventory playerInventory;
     public AudioSource audioSource;
-
-    [Header("Raycast")]
     public LayerMask whatIsGround;
-
     private BoxCollider area;
+
+    void Awake() { instance = this; }
 
     void Start()
     {
@@ -78,27 +80,39 @@ public class TreeGenerator : MonoBehaviour
         }
     }
 
-    void SpawnTree(Vector3 position)
+    public void SpawnTree(Vector3 position, bool animateGrowth = false)
     {
-        // Create the tree log
         GameObject tree = Instantiate(logPrefab, position, Quaternion.identity);
 
-        float height = Random.Range(trunkHeightRange.x, trunkHeightRange.y);
-        float width = Random.Range(trunkWidthRange.x, trunkWidthRange.y);
+        // Calculate random final tree size
+        float finalHeight = Random.Range(trunkHeightRange.x, trunkHeightRange.y);
+        float finalWidth = Random.Range(trunkWidthRange.x, trunkWidthRange.y);
 
-        tree.transform.localScale = new Vector3(width, height, width);
+        // Set the sapling size and position
+        if (animateGrowth)
+        {
+            // Start tiny!
+            tree.transform.localScale = Vector3.zero; 
+            // Position at ground level
+            tree.transform.position = position; 
+        }
+        else
+        {
+            // no animation, set final size directly, this happens at the start of the game
+            tree.transform.localScale = new Vector3(finalWidth, finalHeight, finalWidth);
+            float halfHeight = finalHeight * 0.5f;
+            tree.transform.position = position + Vector3.up * (halfHeight - 0.001f);
+        }
 
-        float halfHeight = height * 0.5f;
-        tree.transform.position = position + Vector3.up * (halfHeight - 0.02f);
-        
-        // Random Rotation
+        // Random Y Rotation
         tree.transform.rotation = Quaternion.Euler(Random.Range(4f, 8f), Random.Range(0f, 360f), 0f);
 
         // Setup Physics
         Rigidbody rb = tree.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            float mass = height * Mathf.Pow(width, 2) * 8f;
+            // Calculate final mass
+            float mass = finalHeight * Mathf.Pow(finalWidth, 2) * 8f;
             rb.mass = mass;
             rb.isKinematic = true;
         }
@@ -106,14 +120,12 @@ public class TreeGenerator : MonoBehaviour
         // Setup ChoppableLog
         ChoppableLog ch = tree.GetComponent<ChoppableLog>();
         if (ch == null) ch = tree.AddComponent<ChoppableLog>();
-
         ch.logPiecePrefab = logPrefab;
         ch.hitsToChop = hitsToChop;
         ch.minPieceLength = minPieceLength;
         ch.playerInventory = playerInventory;
         ch.audioSource = audioSource;
-
-        ch.isPlanted = true; // Mark as planted into the ground
+        ch.isPlanted = true; // IMPORTANT
 
         // Setup Grabbable
         GameObject playerArmature = GameObject.FindWithTag("Player");
@@ -127,34 +139,73 @@ public class TreeGenerator : MonoBehaviour
         // Create Leaves
         if (leavesPrefab != null)
         {
-            Vector3 leafPos = position + Vector3.up * (height + 0.5f);
+            // Position relative to the FINAL height
+            // This is so the leaves grow with the trunk during animation
+            Vector3 localLeafPos = Vector3.up * 0.5f; // Top of the cube is 0.5f because pivot is in center, so we only go half way up
             
-            // Set as a child so it takes the tree's position and rotation
-            GameObject leaves = Instantiate(leavesPrefab, leafPos, Quaternion.identity, tree.transform);
-
-            // Adjust scale to match log size
-            Vector3 inverseScale = new Vector3(
-                targetLeafSize / width, 
-                targetLeafSize / height, 
-                targetLeafSize / width
-            );
-            
-            leaves.transform.localScale = inverseScale;
+            GameObject leaves = Instantiate(leavesPrefab, tree.transform);
+            leaves.transform.localPosition = localLeafPos; 
             leaves.transform.localRotation = Quaternion.identity;
+
+            // Calculate inverse scale based on FINAL dimensions
+            Vector3 inverseScale = new Vector3(
+                targetLeafSize / finalWidth, 
+                targetLeafSize / finalHeight, 
+                targetLeafSize / finalWidth
+            );
+            leaves.transform.localScale = inverseScale;
 
             LeafController leafCtrl = leaves.AddComponent<LeafController>();
             ch.connectedLeaves = leafCtrl;
         }
+
+        // 3. Start Animation if requested
+        if (animateGrowth)
+        {
+            StartCoroutine(GrowTreeRoutine(tree.transform, finalWidth, finalHeight, position));
+        }
     }
 
-    Vector3 RandomPointInArea()
+    // Grow animation routine
+    IEnumerator GrowTreeRoutine(Transform tree, float targetWidth, float targetHeight, Vector3 groundPos)
+    {
+        float timer = 0f;
+
+        while (timer < growthDuration)
+        {
+            timer += Time.deltaTime;
+            float t = timer / growthDuration;
+            
+            // Smoothstep makes it grow fast at start and end, slow in middle
+            t = Mathf.SmoothStep(0f, 1f, t); 
+
+            float currentHeight = Mathf.Lerp(0.1f, targetHeight, t);
+            float currentWidth = Mathf.Lerp(0.05f, targetWidth, t);
+
+            if (tree == null) yield break; // Check if tree was destroyed mid-animation
+
+            // Apply Scale at each frame
+            tree.localScale = new Vector3(currentWidth, currentHeight, currentWidth);
+
+            // Apply Position
+            // explanation: Because the pivot is in the CENTER, 
+            // the position must be Ground + Half of Current Height.
+            tree.position = groundPos + Vector3.up * (currentHeight * 0.5f);
+
+            yield return null;
+        }
+
+        // set final values to ensure accuracy
+        if (tree != null)
+        {
+            tree.localScale = new Vector3(targetWidth, targetHeight, targetWidth);
+            tree.position = groundPos + Vector3.up * (targetHeight * 0.5f);
+        }
+    }
+Vector3 RandomPointInArea()
     {
         Vector3 c = transform.position + area.center;
         Vector3 s = area.size;
-        return new Vector3(
-            Random.Range(c.x - s.x / 2, c.x + s.x / 2),
-            c.y,
-            Random.Range(c.z - s.z / 2, c.z + s.z / 2)
-        );
+        return new Vector3(Random.Range(c.x - s.x / 2, c.x + s.x / 2), c.y, Random.Range(c.z - s.z / 2, c.z + s.z / 2));
     }
 }
