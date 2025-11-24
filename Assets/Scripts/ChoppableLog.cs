@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,18 +18,23 @@ public class ChoppableLog : MonoBehaviour
     public GameObject logPiecePrefab;
     public int hitsToChop = 6;
     public float minPieceLength = 0.01f;
-    private Transform progressBar; // this should be the **cube child of the pivot**
-    private Transform progressPivot; // the pivot that will be moved to the click position
+
+    public float chopRange = 3.5f; 
+    public LayerMask chopLayer = ~0; 
+
+    public LeafController connectedLeaves;
+
+    private Transform progressBar;
+    private Transform progressPivot;
     private BoxCollider boxCollider;
     private List<ChopPoint> chopPoints = new List<ChopPoint>();
-    public PlayerInventory playerInventory; // Assign in Inspector or find at runtime
-    public AudioSource audioSource; // For chopping sound
-
+    public PlayerInventory playerInventory;
+    public AudioSource audioSource;
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
-        // Find progress bar cube (child of the pivot)
+        // Find progress bar cube
         Transform pivot = transform.Find("ProgressBarPivot");
         if (pivot != null)
         {
@@ -42,7 +48,11 @@ public class ChoppableLog : MonoBehaviour
             }
         }
         if (playerInventory == null)
-            playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
+                playerInventory = player.GetComponent<PlayerInventory>();
+        }
     }
 
     private void Update()
@@ -51,24 +61,23 @@ public class ChoppableLog : MonoBehaviour
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             Vector2 mousePosition = Mouse.current.position.ReadValue();
-            // Convert mouse position to a ray that is casted into the scene
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+            // Only check raycast against chopLayer, 100f is max distance
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f, chopLayer))
             {
-                if (hit.collider.gameObject == gameObject)
+                // Check if player is within range of log
+                if (hit.collider.gameObject == gameObject && hit.distance <= chopRange)
                 {
-                    // Only allow chop if holding an axe
                     GameObject heldItem = playerInventory.GetSelectedItem();
-                    // Check if the held item is an axe
                     if (heldItem != null && heldItem.CompareTag("Axe"))
                     {
                         HandleChop(hit.point);
-                        // Play chopping sound
                         if (audioSource != null)
                         {
+                            // Play chop sound with random pitch
                             audioSource.Play();
-                            audioSource.pitch = Random.Range(0.8f, 1.2f); // Randomize pitch for variety of sounds
+                            audioSource.pitch = Random.Range(0.8f, 1.2f);
                         }
                     }
                 }
@@ -78,55 +87,65 @@ public class ChoppableLog : MonoBehaviour
 
     public void HandleChop(Vector3 hitPoint)
     {
-        // Convert hit point to normalized Y position
+        // If the tree is stil growing, break it in one chop
+        if (transform.localScale.y < 2.0f)
+        {
+            SplitLog(new ChopPoint { chopPercentage = 0.5f });
+            return;
+        }
+
         Vector3 localHit = transform.InverseTransformPoint(hitPoint);
         float colliderCenterY = boxCollider.center.y;
         float colliderExtentY = boxCollider.size.y * 0.5f;
         float normalizedY = (localHit.y - (colliderCenterY - colliderExtentY)) / boxCollider.size.y;
         float chopPercentage = Mathf.Clamp01(normalizedY);
 
-        // Check if near an existing chop point
         ChopPoint target = null;
         foreach (var cp in chopPoints)
         {
-            if (Mathf.Abs(cp.chopPercentage - chopPercentage) < 0.05f) // 5% tolerance
+            if (Mathf.Abs(cp.chopPercentage - chopPercentage) < 0.05f)
             {
                 target = cp;
                 break;
             }
         }
 
-        // If not found, create a new chop point
         if (target == null)
         {
             ChopPoint newCp = new ChopPoint();
             newCp.chopPercentage = chopPercentage;
             newCp.currentHits = 0;
 
-            // Create a new pivot + bar
             Transform pivotTemplate = transform.Find("ProgressBarPivot");
-            Transform pivotInstance = Instantiate(pivotTemplate, transform);
-            pivotInstance.localPosition = new Vector3(
-                pivotTemplate.localPosition.x,
-                localHit.y,
-                pivotTemplate.localPosition.z
-            );
+            // check if template exists
+            if (pivotTemplate != null)
+            {
+                Transform pivotInstance = Instantiate(pivotTemplate, transform);
+                pivotInstance.localPosition = new Vector3(
+                    pivotTemplate.localPosition.x,
+                    localHit.y,
+                    pivotTemplate.localPosition.z
+                );
 
-            newCp.progressPivot = pivotInstance;
-            newCp.progressBar = pivotInstance.Find("ProgressBar");
-            Vector3 s = newCp.progressBar.localScale;
-            newCp.progressBar.localScale = new Vector3(0f, s.y, s.z);
-            newCp.progressBar.gameObject.SetActive(true);
+                // Set up progress bar references
+                newCp.progressPivot = pivotInstance;
+                // Find progress bar
+                newCp.progressBar = pivotInstance.Find("ProgressBar");
+                // Set initial scale
+                Vector3 s = newCp.progressBar.localScale;
+                // Set X scale to 0 to make it invisible at first
+                newCp.progressBar.localScale = new Vector3(0f, s.y, s.z);
+                // ACtivate it
+                newCp.progressBar.gameObject.SetActive(true);
+            }
 
             chopPoints.Add(newCp);
             target = newCp;
         }
 
-        // Apply hit
         target.currentHits++;
-        UpdateProgressBar(target);
+        if (target.progressBar != null) UpdateProgressBar(target);
 
-        // Split if done
         if (target.currentHits >= hitsToChop)
             SplitLog(target);
     }
@@ -134,98 +153,135 @@ public class ChoppableLog : MonoBehaviour
 
     void UpdateProgressBar(ChopPoint cp)
     {
+        // Scale progress bar based on hits
         float progress = (float)cp.currentHits / hitsToChop;
         Vector3 s = cp.progressBar.localScale;
         s.x = progress;
         cp.progressBar.localScale = s;
     }
 
+    // Indicate if the log is planted in the ground, if yes, then its a tree stump
+    public bool isPlanted = false;
+
     void SplitLog(ChopPoint cp)
     {
-        // Hide progress bar
         if (cp.progressBar != null)
             cp.progressBar.gameObject.SetActive(false);
 
-        // Calculate lengths of the two new pieces
         float totalLength = boxCollider.size.y * transform.localScale.y;
         float cutY = totalLength * cp.chopPercentage;
 
         float part1Length = cutY;
         float part2Length = totalLength - cutY;
 
-        // Make sure pieces are not too small
         if (part1Length < minPieceLength || part2Length < minPieceLength)
         {
-            Debug.LogWarning("One part would be too small. Aborting split.");
+            // Debug.LogWarning("One part would be too small. Aborting split.");
             return;
         }
 
-        // Spawn pieces
-        CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
-        CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
+        if (connectedLeaves != null)
+        {
+            connectedLeaves.DropLeaves();
+            connectedLeaves = null; // Clear reference so we don't call it twice
+        }
 
-        // Destroy original log
+        // Spawn pieces new logic
+        CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f, isPlanted); 
+        CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f, false);
+
         Destroy(gameObject);
     }
 
-    void CreateLogPiece(float length, float localYOffset)
+    void CreateLogPiece(float length, float localYOffset, bool planted)
     {
-        // Create a new log piece
         GameObject piece = Instantiate(logPiecePrefab);
-        // Position it correctly
         piece.transform.position = transform.position + transform.up * localYOffset;
-        // Match rotation and scale (scale.y will be adjusted below)
         piece.transform.rotation = transform.rotation;
-        // Match X and Z scale, set Y scale to the length of the piece
+        // Set scale
         piece.transform.localScale = new Vector3(transform.localScale.x, length, transform.localScale.z);
+
         Rigidbody pieceRb = piece.GetComponent<Rigidbody>();
         if (pieceRb != null)
         {
-            // Calculate mass of the log (length * width^2) * 8 coz it was too little
             float width = piece.transform.localScale.x;
             float mass = length * Mathf.Pow(width, 2) * 8f;
             pieceRb.mass = mass;
+            pieceRb.isKinematic = planted; // If planted, make kinematic (no physics)
         }
 
-        // Add physics to the new piece with Rigidbody
-        Rigidbody rb = piece.GetComponent<Rigidbody>();
-        if (rb != null) rb.isKinematic = false;
-
-        // Disable progress bar on spawned pieces
         Transform pivot = piece.transform.Find("ProgressBarPivot");
         if (pivot != null)
         {
             Transform bar = pivot.Find("ProgressBar");
             if (bar != null)
             {
-                // Reset scale to 0, so it's invisible at first
                 Vector3 s = bar.localScale;
                 bar.localScale = new Vector3(0f, s.y, s.z);
                 bar.gameObject.SetActive(false);
             }
         }
 
-        // Add ChoppableLog script to pieces so they can be chopped furthermore
-        if (piece.GetComponent<ChoppableLog>() == null)
+        ChoppableLog ch = piece.GetComponent<ChoppableLog>();
+        if (ch == null)
         {
-            ChoppableLog ch = piece.AddComponent<ChoppableLog>();
-            ch.logPiecePrefab = logPiecePrefab;
-            ch.hitsToChop = hitsToChop;
-            ch.minPieceLength = minPieceLength;
-            ch.playerInventory = playerInventory;
-            ch.audioSource = audioSource;
+            ch = piece.AddComponent<ChoppableLog>();
         }
 
-        // Find the player armature in the scene
+        // Pass all the settings
+        ch.logPiecePrefab = logPiecePrefab;
+        ch.hitsToChop = hitsToChop;
+        ch.minPieceLength = minPieceLength;
+        ch.playerInventory = playerInventory;
+        ch.audioSource = audioSource;
+        ch.chopLayer = chopLayer; // pass layer to cut in
+        ch.chopRange = chopRange; // pass range to cut in
+
+        // set if the piece is planted
+        ch.isPlanted = planted;
+
         GameObject playerArmature = GameObject.FindWithTag("Player");
         if (playerArmature != null)
         {
             ObjectGrabbable grabbable = piece.GetComponent<ObjectGrabbable>();
-            CameraSwitcher camSwitcher = playerArmature.GetComponent<CameraSwitcher>();
-            // Set the player armature as the camera switcher
-            if (camSwitcher != null)
-                grabbable.cameraSwitcher = camSwitcher;
 
+            if (planted)
+            {
+                if (grabbable != null)
+                    Destroy(grabbable);
+                // Start regrow routine
+                if (TreeGenerator.instance != null && TreeGenerator.instance.treesCanRegrow)
+                {
+                    ch.StartCoroutine(ch.RegrowRoutine());
+                }
+            }
+            else
+            {
+                CameraSwitcher camSwitcher = playerArmature.GetComponent<CameraSwitcher>();
+                if (camSwitcher != null && grabbable != null)
+                    grabbable.cameraSwitcher = camSwitcher;
+            }
         }
+    }
+
+    public IEnumerator RegrowRoutine()
+    {
+        // Wait for some time before regrowing a new tree
+        yield return new WaitForSeconds(TreeGenerator.instance.timeBeforeRegrow);
+
+        // Transform.position is the center of the log piece 
+        // We subtract Half Height to find the exact point on the dirt where the tree should regrow
+        float halfHeight = transform.localScale.y * 0.5f;
+        // Calculate Ground Position
+        Vector3 groundPos = transform.position - (transform.up * halfHeight);
+
+        // Spawn new tree at this position with growth animation
+        if (TreeGenerator.instance != null)
+        {
+            TreeGenerator.instance.SpawnTree(groundPos, true);
+        }
+
+        // Destroy the remaining stump
+        Destroy(gameObject);
     }
 }
