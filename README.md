@@ -42,29 +42,37 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - There will also be a food system, they will either need to buy some food, or fish for fishies so they don't have to pay.
 
 
-## Feature Roadmap
+## Feature Roadmap (Programming)
 ✅ Movement mechanics + Collisions  
 ✅ Tree cutting physics with visible progress bar   
 ✅ Carry objects with cursor    
-▶️ Add rigged character sprite with animations  
 ✅ Hide cursor in third person  
 ✅ Allow more cut points on log     
-❌ Fix issue when switching from FP to TP to center the "hold point"    
+⚠️ Fix issue when switching from FP to TP to center the "hold point"    
 ✅️ Have equipped objects in your hand       
 ✅️ Implement inventory system   
 ✅️ Enable the player to carry an axe (allow cutting only with axe, carrying with hand)  
-▶️ Create at least some basic game map, which has some interactable objects such as a sell point     
-❌ Add Items in inventory to UI     
-▶️ Create UI     
 ✅️ Implement game currency and add to UI     
 ✅️ Add player HP and add to UI   
 ✅️ Ability to sell logs at a specific location  
-✅️ Allow player to hold an object on a specific point, not the mass center      
+✅️ Allow player to hold an object on a specific point, not the mass center     
+▶️ Tree spawning system     
 ❌ Vehicles for transporting logs   
-❌ Tree spawning system     
 ❌ Progress saving mechanics    
+
+## Feature Roadmap (Modeling + others)
+✅️ Create Axe model     
+❌ Have more purchasable axes   
+▶️ Create a basic game map with mountains as borders  
+❌ Add rigged character sprite with animations  
+❌ A place to sell logs     
 ❌ A store to buy a better axe for the currency     
+❌ Different wood textures + leaves     
+❌ Create UI     
+❌ Add Items in inventory to UI     
+❌ Vehicle model for transporting logs   
 ❌ Add sound effects and background music   
+
 
 ## Used Assets
 - [Unity FirstPerson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-firstperson-updates-in-new-charactercontroller-pa-196525)
