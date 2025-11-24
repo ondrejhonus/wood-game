@@ -78,6 +78,9 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - [Unity FirstPerson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-firstperson-updates-in-new-charactercontroller-pa-196525)
 - [Unity Thirdperson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-thirdperson-updates-in-new-charactercontroller-pa-196526)
 
+## Used Materials
+- [How to Make Beautiful Terrain in Unity 2020 - UGuruz](https://www.youtube.com/watch?v=ddy12WHqt-M)
+
 ## Technologies 🔧  
 - Unity engine (C#)
 - Blender
