@@ -25,14 +25,14 @@ public class SellPoint : MonoBehaviour
         switch (item.objectType)
         {
             case "basicLog":
-                baseValue = 10;
+                baseValue = 1;
                 break;
             default:
                 baseValue = 1;
                 break;
         }
 
-        return Mathf.RoundToInt(baseValue * item.transform.localScale.x * (item.transform.localScale.y * 2)); // my custom formula that doesnt make that much 
+        return Mathf.RoundToInt(baseValue * item.transform.localScale.x * (item.transform.localScale.y * 3)); // my custom formula that doesnt make that much 
                                                                                                             // sense i just like it
     }
 }

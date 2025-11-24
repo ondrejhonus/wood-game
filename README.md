@@ -80,6 +80,10 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 
 ## Used Materials
 - [How to Make Beautiful Terrain in Unity 2020 - UGuruz](https://www.youtube.com/watch?v=ddy12WHqt-M)
+- [Kickstart your game with First and Third Person Controllers! - Code Monkey](https://www.youtube.com/watch?v=jXz5b_9z0Bc)
+- [How to Pick up and Drop Objects/Items! - Code Monkey](https://www.youtube.com/watch?v=2IhzPTS4av4)
+
+
 
 ## Technologies 🔧  
 - Unity engine (C#)
