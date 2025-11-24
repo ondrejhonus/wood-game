@@ -139,6 +139,8 @@ public class ChoppableLog : MonoBehaviour
         s.x = progress;
         cp.progressBar.localScale = s;
     }
+    // Indicate if the log is planted in the ground, if yes, then its a tree stump
+    public bool isPlanted = false;
 
     void SplitLog(ChopPoint cp)
     {
@@ -157,23 +159,30 @@ public class ChoppableLog : MonoBehaviour
             return;
         }
 
-        // Spawn pieces
-        CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
-        CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
-
         if (connectedLeaves != null)
         {
             connectedLeaves.DropLeaves();
             connectedLeaves = null; // Clear reference so we don't call it twice
         }
+
+
+        // Spawn pieces old logic
+        // CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f);
+        // CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f);
+
+        // Spawn pieces new logic
+        CreateLogPiece(part1Length, -totalLength * 0.5f + part1Length * 0.5f, isPlanted); 
+        CreateLogPiece(part2Length, -totalLength * 0.5f + part1Length + part2Length * 0.5f, false);
+
         Destroy(gameObject);
     }
 
-    void CreateLogPiece(float length, float localYOffset)
+    void CreateLogPiece(float length, float localYOffset, bool planted)
     {
         GameObject piece = Instantiate(logPiecePrefab);
         piece.transform.position = transform.position + transform.up * localYOffset;
         piece.transform.rotation = transform.rotation;
+        // Set scale
         piece.transform.localScale = new Vector3(transform.localScale.x, length, transform.localScale.z);
 
         Rigidbody pieceRb = piece.GetComponent<Rigidbody>();
@@ -182,7 +191,7 @@ public class ChoppableLog : MonoBehaviour
             float width = piece.transform.localScale.x;
             float mass = length * Mathf.Pow(width, 2) * 8f;
             pieceRb.mass = mass;
-            pieceRb.isKinematic = false;
+            pieceRb.isKinematic = planted; // If planted, make kinematic (no physics)
         }
 
         Transform pivot = piece.transform.Find("ProgressBarPivot");
@@ -205,15 +214,27 @@ public class ChoppableLog : MonoBehaviour
             ch.minPieceLength = minPieceLength;
             ch.playerInventory = playerInventory;
             ch.audioSource = audioSource;
+
+            // Set if the piece is planted
+            ch.isPlanted = planted;
         }
 
         GameObject playerArmature = GameObject.FindWithTag("Player");
         if (playerArmature != null)
         {
             ObjectGrabbable grabbable = piece.GetComponent<ObjectGrabbable>();
-            CameraSwitcher camSwitcher = playerArmature.GetComponent<CameraSwitcher>();
-            if (camSwitcher != null && grabbable != null)
-                grabbable.cameraSwitcher = camSwitcher;
+
+            if (planted)
+            {
+                if (grabbable != null)
+                    Destroy(grabbable);
+            }
+            else
+            {
+                CameraSwitcher camSwitcher = playerArmature.GetComponent<CameraSwitcher>();
+                if (camSwitcher != null && grabbable != null)
+                    grabbable.cameraSwitcher = camSwitcher;
+            }
         }
     }
 }

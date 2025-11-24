@@ -89,7 +89,7 @@ public class TreeGenerator : MonoBehaviour
         tree.transform.localScale = new Vector3(width, height, width);
 
         float halfHeight = height * 0.5f;
-        tree.transform.position = position + Vector3.up * (halfHeight - 0.001f);
+        tree.transform.position = position + Vector3.up * (halfHeight - 0.02f);
         
         // Random Rotation
         tree.transform.rotation = Quaternion.Euler(Random.Range(4f, 8f), Random.Range(0f, 360f), 0f);
@@ -112,6 +112,8 @@ public class TreeGenerator : MonoBehaviour
         ch.minPieceLength = minPieceLength;
         ch.playerInventory = playerInventory;
         ch.audioSource = audioSource;
+
+        ch.isPlanted = true; // Mark as planted into the ground
 
         // Setup Grabbable
         GameObject playerArmature = GameObject.FindWithTag("Player");
