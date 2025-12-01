@@ -1,32 +1,39 @@
 using UnityEngine;
 
-public class CarCameraFollow : MonoBehaviour
+public class CarCameraMovement : MonoBehaviour
 {
-    public Transform target;       // Truck object
-    public Vector3 offset; // This gets calculated at start
-    public float smoothSpeed = 0.125f;
+    public Transform target;        // Drag your Truck here
+    
+    [Header("Settings")]
+    public float distance = 6.0f;   // Distance from car
+    public float height = 2.0f;     // Height above car
+    public float mouseSpeed = 3.0f; // How fast you look around
 
-    void Start()
+    private float currentX = 0.0f;  // Stores your mouse X movement
+    private float currentY = 0.0f;  // Stores your mouse Y movement
+
+    void LateUpdate()
     {
-        // Calculate offset based on starting positions, eg. where i placed the mount point
-        if (target != null)
-        {
-            offset = transform.position - target.position;
-        }
-    }
+        if (!target) return;
 
-    void FixedUpdate()
-    {
-        if (target == null) return;
+        // Get mouse input
+        currentX += Input.GetAxis("Mouse X") * mouseSpeed;
+        currentY -= Input.GetAxis("Mouse Y") * mouseSpeed;
 
-        // Calculate desired position, with offset rotated to match target rotation, so it stays behind the car at all times
-        Vector3 desiredPosition = target.position + target.TransformDirection(Quaternion.Inverse(target.rotation) * offset);
+        // dont let camera go below ground or too far up
+        currentY = Mathf.Clamp(currentY, -10, 60);
 
-        // Smooth the camera movement, so it doesnt jerk around weirdly
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = smoothedPosition;
+        // convert mouse position to rotation
+        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
 
-        // Always look at the car
-        transform.LookAt(target);
+        // Calculate target position, we look at the center of the target, plus height, then back off by distance
+        Vector3 targetCenter = target.position + Vector3.up * height;
+        
+        // Move the camera BACKWARDS from the rotation
+        Vector3 finalPosition = targetCenter - (rotation * Vector3.forward * distance);
+
+        // Apply position and rotation
+        transform.position = finalPosition;
+        transform.LookAt(targetCenter);
     }
 }

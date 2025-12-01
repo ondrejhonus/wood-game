@@ -5,16 +5,14 @@ using UnityEngine.UI;
 
 namespace Ezereal
 {
-    public class EzerealCarController : MonoBehaviour // This is the main system resposible for car control.
+    public class EzerealCarController : MonoBehaviour
     {
         [Header("Ezereal References")]
-
         [SerializeField] EzerealLightController ezerealLightController;
         [SerializeField] EzerealSoundController ezerealSoundController;
         [SerializeField] EzerealWheelFrictionController ezerealWheelFrictionController;
 
         [Header("References")]
-
         public Rigidbody vehicleRB;
         public WheelCollider frontLeftWheelCollider;
         public WheelCollider frontRightWheelCollider;
@@ -39,28 +37,29 @@ namespace Ezereal
         [Header("Settings")]
         public bool isStarted = true;
 
-        public float maxForwardSpeed = 100f; // 100f default
-        public float maxReverseSpeed = 30f; // 30f default
-        public float horsePower = 1000f; // 100f0 default
-        public float brakePower = 2000f; // 2000f default
-        public float handbrakeForce = 3000f; // 3000f default
-        public float maxSteerAngle = 30f; // 30f default
-        public float steeringSpeed = 5f; // 0.5f default
-        public float stopThreshold = 1f; // 1f default. At what speed car will make a full stop
-        public float decelerationSpeed = 0.5f; // 0.5f default
-        public float maxSteeringWheelRotation = 360f; // 360 for real steering wheel. 120 would be more suitable for racing.
+        public float maxForwardSpeed = 100f; 
+        public float maxReverseSpeed = 30f; 
+        public float horsePower = 1000f; 
+        public float brakePower = 2000f; 
+        public float handbrakeForce = 3000f; 
+        public float maxSteerAngle = 30f; 
+        public float steeringSpeed = 5f; 
+        public float stopThreshold = 1f; 
+        public float decelerationSpeed = 0.5f; 
+        public float maxSteeringWheelRotation = 360f; 
 
         [Header("Drive Type")]
         public DriveTypes driveType = DriveTypes.RWD;
 
         [Header("Gearbox")]
+        // We keep this variable for the UI, but we control it automatically now
         public AutomaticGears currentGear = AutomaticGears.Drive;
 
         [Header("Debug Info")]
         public bool stationary = true;
         [SerializeField] float currentSpeed = 0f;
         [SerializeField] float currentAccelerationValue = 0f;
-        [SerializeField] float currentBrakeValue = 0f;
+        [SerializeField] float currentBrakeValue = 0f; // This is now REVERSE input
         [SerializeField] float currentHandbrakeValue = 0f;
         [SerializeField] float currentSteerAngle = 0f;
         [SerializeField] float targetSteerAngle = 0f;
@@ -69,53 +68,33 @@ namespace Ezereal
         [SerializeField] float RearLeftWheelRPM = 0f;
         [SerializeField] float RearRightWheelRPM = 0f;
 
-        [SerializeField] float speedFactor = 0f; // Leave at zero. Responsible for smooth acceleration and near-top-speed slowdown.
+        [SerializeField] float speedFactor = 0f; 
 
         private void Awake()
         {
             wheels = new WheelCollider[]
             {
-            frontLeftWheelCollider,
-            frontRightWheelCollider,
-            rearLeftWheelCollider,
-            rearRightWheelCollider,
+                frontLeftWheelCollider,
+                frontRightWheelCollider,
+                rearLeftWheelCollider,
+                rearRightWheelCollider,
             };
 
-            if (ezerealLightController == null)
-            {
-                Debug.LogWarning("EzerealLightController reference is missing. Ignore or attach one if you want to have light controls.");
-            }
+            // Safety Checks
+            if (vehicleRB == null) Debug.LogError("VehicleRB reference is missing!");
 
-            if (ezerealSoundController == null)
-            {
-                Debug.LogWarning("EzerealSoundController reference is missing. Ignore or attach one if you want to have engine sounds.");
-            }
-
-            if (ezerealWheelFrictionController == null)
-            {
-                Debug.LogWarning("EzerealWheelFrictionController reference is missing. Ignore or attach one if you want to have friction controls.");
-            }
-
-            if (vehicleRB == null)
-            {
-                Debug.LogError("VehicleRB reference is missing for EzerealCarController!");
-            }
-
+            // Initialization
             if (isStarted)
             {
-                Debug.Log("Car is started.");
-
-                if (ezerealLightController != null)
-                {
-                    ezerealLightController.MiscLightsOn();
-                }
-
-                if (ezerealSoundController != null)
-                {
-                    ezerealSoundController.TurnOnEngineSound();
-                }
+                if (ezerealLightController != null) ezerealLightController.MiscLightsOn();
+                if (ezerealSoundController != null) ezerealSoundController.TurnOnEngineSound();
             }
+            
+            // Force Gear Text to D on start
+            UpdateGearText("D");
         }
+
+        // --- INPUTS ---
 
         void OnStartCar()
         {
@@ -123,209 +102,48 @@ namespace Ezereal
 
             if (isStarted)
             {
-                Debug.Log("Car started.");
-
-                if (ezerealLightController != null)
-                {
-                    ezerealLightController.MiscLightsOn();
-                }
-
-                if (ezerealSoundController != null)
-                {
-                    ezerealSoundController.TurnOnEngineSound();
-                }
-
+                if (ezerealLightController != null) ezerealLightController.MiscLightsOn();
+                if (ezerealSoundController != null) ezerealSoundController.TurnOnEngineSound();
             }
-            else if (!isStarted)
+            else
             {
-                Debug.Log("Car turned off");
-
-                if (ezerealLightController != null)
-                {
-                    ezerealLightController.AllLightsOff();
-                }
-
-                if (ezerealSoundController != null)
-                {
-                    ezerealSoundController.TurnOffEngineSound();
-                }
-
-                frontLeftWheelCollider.motorTorque = 0;
-                frontRightWheelCollider.motorTorque = 0;
-                rearLeftWheelCollider.motorTorque = 0;
-                rearRightWheelCollider.motorTorque = 0;
+                if (ezerealLightController != null) ezerealLightController.AllLightsOff();
+                if (ezerealSoundController != null) ezerealSoundController.TurnOffEngineSound();
+                
+                // Cut power
+                ResetWheelTorque();
             }
-
-
         }
 
         void OnAccelerate(InputValue accelerationValue)
         {
+            // Usually W
             currentAccelerationValue = accelerationValue.Get<float>();
-            //Debug.Log("Acceleration: " + currentAccelerationValue.ToString());
-        }
-
-        void Acceleration()
-        {
-            if (isStarted)
-            {
-                if (currentGear == AutomaticGears.Drive)
-                {
-                    // Calculate how close the car is to top speed
-                    // as a number from zero to one
-                    speedFactor = Mathf.InverseLerp(0, maxForwardSpeed, currentSpeed);
-
-                    // Use that to calculate how much torque is available 
-                    // (zero torque at top speed)
-                    float currentMotorTorque = Mathf.Lerp(horsePower, 0, speedFactor);
-
-                    if (currentAccelerationValue > 0f && currentSpeed < maxForwardSpeed)
-                    {
-                        if (driveType == DriveTypes.RWD)
-                        {
-                            rearLeftWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                            rearRightWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                        }
-                        else if (driveType == DriveTypes.FWD)
-                        {
-                            frontLeftWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                            frontRightWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                        }
-                        else if (driveType == DriveTypes.AWD)
-                        {
-                            frontLeftWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                            frontRightWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                            rearLeftWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                            rearRightWheelCollider.motorTorque = currentMotorTorque * currentAccelerationValue;
-                        }
-                    }
-                    else
-                    {
-                        frontLeftWheelCollider.motorTorque = 0;
-                        frontRightWheelCollider.motorTorque = 0;
-                        rearLeftWheelCollider.motorTorque = 0;
-                        rearRightWheelCollider.motorTorque = 0;
-                    }
-                }
-
-                if (currentGear == AutomaticGears.Reverse)
-                {
-                    if (currentAccelerationValue > 0f && currentSpeed > -maxReverseSpeed)
-                    {
-                        currentAccelerationValue = 1; //Invert Acceleration value
-
-                        if (driveType == DriveTypes.RWD)
-                        {
-                            rearLeftWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                            rearRightWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                        }
-                        else if (driveType == DriveTypes.FWD)
-                        {
-                            frontLeftWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                            frontRightWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                        }
-                        else if (driveType == DriveTypes.AWD)
-                        {
-                            frontLeftWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                            frontRightWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                            rearLeftWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                            rearRightWheelCollider.motorTorque = -currentAccelerationValue * horsePower;
-                        }
-
-                    }
-                    else
-                    {
-                        frontLeftWheelCollider.motorTorque = 0;
-                        frontRightWheelCollider.motorTorque = 0;
-                        rearLeftWheelCollider.motorTorque = 0;
-                        rearRightWheelCollider.motorTorque = 0;
-                    }
-                }
-
-                UpdateAccelerationSlider();
-            }
         }
 
         void OnBrake(InputValue brakeValue)
         {
+            // Usually S - WE NOW USE THIS AS REVERSE THROTTLE
             currentBrakeValue = brakeValue.Get<float>();
-            //Debug.Log("Brake:" + currentBrakeValue.ToString());
-
-            if (isStarted && ezerealLightController != null)
-            {
-                if (currentBrakeValue > 0)
-                {
-                    ezerealLightController.BrakeLightsOn();
-                }
-                else
-                {
-                    ezerealLightController.BrakeLightsOff();
-                }
-            }
-        }
-
-        void Braking()
-        {
-            if (currentBrakeValue > 0f)
-            {
-                frontLeftWheelCollider.brakeTorque = currentBrakeValue * brakePower;
-                frontRightWheelCollider.brakeTorque = currentBrakeValue * brakePower;
-            }
-            else
-            {
-                frontLeftWheelCollider.brakeTorque = 0;
-                frontRightWheelCollider.brakeTorque = 0;
-            }
         }
 
         void OnHandbrake(InputValue handbrakeValue)
         {
+            // Spacebar - THIS IS NOW THE ONLY WAY TO "BRAKE" without Reversing
             currentHandbrakeValue = handbrakeValue.Get<float>();
 
             if (isStarted)
             {
                 if (currentHandbrakeValue > 0)
                 {
-                    if (ezerealWheelFrictionController != null)
-                    {
-                        ezerealWheelFrictionController.StartDrifting(currentHandbrakeValue);
-                    }
-
-                    if (ezerealLightController != null)
-                    {
-                        ezerealLightController.HandbrakeLightOn();
-                    }
+                    if (ezerealWheelFrictionController != null) ezerealWheelFrictionController.StartDrifting(currentHandbrakeValue);
+                    if (ezerealLightController != null) ezerealLightController.HandbrakeLightOn();
                 }
                 else
                 {
-                    if (ezerealWheelFrictionController != null)
-                    {
-                        ezerealWheelFrictionController.StopDrifting();
-                    }
-
-                    if (ezerealLightController != null)
-                    {
-                        ezerealLightController.HandbrakeLightOff();
-                    }
+                    if (ezerealWheelFrictionController != null) ezerealWheelFrictionController.StopDrifting();
+                    if (ezerealLightController != null) ezerealLightController.HandbrakeLightOff();
                 }
-            }
-        }
-
-        void Handbraking()
-        {
-            if (currentHandbrakeValue > 0f)
-            {
-                rearLeftWheelCollider.motorTorque = 0;
-                rearRightWheelCollider.motorTorque = 0;
-                rearLeftWheelCollider.brakeTorque = currentHandbrakeValue * handbrakeForce;
-                rearRightWheelCollider.brakeTorque = currentHandbrakeValue * handbrakeForce;
-
-
-            }
-            else
-            {
-                rearLeftWheelCollider.brakeTorque = 0;
-                rearRightWheelCollider.brakeTorque = 0;
             }
         }
 
@@ -334,10 +152,128 @@ namespace Ezereal
             targetSteerAngle = turnValue.Get<float>() * maxSteerAngle;
         }
 
+        // --- PHYSICS LOGIC ---
+
+        void AccelerationAndReverseLogic()
+        {
+            if (!isStarted) return;
+
+            // 1. CHECK IF REVERSING (Holding S)
+            if (currentBrakeValue > 0.1f) 
+            {
+                // --- REVERSE MODE ---
+                if(currentGear != AutomaticGears.Reverse)
+                {
+                    currentGear = AutomaticGears.Reverse;
+                    UpdateGearText("R");
+                    if (ezerealLightController != null) ezerealLightController.ReverseLightsOn();
+                }
+
+                // Apply Reverse Torque (Negative Horsepower)
+                float reverseForce = -currentBrakeValue * horsePower;
+
+                // Speed Limit Check for Reverse
+                if (currentSpeed > -maxReverseSpeed)
+                {
+                    ApplyTorque(reverseForce);
+                }
+                else
+                {
+                    ResetWheelTorque();
+                }
+
+                // Update Slider UI
+                accelerationSlider.value = currentBrakeValue;
+            }
+            // 2. ELSE DRIVE FORWARD (Holding W or Idling)
+            else 
+            {
+                // --- DRIVE MODE ---
+                if (currentGear != AutomaticGears.Drive)
+                {
+                    currentGear = AutomaticGears.Drive;
+                    UpdateGearText("D");
+                    if (ezerealLightController != null) ezerealLightController.ReverseLightsOff();
+                }
+
+                // Calculate Top Speed Factor
+                speedFactor = Mathf.InverseLerp(0, maxForwardSpeed, currentSpeed);
+                float availableTorque = Mathf.Lerp(horsePower, 0, speedFactor);
+                
+                // Apply Forward Torque
+                if (currentAccelerationValue > 0f && currentSpeed < maxForwardSpeed)
+                {
+                    ApplyTorque(availableTorque * currentAccelerationValue);
+                }
+                else
+                {
+                    ResetWheelTorque();
+                }
+
+                // Update Slider UI
+                accelerationSlider.value = Mathf.Lerp(accelerationSlider.value, currentAccelerationValue, Time.deltaTime * 15f);
+            }
+        }
+
+        // Helper function to apply torque based on Drive Type
+        void ApplyTorque(float torque)
+        {
+            if (driveType == DriveTypes.RWD)
+            {
+                rearLeftWheelCollider.motorTorque = torque;
+                rearRightWheelCollider.motorTorque = torque;
+                frontLeftWheelCollider.motorTorque = 0;
+                frontRightWheelCollider.motorTorque = 0;
+            }
+            else if (driveType == DriveTypes.FWD)
+            {
+                frontLeftWheelCollider.motorTorque = torque;
+                frontRightWheelCollider.motorTorque = torque;
+                rearLeftWheelCollider.motorTorque = 0;
+                rearRightWheelCollider.motorTorque = 0;
+            }
+            else // AWD
+            {
+                frontLeftWheelCollider.motorTorque = torque;
+                frontRightWheelCollider.motorTorque = torque;
+                rearLeftWheelCollider.motorTorque = torque;
+                rearRightWheelCollider.motorTorque = torque;
+            }
+        }
+
+        void ResetWheelTorque()
+        {
+            frontLeftWheelCollider.motorTorque = 0;
+            frontRightWheelCollider.motorTorque = 0;
+            rearLeftWheelCollider.motorTorque = 0;
+            rearRightWheelCollider.motorTorque = 0;
+        }
+
+        void Handbraking()
+        {
+            // Only the Handbrake (Space) applies actual BrakeTorque now.
+            // S key applies negative MotorTorque (Reverse), which acts as a brake anyway if moving forward.
+            
+            if (currentHandbrakeValue > 0f)
+            {
+                rearLeftWheelCollider.brakeTorque = currentHandbrakeValue * handbrakeForce;
+                rearRightWheelCollider.brakeTorque = currentHandbrakeValue * handbrakeForce;
+                
+                // Cut motor power while handbraking
+                rearLeftWheelCollider.motorTorque = 0;
+                rearRightWheelCollider.motorTorque = 0;
+            }
+            else
+            {
+                rearLeftWheelCollider.brakeTorque = 0;
+                rearRightWheelCollider.brakeTorque = 0;
+            }
+        }
+
         void Steering()
         {
-            float adjustedspeedFactor = Mathf.InverseLerp(20, maxForwardSpeed, currentSpeed); //minimum speed affecting steerAngle is 20
-            float adjustedTurnAngle = targetSteerAngle * (1 - adjustedspeedFactor); //based on current speed.
+            float adjustedspeedFactor = Mathf.InverseLerp(20, maxForwardSpeed, currentSpeed); 
+            float adjustedTurnAngle = targetSteerAngle * (1 - adjustedspeedFactor); 
             currentSteerAngle = Mathf.Lerp(currentSteerAngle, adjustedTurnAngle, Time.deltaTime * steeringSpeed);
 
             frontLeftWheelCollider.steerAngle = currentSteerAngle;
@@ -353,6 +289,7 @@ namespace Ezereal
         {
             if (vehicleRB != null)
             {
+                // Drag effect when no inputs are pressed
                 if (currentAccelerationValue == 0 && currentBrakeValue == 0 && currentHandbrakeValue == 0)
                 {
 #if UNITY_6000_0_OR_NEWER
@@ -364,77 +301,24 @@ namespace Ezereal
             }
         }
 
-        void OnDownShift()
-        {
-            switch (currentGear)
-            {
-                case AutomaticGears.Reverse:
-                    //Debug.Log("Reverse, can't go any lower");
-                    break;
-
-                case AutomaticGears.Neutral:
-                    currentGear--;
-                    UpdateGearText("R");
-                    if (isStarted && ezerealLightController != null)
-                    {
-                        ezerealLightController.ReverseLightsOn();
-                    }
-                    break;
-
-                case AutomaticGears.Drive:
-                    currentGear--;
-                    UpdateGearText("N");
-                    break;
-            }
-        }
-
-        void OnUpShift()
-        {
-            switch (currentGear)
-            {
-                case AutomaticGears.Reverse:
-                    currentGear++;
-                    UpdateGearText("N");
-
-                    if (isStarted && ezerealLightController != null)
-                    {
-                        ezerealLightController.ReverseLightsOff();
-                    }
-
-                    break;
-                case AutomaticGears.Neutral:
-                    currentGear++;
-                    UpdateGearText("D");
-                    break;
-                case AutomaticGears.Drive:
-                    //Debug.Log("Drive, can't go any higher");
-                    break;
-            }
-        }
-
-
-
         private void FixedUpdate()
         {
-            Acceleration();
-
-            Braking();
-
+            AccelerationAndReverseLogic(); // Combined Logic
             Handbraking();
-
             Steering();
-
             Slowdown();
-
             RotateSteeringWheel();
+            CheckStationary();
+            CalculateSpeed();
+            UpdateDebugRPMs();
+        }
 
-            if
-                (
-                    Mathf.Abs(frontLeftWheelCollider.rpm) < stopThreshold &&
-                    Mathf.Abs(frontRightWheelCollider.rpm) < stopThreshold &&
-                    Mathf.Abs(rearLeftWheelCollider.rpm) < stopThreshold &&
-                    Mathf.Abs(rearRightWheelCollider.rpm) < stopThreshold
-                )
+        // --- HELPERS ---
+
+        void CheckStationary()
+        {
+            if (Mathf.Abs(frontLeftWheelCollider.rpm) < stopThreshold &&
+                Mathf.Abs(frontRightWheelCollider.rpm) < stopThreshold)
             {
                 stationary = true;
             }
@@ -442,22 +326,23 @@ namespace Ezereal
             {
                 stationary = false;
             }
+        }
 
-            if (vehicleRB != null) // Unity uses m/s as for default. So I convert from m/s to km/h. For mph use 2.23694f instead of 3.6f.
+        void CalculateSpeed()
+        {
+            if (vehicleRB != null) 
             {
 #if UNITY_6000_0_OR_NEWER
-                currentSpeed = Vector3.Dot(vehicleRB.gameObject.transform.forward, vehicleRB.linearVelocity);
-                currentSpeed *= 3.6f;
-                UpdateSpeedText(currentSpeed);
+                currentSpeed = Vector3.Dot(vehicleRB.gameObject.transform.forward, vehicleRB.linearVelocity) * 3.6f;
 #else
-                currentSpeed = Vector3.Dot(vehicleRB.gameObject.transform.forward, vehicleRB.velocity);
-                currentSpeed *= 3.6f; 
-                UpdateSpeedText(currentSpeed);
+                currentSpeed = Vector3.Dot(vehicleRB.gameObject.transform.forward, vehicleRB.velocity) * 3.6f;
 #endif
-
+                UpdateSpeedText(currentSpeed);
             }
+        }
 
-
+        void UpdateDebugRPMs()
+        {
             FrontLeftWheelRPM = frontLeftWheelCollider.rpm;
             FrontRightWheelRPM = frontRightWheelCollider.rpm;
             RearLeftWheelRPM = rearLeftWheelCollider.rpm;
@@ -470,53 +355,32 @@ namespace Ezereal
             mesh.SetPositionAndRotation(position, rotation);
         }
 
-
         void RotateSteeringWheel()
         {
-            float currentXAngle = steeringWheel.transform.localEulerAngles.x; // Maximum steer angle in degrees
-
-            // Calculate the rotation based on the steer angle
+            float currentXAngle = steeringWheel.transform.localEulerAngles.x; 
             float normalizedSteerAngle = Mathf.Clamp(frontLeftWheelCollider.steerAngle, -maxSteerAngle, maxSteerAngle);
             float rotation = Mathf.Lerp(maxSteeringWheelRotation, -maxSteeringWheelRotation, (normalizedSteerAngle + maxSteerAngle) / (2 * maxSteerAngle));
-
-            // Set the local rotation of the steering wheel
             steeringWheel.localRotation = Quaternion.Euler(currentXAngle, 0, rotation);
         }
 
         void UpdateGearText(string gear)
         {
-            currentGearTMP_UI.text = gear;
-            currentGearTMP_Dashboard.text = gear;
+            if(currentGearTMP_UI != null) currentGearTMP_UI.text = gear;
+            if(currentGearTMP_Dashboard != null) currentGearTMP_Dashboard.text = gear;
         }
 
         void UpdateSpeedText(float speed)
         {
             speed = Mathf.Abs(speed);
-
-            currentSpeedTMP_UI.text = speed.ToString("F0");
-            currentSpeedTMP_Dashboard.text = speed.ToString("F0");
-        }
-
-        void UpdateAccelerationSlider()
-        {
-            if (currentGear == AutomaticGears.Drive || currentGear == AutomaticGears.Reverse)
-            {
-                accelerationSlider.value = Mathf.Lerp(accelerationSlider.value, currentAccelerationValue, Time.deltaTime * 15f);
-            }
-            else
-            {
-                accelerationSlider.value = 0;
-            }
+            if(currentSpeedTMP_UI != null) currentSpeedTMP_UI.text = speed.ToString("F0");
+            if(currentSpeedTMP_Dashboard != null) currentSpeedTMP_Dashboard.text = speed.ToString("F0");
         }
 
         public bool InAir()
         {
             foreach (WheelCollider wheel in wheels)
             {
-                if (wheel.GetGroundHit(out _))
-                {
-                    return false;
-                }
+                if (wheel.GetGroundHit(out _)) return false;
             }
             return true;
         }
