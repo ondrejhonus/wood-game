@@ -13,6 +13,8 @@ public class CarEntrySystem : MonoBehaviour
     public GameObject carCamerasParent;   // Camera mount point
     public Transform exitPoint;           // Where the player appears when exiting
 
+    public GameObject CarUI; // Car UI
+
     [Header("Settings")]
     public KeyCode interactKey = KeyCode.F; // Key to get in/out
     public float interactionDist = 3.5f;
@@ -41,6 +43,11 @@ void Start()
         if(playerCameraObject != null) 
         {
             playerCameraObject.SetActive(true);
+        }
+
+        if(CarUI != null) 
+        {
+            CarUI.SetActive(false);
         }
 
     }
@@ -83,6 +90,9 @@ void Start()
 
         // Enable car control input system
         carController.enabled = true;
+
+        // Show car UI
+        CarUI.SetActive(true);
     }
 
 void ExitCar()
@@ -107,5 +117,8 @@ void ExitCar()
 
         // Enable player input system
         playerInput.enabled = true;
+
+        // Hide car UI
+        CarUI.SetActive(false);
     }
 }

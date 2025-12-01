@@ -2004,7 +2004,8 @@ MonoBehaviour:
   playerInput: {fileID: 4416926082273746327}
   carCamerasParent: {fileID: 634073799}
   exitPoint: {fileID: 1741324405}
-  interactKey: 101
+  CarUI: {fileID: 1816782147}
+  interactKey: 102
   interactionDist: 3.5
 --- !u!1 &1711939651
 GameObject:
@@ -2202,6 +2203,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f95e16560f85659790c87d85bfb3612, type: 3}
   m_PrefabInstance: {fileID: 1800683035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1816782147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8541337718106928078, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
+  m_PrefabInstance: {fileID: 1551609287}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1956898315 stripped
 Transform:

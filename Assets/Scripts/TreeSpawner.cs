@@ -133,14 +133,17 @@ public class TreeGenerator : MonoBehaviour
         ch.playerInventory = playerInventory;
         ch.audioSource = audioSource;
         ch.isPlanted = true;
+        // Ensure the tree and all its children are on the Default layer
+        int defaultLayer = LayerMask.NameToLayer("Default");
+        tree.layer = defaultLayer;
 
-        // Setup Grabbable
-        GameObject playerArmature = GameObject.FindWithTag("Player");
-        if (playerArmature != null)
+        if (ch.isPlanted)
         {
-            ObjectGrabbable grab = tree.GetComponent<ObjectGrabbable>();
-            CameraSwitcher cam = playerArmature.GetComponent<CameraSwitcher>();
-            if (grab != null && cam != null) grab.cameraSwitcher = cam;
+            ObjectGrabbable grabbable = tree.GetComponent<ObjectGrabbable>();
+            if (grabbable != null)
+            {
+                Destroy(grabbable); // Disable grabbing for planted trees
+            }
         }
 
         // Create Leaves
