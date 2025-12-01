@@ -119,394 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &45862021
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 45862023}
-  - component: {fileID: 45862022}
-  m_Layer: 0
-  m_Name: VegetationSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &45862022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45862021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f710250abab6f24a954bdf3c3c1ac64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seed: 0
-  terrains:
-  - {fileID: 1272469853}
-  visibleTerrainsOnly: 0
-  treeTypes: []
-  grassPrefabs:
-  - enabled: 1
-    name: Grass3
-    seed: 9394
-    probability: 100
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 648591
-    index: 0
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 919132149155446097, guid: 1275a49becc540c448811248eaf30c37, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.5
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.78571427, y: 1.2857146}
-    minMaxWidth: {x: 0.8, y: 1.2}
-    noiseSize: 0.1
-  - enabled: 1
-    name: Grass4
-    seed: 3657
-    probability: 100
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 648612
-    index: 1
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 919132149155446097, guid: fcb9fef5adb9c274792020fd2cec82f4, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.5
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.23809527, y: 0.73809516}
-    minMaxWidth: {x: 0.27619046, y: 0.6761901}
-    noiseSize: 0.1
-  - enabled: 1
-    name: Grass5
-    seed: 5831
-    probability: 100
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 648594
-    index: 2
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 919132149155446097, guid: a5fc3c48bccbe2e4f97b62a4146abf63, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 1
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0, y: 0.40000007}
-    minMaxWidth: {x: 0.3, y: 0.7}
-    noiseSize: 0.1
-  - enabled: 1
-    name: Grass6
-    seed: 274
-    probability: 100
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 648593
-    index: 3
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 919132149155446097, guid: 7ad178f2dcb685c4dbde656609630156, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 1
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.023809526, y: 0.4238095}
-    minMaxWidth: {x: 0.13333333, y: 0.5333331}
-    noiseSize: 0.1
-  - enabled: 1
-    name: SM_Daisy_Single
-    seed: 9353
-    probability: 3.2
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 20818
-    index: 4
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 9069948650388196236, guid: 6ee7ff501548bbd48ac085a1c22904aa, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.1
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.47619045, y: 0.97619045}
-    minMaxWidth: {x: 0.5857143, y: 0.98571455}
-    noiseSize: 0.1
-  - enabled: 1
-    name: SM_Hyacinth_PastellBlue_Big
-    seed: 5547
-    probability: 2.4
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 15217
-    index: 5
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 4809857706931833784, guid: fe0901a4c5c7e624d9a28c1f47e24125, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.1
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.38095236, y: 0.88095236}
-    minMaxWidth: {x: 0.3, y: 0.6999999}
-    noiseSize: 0.1
-  - enabled: 1
-    name: SM_Dandelion_Small
-    seed: 1882
-    probability: 3.2
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 20806
-    index: 6
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 8457970020362098953, guid: b8cb555eb3a9a4e4988c1d6040aec95b, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.19
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.23809522, y: 0.73809505}
-    minMaxWidth: {x: 0.2761905, y: 0.67619026}
-    noiseSize: 0.1
-  - enabled: 1
-    name: SM_Rose_Red_Open
-    seed: 144
-    probability: 4.4
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 28752
-    index: 7
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 4833647557030283328, guid: 25f6b3f9347e83047bc8481037fdb53b, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.1
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.26190478, y: 0.7619048}
-    minMaxWidth: {x: 0.1809524, y: 0.58095217}
-    noiseSize: 0.1
-  - enabled: 1
-    name: SM_Rocks_01
-    seed: 7314
-    probability: 3.8
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 24435
-    index: 8
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 4843524868254211946, guid: 0b7c39db641be5044ab85ba9f56a629a, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.1
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.2142857, y: 0.7142856}
-    minMaxWidth: {x: 0.44285715, y: 0.8428571}
-    noiseSize: 0.1
-  - enabled: 1
-    name: SM_Rocks_02
-    seed: 5347
-    probability: 3.8
-    collisionCheck: 0
-    rejectUnderwater: 0
-    heightRange: {x: 0, y: 1000}
-    slopeRange: {x: 0, y: 60}
-    curvatureRange: {x: 0, y: 1}
-    layerMasks:
-    - name: NormalGrass
-      layerID: 0
-      threshold: 0.75
-    instanceCount: 24057
-    index: 9
-    type: 0
-    renderAsBillboard: 0
-    prefab: {fileID: 7105557981267009923, guid: 8b2f7789077f69f458e3919626d6ea22, type: 3}
-    gpuInstancing: 1
-    holeEdgePadding: 2
-    alignToGround: 100
-    positionJitter: 0
-    useDensityScaling: 1
-    density: 0.1
-    billboard: {fileID: 0}
-    mainColor: {r: 1, g: 1, b: 1, a: 1}
-    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    linkColors: 1
-    minMaxHeight: {x: 0.09523808, y: 0.595238}
-    minMaxWidth: {x: 0.3952381, y: 0.795238}
-    noiseSize: 0.1
-  terrainSettings:
-    drawTreesAndFoliage: 1
-    preservePrefabLayer: 1
-    treeLightProbes: 0
-    treeDistance: 100
-    billboardStart: 300
-    maxMeshTrees: 50
-    detailScattermode: 0
-    grassDistance: 20
-    grassDensity: 1
-    windStrength: 0.15
-    windSpeed: 1
-    windFrequency: 2
-    wintTint: {r: 1, g: 1, b: 1, a: 1}
-  cellSize: 64
-  cellDivisions: 4
-  highPrecisionCollision: 1
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  terrainMinMaxHeight: {x: 2.0692215, y: 113.221016}
-  detailResolution: 256
-  detailResolutionIndex: 0
-  grassPatchSize: 128
-  grassPatchSizeIndex: 4
-  tempColliders: []
-  waterHeight: 0
-  autoRespawnTrees: 1
---- !u!4 &45862023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45862021}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 802.1998, y: -1.7, z: 287.8784}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &580177133
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,212 +240,70 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &1211721731
-GameObject:
+--- !u!1001 &5306307381857907058
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1211721735}
-  - component: {fileID: 1211721734}
-  - component: {fileID: 1211721733}
-  - component: {fileID: 1211721732}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1211721732
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211721731}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1211721733
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211721731}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1211721734
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211721731}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1211721735
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211721731}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 836.14, y: 8.67, z: 261.07385}
-  m_LocalScale: {x: 1, y: 2, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1272469851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1272469854}
-  - component: {fileID: 1272469853}
-  - component: {fileID: 1272469852}
-  m_Layer: 0
-  m_Name: Terrain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!154 &1272469852
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272469851}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: ed72a5b000f985541a1de75051b16bd1, type: 2}
-  m_EnableTreeColliders: 1
---- !u!218 &1272469853
-Terrain:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272469851}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: ed72a5b000f985541a1de75051b16bd1, type: 2}
-  m_TreeDistance: 100
-  m_TreeBillboardDistance: 300
-  m_TreeCrossFadeLength: 5
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 20
-  m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
-  m_HeightmapMinimumLODSimplification: 0
-  m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
-  m_DrawHeightmap: 1
-  m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
-  m_StaticShadowCaster: 0
-  m_IgnoreQualitySettings: 0
-  m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
-  m_BakeLightProbesForTrees: 0
-  m_PreserveTreePrototypeLayers: 1
-  m_DeringLightProbesForTrees: 1
-  m_ReceiveGI: 1
-  m_ScaleInLightmap: 0.0256
-  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
-  m_GroupingID: 0
-  m_RenderingLayerMask: 1
-  m_AllowAutoConnect: 1
-  m_EnableHeightmapRayTracing: 1
-  m_EnableTreesAndDetailsRayTracing: 0
-  m_TreeMotionVectorModeOverride: 3
---- !u!4 &1272469854
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272469851}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3484543451388568711, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_Name
+      value: GameMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643808902476792354, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 349.07916
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -159.68771
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 601.28326
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595773733990996689, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a2b4911297d1670dbecf4b43b73fe7d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 580177135}
-  - {fileID: 1272469854}
-  - {fileID: 45862023}
-  - {fileID: 1211721735}
+  - {fileID: 5306307381857907058}
