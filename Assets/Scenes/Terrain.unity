@@ -155,9 +155,9 @@ MonoBehaviour:
   treeTypes: []
   grassPrefabs:
   - enabled: 1
-    name: Grass_Small_A
-    seed: 1145
-    probability: 25
+    name: Grass3
+    seed: 9394
+    probability: 100
     collisionCheck: 0
     rejectUnderwater: 0
     heightRange: {x: 0, y: 1000}
@@ -166,34 +166,313 @@ MonoBehaviour:
     layerMasks:
     - name: NormalGrass
       layerID: 0
-      threshold: 0.15
-    instanceCount: 168820
+      threshold: 0.75
+    instanceCount: 648591
     index: 0
     type: 0
     renderAsBillboard: 0
-    prefab: {fileID: 151428, guid: eed7118be894efa4fa004434dec6a57c, type: 3}
+    prefab: {fileID: 919132149155446097, guid: 1275a49becc540c448811248eaf30c37, type: 3}
     gpuInstancing: 1
     holeEdgePadding: 2
     alignToGround: 100
     positionJitter: 0
     useDensityScaling: 1
-    density: 1.22
+    density: 0.5
     billboard: {fileID: 0}
     mainColor: {r: 1, g: 1, b: 1, a: 1}
     secondaryColor: {r: 1, g: 1, b: 1, a: 1}
     linkColors: 1
-    minMaxHeight: {x: 0.5, y: 1}
+    minMaxHeight: {x: 0.78571427, y: 1.2857146}
     minMaxWidth: {x: 0.8, y: 1.2}
+    noiseSize: 0.1
+  - enabled: 1
+    name: Grass4
+    seed: 3657
+    probability: 100
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 648612
+    index: 1
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 919132149155446097, guid: fcb9fef5adb9c274792020fd2cec82f4, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.5
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.23809527, y: 0.73809516}
+    minMaxWidth: {x: 0.27619046, y: 0.6761901}
+    noiseSize: 0.1
+  - enabled: 1
+    name: Grass5
+    seed: 5831
+    probability: 100
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 648594
+    index: 2
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 919132149155446097, guid: a5fc3c48bccbe2e4f97b62a4146abf63, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 1
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0, y: 0.40000007}
+    minMaxWidth: {x: 0.3, y: 0.7}
+    noiseSize: 0.1
+  - enabled: 1
+    name: Grass6
+    seed: 274
+    probability: 100
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 648593
+    index: 3
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 919132149155446097, guid: 7ad178f2dcb685c4dbde656609630156, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 1
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.023809526, y: 0.4238095}
+    minMaxWidth: {x: 0.13333333, y: 0.5333331}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SM_Daisy_Single
+    seed: 9353
+    probability: 3.2
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 20818
+    index: 4
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 9069948650388196236, guid: 6ee7ff501548bbd48ac085a1c22904aa, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.1
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.47619045, y: 0.97619045}
+    minMaxWidth: {x: 0.5857143, y: 0.98571455}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SM_Hyacinth_PastellBlue_Big
+    seed: 5547
+    probability: 2.4
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 15217
+    index: 5
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 4809857706931833784, guid: fe0901a4c5c7e624d9a28c1f47e24125, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.1
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.38095236, y: 0.88095236}
+    minMaxWidth: {x: 0.3, y: 0.6999999}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SM_Dandelion_Small
+    seed: 1882
+    probability: 3.2
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 20806
+    index: 6
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 8457970020362098953, guid: b8cb555eb3a9a4e4988c1d6040aec95b, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.19
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.23809522, y: 0.73809505}
+    minMaxWidth: {x: 0.2761905, y: 0.67619026}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SM_Rose_Red_Open
+    seed: 144
+    probability: 4.4
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 28752
+    index: 7
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 4833647557030283328, guid: 25f6b3f9347e83047bc8481037fdb53b, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.1
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.26190478, y: 0.7619048}
+    minMaxWidth: {x: 0.1809524, y: 0.58095217}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SM_Rocks_01
+    seed: 7314
+    probability: 3.8
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 24435
+    index: 8
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 4843524868254211946, guid: 0b7c39db641be5044ab85ba9f56a629a, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.1
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.2142857, y: 0.7142856}
+    minMaxWidth: {x: 0.44285715, y: 0.8428571}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SM_Rocks_02
+    seed: 5347
+    probability: 3.8
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.75
+    instanceCount: 24057
+    index: 9
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 7105557981267009923, guid: 8b2f7789077f69f458e3919626d6ea22, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.1
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.09523808, y: 0.595238}
+    minMaxWidth: {x: 0.3952381, y: 0.795238}
     noiseSize: 0.1
   terrainSettings:
     drawTreesAndFoliage: 1
     preservePrefabLayer: 1
     treeLightProbes: 0
-    treeDistance: 1000
+    treeDistance: 100
     billboardStart: 300
     maxMeshTrees: 50
     detailScattermode: 0
-    grassDistance: 200
+    grassDistance: 20
     grassDensity: 1
     windStrength: 0.15
     windSpeed: 1
@@ -222,7 +501,7 @@ Transform:
   m_GameObject: {fileID: 45862021}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 802.1998, y: 18.202887, z: 287.8784}
+  m_LocalPosition: {x: 802.1998, y: -1.7, z: 287.8784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -451,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 1211721731}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 811.4344, y: 10.76, z: 261.07385}
+  m_LocalPosition: {x: 836.14, y: 8.67, z: 261.07385}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -505,11 +784,11 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: ed72a5b000f985541a1de75051b16bd1, type: 2}
-  m_TreeDistance: 1000
+  m_TreeDistance: 100
   m_TreeBillboardDistance: 300
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 200
+  m_DetailObjectDistance: 20
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
