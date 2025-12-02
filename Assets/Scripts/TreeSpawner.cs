@@ -83,6 +83,8 @@ public class TreeGenerator : MonoBehaviour
     public void SpawnTree(Vector3 position, bool animateGrowth = false)
     {
         GameObject tree = Instantiate(logPrefab, position, Quaternion.identity);
+        // Set this tree as a child of the spawner for organization
+        tree.transform.parent = this.transform;
 
         // Calculate random final tree size
         float finalHeight = Random.Range(trunkHeightRange.x, trunkHeightRange.y);
@@ -98,7 +100,7 @@ public class TreeGenerator : MonoBehaviour
         }
         else
         {
-            // no animation, set final size directly, this happens at the start of the game
+            // no animation, set final size right away, this happens at the start of the game
             tree.transform.localScale = new Vector3(finalWidth, finalHeight, finalWidth);
             float halfHeight = finalHeight * 0.5f;
             tree.transform.position = position + Vector3.up * (halfHeight - 0.1f); // Slightly push into ground to avoid floating
@@ -125,7 +127,7 @@ public class TreeGenerator : MonoBehaviour
         // (e.g., 0.4 * 8 = 3 hits.  1 * 8 = 8 hits.)
         int calculatedHits = Mathf.RoundToInt(finalWidth * 8f);
 
-        // 2. Safety Clamp: Ensure it's never less than 3 or more than 10
+        // Clamp between 3 and 10 hits
         ch.hitsToChop = Mathf.Clamp(calculatedHits, 3, 10);
 
         ch.logPiecePrefab = logPrefab;
@@ -133,7 +135,7 @@ public class TreeGenerator : MonoBehaviour
         ch.playerInventory = playerInventory;
         ch.audioSource = audioSource;
         ch.isPlanted = true;
-        // Ensure the tree and all its children are on the Default layer
+        // make sure tree is on default layer, so it cant be interacted with
         int defaultLayer = LayerMask.NameToLayer("Default");
         tree.layer = defaultLayer;
 
@@ -169,7 +171,7 @@ public class TreeGenerator : MonoBehaviour
             ch.connectedLeaves = leafCtrl;
         }
 
-        // 3. Start Animation if requested
+        // Start animation when called
         if (animateGrowth)
         {
             StartCoroutine(GrowTreeRoutine(tree.transform, finalWidth, finalHeight, position));
