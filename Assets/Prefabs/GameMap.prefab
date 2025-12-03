@@ -63,7 +63,7 @@ MonoBehaviour:
     - name: NormalGrass
       layerID: 0
       threshold: 0.75
-    instanceCount: 227642
+    instanceCount: 211791
     index: 0
     type: 0
     renderAsBillboard: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     - name: NormalGrass
       layerID: 0
       threshold: 0.75
-    instanceCount: 227640
+    instanceCount: 211793
     index: 1
     type: 0
     renderAsBillboard: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
     - name: NormalGrass
       layerID: 0
       threshold: 0.75
-    instanceCount: 227639
+    instanceCount: 211799
     index: 2
     type: 0
     renderAsBillboard: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
     noiseSize: 0.1
   - enabled: 1
     name: Grass6
-    seed: 274
+    seed: 73711
     probability: 100
     collisionCheck: 0
     rejectUnderwater: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
     - name: NormalGrass
       layerID: 0
       threshold: 0.75
-    instanceCount: 227640
+    instanceCount: 217024
     index: 3
     type: 0
     renderAsBillboard: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
     maxMeshTrees: 50
     detailScattermode: 0
     grassDistance: 20
-    grassDensity: 0.125
+    grassDensity: 0.982
     windStrength: 0.15
     windSpeed: 1
     windFrequency: 2
@@ -578,7 +578,7 @@ Terrain:
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 20
-  m_DetailObjectDensity: 0.125
+  m_DetailObjectDensity: 0.982
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMinimumLODSimplification: 0
