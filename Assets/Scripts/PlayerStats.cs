@@ -58,4 +58,27 @@ public class PlayerStats : MonoBehaviour
         // remove after 1 second
         Destroy(popup, 1f);
     }
+
+    // Basic getters and setters for saving/loading
+    public int GetMoney()
+    {
+        return money;
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public void SetMoney(int amount)
+    {
+        money = amount;
+        UpdateUI();
+    }
+
+    public void SetHealth(int amount)
+    {
+        health = amount;
+        UpdateUI();
+    }
 }

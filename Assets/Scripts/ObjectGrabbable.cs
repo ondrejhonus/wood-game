@@ -19,6 +19,15 @@ public class ObjectGrabbable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        // Find CameraSwitcher if not assigned
+        if (cameraSwitcher == null)
+        {
+            cameraSwitcher = FindObjectOfType<CameraSwitcher>();
+        }
+    }
+
     public void Grab(Transform grabPointTransform, Vector3 hitPoint)
     {
         grabPoint = grabPointTransform;
