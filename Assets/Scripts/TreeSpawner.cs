@@ -37,6 +37,36 @@ public class TreeGenerator : MonoBehaviour
         GenerateTrees();
     }
 
+    bool IsDominantTexture(Vector3 worldPos, Terrain terrain, int textureIndex)
+    {
+        TerrainData terrainData = terrain.terrainData;
+        Vector3 terrainPos = terrain.transform.position;
+
+        // Get map coords
+        int mapX = (int)(((worldPos.x - terrainPos.x) / terrainData.size.x) * terrainData.alphamapWidth);
+        int mapZ = (int)(((worldPos.z - terrainPos.z) / terrainData.size.z) * terrainData.alphamapHeight);
+
+        // Get the splatmap data, this gives us the weights of each texture at this point
+        float[,,] splatmapData = terrainData.GetAlphamaps(mapX, mapZ, 1, 1);
+
+        // Find the texture with the highest weight
+        float maxWeight = 0;
+        int maxIndex = 0;
+
+        int numTextures = splatmapData.GetLength(2);
+        for (int i = 0; i < numTextures; i++)
+        {
+            if (splatmapData[0, 0, i] > maxWeight)
+            {
+                maxWeight = splatmapData[0, 0, i];
+                maxIndex = i;
+            }
+        }
+
+        // return true if the dominant texture matches the specified index
+        return maxIndex == textureIndex;
+    }
+
     void GenerateTrees()
     {
         List<Vector3> spawnedPositions = new List<Vector3>();
@@ -48,9 +78,18 @@ public class TreeGenerator : MonoBehaviour
         {
             safetyCounter++;
             Vector3 pos = RandomPointInArea();
-
+            // Spawn only on grass material 
             if (Physics.Raycast(pos + Vector3.up * 30f, Vector3.down, out RaycastHit hit, 60f, whatIsGround))
             {
+                Terrain terrain = hit.collider.GetComponent<Terrain>();
+                if (terrain != null)
+                {
+                    if (!IsDominantTexture(hit.point, terrain, 0) && !IsDominantTexture(hit.point, terrain, 4) && !IsDominantTexture(hit.point, terrain, 5))
+                    {
+                        continue; // Not valid terrain, skip this position
+                    }
+                }
+
                 Vector3 potentialSpot = hit.point;
 
                 bool isTooClose = false;

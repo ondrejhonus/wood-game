@@ -119,89 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &80802166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 80802167}
-  - component: {fileID: 80802169}
-  - component: {fileID: 80802168}
-  m_Layer: 0
-  m_Name: TreeSpawnArea7
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &80802167
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80802166}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -404.9, y: 273.4323, z: 419.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &80802168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80802166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &80802169
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80802166}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 119.40686, y: 18.206589, z: 87.00787}
-  m_Center: {x: -7.704651, y: -8.603294, z: 86.09561}
 --- !u!1 &135925401
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +253,89 @@ Transform:
   m_LocalPosition: {x: 19.21, y: 3.95, z: 3.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &141659498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141659501}
+  - component: {fileID: 141659500}
+  - component: {fileID: 141659499}
+  m_Layer: 0
+  m_Name: CactiSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &141659499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141659498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  logPrefab: {fileID: 5487388606568629506, guid: d4b61dacc8ebba8628ab46391d7e0716, type: 3}
+  treeCount: 1000
+  minTreeSpacing: 8
+  treesCanRegrow: 1
+  timeBeforeRegrow: 300
+  growthDuration: 300
+  trunkHeightRange: {x: 5, y: 8}
+  trunkWidthRange: {x: 0.35, y: 0.55}
+  leavesPrefab: {fileID: 0}
+  targetLeafSize: 3
+  hitsToChop: 6
+  minPieceLength: 0.05
+  playerInventory: {fileID: 4416926082273746340}
+  audioSource: {fileID: 8944336655733072416}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!65 &141659500
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141659498}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 257.44345, y: 18.206589, z: 860.1864}
+  m_Center: {x: -52.13237, y: -8.603294, z: 126.0553}
+--- !u!4 &141659501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141659498}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 550, y: 22.09999, z: 375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -717,89 +717,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8944336655733072416}
   m_SourcePrefab: {fileID: 100100000, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
---- !u!1 &407738371
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 407738372}
-  - component: {fileID: 407738374}
-  - component: {fileID: 407738373}
-  m_Layer: 0
-  m_Name: TreeSpawnArea8
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &407738372
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407738371}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -399.9, y: 273.4323, z: 555}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &407738373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407738371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &407738374
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407738371}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 119.40686, y: 18.206589, z: 87.00787}
-  m_Center: {x: -7.704651, y: -8.603294, z: 86.09561}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,89 +838,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &418392121
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 418392124}
-  - component: {fileID: 418392123}
-  - component: {fileID: 418392122}
-  m_Layer: 0
-  m_Name: TreeSpawnArea1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &418392122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418392121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &418392123
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418392121}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 93.28638, y: 18.206589, z: 312.31976}
-  m_Center: {x: 0.47705078, y: -8.603294, z: 23.799225}
---- !u!4 &418392124
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 418392121}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -337.99573, y: 273.4323, z: 220.8171}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &439478797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1079,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452868555}
   m_CullTransparentMesh: 1
+--- !u!1 &461588164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 461588167}
+  - component: {fileID: 461588166}
+  - component: {fileID: 461588165}
+  m_Layer: 0
+  m_Name: WinterTreeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &461588165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461588164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  logPrefab: {fileID: 5487388606568629506, guid: 22313a21a9f8bf95b8dfed40ab0d7d98, type: 3}
+  treeCount: 1000
+  minTreeSpacing: 8
+  treesCanRegrow: 1
+  timeBeforeRegrow: 300
+  growthDuration: 300
+  trunkHeightRange: {x: 5, y: 8}
+  trunkWidthRange: {x: 0.35, y: 0.55}
+  leavesPrefab: {fileID: 5229576915836765743, guid: 0a1541db58c42259383934a244242fcf, type: 3}
+  targetLeafSize: 3
+  hitsToChop: 6
+  minPieceLength: 0.05
+  playerInventory: {fileID: 4416926082273746340}
+  audioSource: {fileID: 8944336655733072416}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!65 &461588166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461588164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 298.59674, y: 18.206589, z: 860.1864}
+  m_Center: {x: -72.709015, y: -8.603294, z: 126.0553}
+--- !u!4 &461588167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461588164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.011518833, z: 0, w: 0.99993366}
+  m_LocalPosition: {x: 258.7, y: 22.09999, z: 375.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -1.32, z: 0}
 --- !u!1 &479342695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,45 +1866,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &907852415
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 907852416}
-  m_Layer: 0
-  m_Name: TreeSpawners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &907852416
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907852415}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1211.4957, y: -251.33232, z: 154.1829}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 418392124}
-  - {fileID: 1393512846}
-  - {fileID: 1576485605}
-  - {fileID: 1658637800}
-  - {fileID: 1373979478}
-  - {fileID: 1785501590}
-  - {fileID: 80802167}
-  - {fileID: 407738372}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1047478447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,6 +2249,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124615617}
   m_CullTransparentMesh: 1
+--- !u!1 &1235321830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1235321833}
+  - component: {fileID: 1235321832}
+  - component: {fileID: 1235321831}
+  m_Layer: 0
+  m_Name: TreeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1235321831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235321830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
+  treeCount: 1000
+  minTreeSpacing: 8
+  treesCanRegrow: 1
+  timeBeforeRegrow: 300
+  growthDuration: 300
+  trunkHeightRange: {x: 5, y: 8}
+  trunkWidthRange: {x: 0.35, y: 0.55}
+  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
+  targetLeafSize: 3
+  hitsToChop: 6
+  minPieceLength: 0.05
+  playerInventory: {fileID: 4416926082273746340}
+  audioSource: {fileID: 8944336655733072416}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!65 &1235321832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235321830}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 298.59674, y: 18.206589, z: 860.1864}
+  m_Center: {x: -72.709015, y: -8.603294, z: 126.0553}
+--- !u!4 &1235321833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235321830}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 873.5, y: 22.09999, z: 375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1302301793
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,89 +2615,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356256174}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1373979477
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1373979478}
-  - component: {fileID: 1373979480}
-  - component: {fileID: 1373979479}
-  m_Layer: 0
-  m_Name: TreeSpawnArea5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1373979478
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373979477}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -528.5, y: 273.4323, z: 419.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1373979479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373979477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &1373979480
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373979477}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 84.71478, y: 18.206589, z: 205.6377}
-  m_Center: {x: 9.415863, y: -8.603294, z: 48.255615}
 --- !u!1 &1382330626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,89 +2736,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.9141808, z: 1}
   m_Center: {x: 0, y: 0.9570904, z: 0}
---- !u!1 &1393512845
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1393512846}
-  - component: {fileID: 1393512848}
-  - component: {fileID: 1393512847}
-  m_Layer: 0
-  m_Name: TreeSpawnArea2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1393512846
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393512845}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -443.9, y: 273.4323, z: 220.8171}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1393512847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393512845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &1393512848
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393512845}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 72.325806, y: 18.206589, z: 113.091125}
-  m_Center: {x: 13.272705, y: -8.603294, z: 66.04953}
 --- !u!1001 &1551609287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3047,11 +2842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114275331932080648, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: horsePower
-      value: 600
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 7114275331932080648, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: maxForwardSpeed
-      value: 60
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7114275331932080648, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: decelerationSpeed
@@ -3060,6 +2855,10 @@ PrefabInstance:
     - target: {fileID: 7205710107280986721, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233707366560282181, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8541337718106928078, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: m_IsActive
@@ -3133,89 +2932,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2190837854687154432, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
   m_PrefabInstance: {fileID: 1551609287}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1576485604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1576485605}
-  - component: {fileID: 1576485607}
-  - component: {fileID: 1576485606}
-  m_Layer: 0
-  m_Name: TreeSpawnArea3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1576485605
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576485604}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -528.5, y: 273.4323, z: 49.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1576485606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576485604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &1576485607
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1576485604}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 84.71478, y: 18.206589, z: 279.81857}
-  m_Center: {x: 9.415863, y: -8.603294, z: 30.452988}
 --- !u!1 &1597378215 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2704453379113076820, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
@@ -3496,89 +3212,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648415059}
   m_CullTransparentMesh: 1
---- !u!1 &1658637799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1658637800}
-  - component: {fileID: 1658637802}
-  - component: {fileID: 1658637801}
-  m_Layer: 0
-  m_Name: TreeSpawnArea4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1658637800
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658637799}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -464.9, y: 273.4323, z: 32.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1658637801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658637799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &1658637802
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658637799}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 83.56842, y: 18.206589, z: 66.37991}
-  m_Center: {x: 10.214569, y: -8.603294, z: 75.78163}
 --- !u!1 &1711939651
 GameObject:
   m_ObjectHideFlags: 0
@@ -3689,89 +3322,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1566994255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1785501589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1785501590}
-  - component: {fileID: 1785501592}
-  - component: {fileID: 1785501591}
-  m_Layer: 0
-  m_Name: TreeSpawnArea6
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1785501590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785501589}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -528.5, y: 273.4323, z: 262.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 907852416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1785501591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785501589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9af399382cd536ca9b37ebc7149cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
-  treeCount: 500
-  minTreeSpacing: 8
-  treesCanRegrow: 1
-  timeBeforeRegrow: 300
-  growthDuration: 300
-  trunkHeightRange: {x: 5, y: 8}
-  trunkWidthRange: {x: 0.35, y: 0.55}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 3
-  hitsToChop: 6
-  minPieceLength: 0.05
-  playerInventory: {fileID: 4416926082273746340}
-  audioSource: {fileID: 8944336655733072416}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
---- !u!65 &1785501592
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785501589}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 44.309204, y: 18.206589, z: 115.84839}
-  m_Center: {x: -10.786926, y: -8.603294, z: 34.28528}
 --- !u!1 &1790887477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8944336655422409498, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
@@ -4722,7 +4272,7 @@ MonoBehaviour:
   moneyText: {fileID: 452868558}
   healthText: {fileID: 2073110095}
   popupPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
-  popupParent: {fileID: 0}
+  popupParent: {fileID: 439478801}
 --- !u!114 &5885216828597106539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4958,6 +4508,8 @@ SceneRoots:
   - {fileID: 1551609287}
   - {fileID: 634073801}
   - {fileID: 1598704112}
-  - {fileID: 907852416}
+  - {fileID: 1235321833}
+  - {fileID: 141659501}
+  - {fileID: 461588167}
   - {fileID: 821629051}
   - {fileID: 1382330627}

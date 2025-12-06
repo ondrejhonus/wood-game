@@ -18,26 +18,30 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // If pause menu is active, deactivate it
             if (pauseMenu.activeSelf)
             {
+                // Deactivate pause menu
                 pauseMenu.SetActive(false);
-                playerInput.enabled = true;
-                carInput.enabled = true;
                 if (playerObject.GetComponent<CameraSwitcher>().IsFirstPerson || !carObject.GetComponent<CarEntrySystem>().isDriving)
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
+                    playerInput.enabled = true;
+                    carInput.enabled = false;
                 }
                 else if(!playerObject.GetComponent<CameraSwitcher>().IsFirstPerson && !carObject.GetComponent<CarEntrySystem>().isDriving)
                 {
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
+                    playerInput.enabled = true;
+                    carInput.enabled = false;
                 }
                 else
                 {
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
+                    playerInput.enabled = false;
+                    carInput.enabled = true;
                 }
 
             }
