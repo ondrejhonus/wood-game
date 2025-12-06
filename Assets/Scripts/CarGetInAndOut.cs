@@ -1,10 +1,11 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // <--- NEW: Required for PlayerInput
+using UnityEngine.InputSystem;
 
 public class CarEntrySystem : MonoBehaviour
 {
     [Header("Player References")]
     public GameObject playerObject;       // Whole player prefab
+    public GameObject carObject;          // Current car prefab
     public GameObject playerCameraObject; // Main Camera
 
     [Header("Car References")]
@@ -19,7 +20,7 @@ public class CarEntrySystem : MonoBehaviour
     public KeyCode interactKey = KeyCode.F; // Key to get in/out
     public float interactionDist = 3.5f;
 
-    private bool isDriving = false;
+    public bool isDriving = false;
 
 void Start()
     {
@@ -49,6 +50,9 @@ void Start()
         {
             CarUI.SetActive(false);
         }
+
+        carObject.GetComponent<GameManager>().enabled = false;
+        playerObject.GetComponent<GameManager>().enabled = true;
 
     }
 
@@ -91,8 +95,15 @@ void Start()
         // Enable car control input system
         carController.enabled = true;
 
+        // Confine and hide the cursor while driving
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         // Show car UI
         CarUI.SetActive(true);
+
+        carObject.GetComponent<GameManager>().enabled = true;
+        playerObject.GetComponent<GameManager>().enabled = false;
     }
 
 void ExitCar()
@@ -118,7 +129,17 @@ void ExitCar()
         // Enable player input system
         playerInput.enabled = true;
 
+        // Unlock and show the cursor if first person was used while getting into the car
+        if (!playerObject.GetComponent<CameraSwitcher>().IsFirstPerson)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
         // Hide car UI
         CarUI.SetActive(false);
+
+        carObject.GetComponent<GameManager>().enabled = false;
+        playerObject.GetComponent<GameManager>().enabled = true;
     }
 }
