@@ -73,7 +73,69 @@ MonoBehaviour:
     alignToGround: 100
     positionJitter: 0
     useDensityScaling: 1
-    density: 1.97
+    density: 1.5
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.5, y: 1}
+    minMaxWidth: {x: 0.8, y: 1.2}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SimpleGrassDesert
+    seed: 8129
+    probability: 100
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalSand 1
+      layerID: 4
+      threshold: 0.5
+    instanceCount: 221741
+    index: 1
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 6064169466855814595, guid: c553eb7e1e035cc4aaf46067adc63573, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.2
+    billboard: {fileID: 0}
+    mainColor: {r: 1, g: 1, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    linkColors: 1
+    minMaxHeight: {x: 0.5, y: 1}
+    minMaxWidth: {x: 0.8, y: 1.2}
+    noiseSize: 0.1
+  - enabled: 1
+    name: SimpleGrassSnow
+    seed: 7723
+    probability: 100
+    collisionCheck: 0
+    rejectUnderwater: 0
+    heightRange: {x: 0, y: 1000}
+    slopeRange: {x: 0, y: 60}
+    curvatureRange: {x: 0, y: 1}
+    layerMasks:
+    - name: NormalSnow
+      layerID: 5
+      threshold: 0.5
+    instanceCount: 224001
+    index: 2
+    type: 0
+    renderAsBillboard: 0
+    prefab: {fileID: 6064169466855814595, guid: fbf83998d0fcfd64dafc57d9de4c3077, type: 3}
+    gpuInstancing: 1
+    holeEdgePadding: 2
+    alignToGround: 100
+    positionJitter: 0
+    useDensityScaling: 1
+    density: 0.5
     billboard: {fileID: 0}
     mainColor: {r: 1, g: 1, b: 1, a: 1}
     secondaryColor: {r: 1, g: 1, b: 1, a: 1}
@@ -89,8 +151,8 @@ MonoBehaviour:
     billboardStart: 300
     maxMeshTrees: 50
     detailScattermode: 0
-    grassDistance: 20
-    grassDensity: 0.982
+    grassDistance: 100
+    grassDensity: 1
     windStrength: 0.15
     windSpeed: 1
     windFrequency: 2
@@ -298,8 +360,8 @@ Terrain:
   m_TreeBillboardDistance: 300
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 20
-  m_DetailObjectDensity: 0.982
+  m_DetailObjectDistance: 100
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMinimumLODSimplification: 0
