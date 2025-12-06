@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // Added for robust input support
 
 public class CameraSwitcher : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class CameraSwitcher : MonoBehaviour
     public SkinnedMeshRenderer playerMesh;
 
     public bool IsFirstPerson { get; private set; }
+
+    // New reference to handle seamless object switching
+    public ObjectGrabbable currentHeldObject;
 
     void Start()
     {
@@ -34,18 +38,19 @@ public class CameraSwitcher : MonoBehaviour
         thirdPersonTarget.SetActive(false);
 
         // Switch the camera view to the first person target
-        // Set the camera's parent to the first person target
         playerCamera.transform.SetParent(firstPersonTarget.transform);
-        // Reset local position and rotation to align with the character
         playerCamera.transform.localPosition = Vector3.zero;
-        // Reset local rotation to align with the character
         playerCamera.transform.localRotation = Quaternion.identity;
+        playerCamera.transform.localEulerAngles = Vector3.zero;
 
         // Hide the player mesh in first person view
         playerMesh.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // Update held object immediately
+        if (currentHeldObject != null) currentHeldObject.RecalculateGrabOffsets(playerCamera.transform);
     }
 
     void SwitchToThirdPerson()
@@ -58,10 +63,9 @@ public class CameraSwitcher : MonoBehaviour
 
         // Switch the camera view to the third person target
         playerCamera.transform.SetParent(thirdPersonTarget.transform);
-        // Reset local position and rotation to align with the character
         playerCamera.transform.localPosition = Vector3.zero;
-        // Reset local rotation to align with the character
         playerCamera.transform.localRotation = Quaternion.identity;
+        playerCamera.transform.localEulerAngles = Vector3.zero;
 
         // Show the player mesh in third person view
         playerMesh.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
@@ -70,9 +74,11 @@ public class CameraSwitcher : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Center the cursor on switch
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.lockState = CursorLockMode.None; // "teleports" mouse to center
+
+        // Update held object immediately
+        if (currentHeldObject != null) currentHeldObject.RecalculateGrabOffsets(playerCamera.transform);
     }
 }
