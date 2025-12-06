@@ -22,7 +22,7 @@ public class ObjectGrabbable : MonoBehaviour
         myCollider = GetComponent<Collider>();
     }
 
-    private void Start()
+    private void Update()
     {
         if (cameraSwitcher == null)
         {

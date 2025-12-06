@@ -27,6 +27,12 @@ public class SellPoint : MonoBehaviour
             case "basicLog":
                 baseValue = 1;
                 break;
+            case "cacti":
+                baseValue = 5;
+                break;
+            case "winterLog":
+                baseValue = 12;
+                break;
             default:
                 baseValue = 1;
                 break;

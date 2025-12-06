@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cc7ea721a511632ad694991e0eb1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  objectType: WinterLog
+  objectType: winterLog
   size: 0
   value: 0
 --- !u!114 &2204990575597085430
