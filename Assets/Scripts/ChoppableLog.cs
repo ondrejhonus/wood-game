@@ -67,8 +67,9 @@ public class ChoppableLog : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 100f, chopLayer))
             {
                 // Check if player is within range of log
-                if (hit.collider.gameObject == gameObject && hit.distance <= chopRange)
+                if (hit.collider.gameObject == gameObject && Vector3.Distance(playerInventory.transform.position, hit.point) <= chopRange)
                 {
+                    Debug.Log("Chop point hit: " + hit.point);
                     GameObject heldItem = playerInventory.GetSelectedItem();
                     if (heldItem != null && heldItem.CompareTag("Axe"))
                     {
