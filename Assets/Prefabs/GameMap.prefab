@@ -51,26 +51,29 @@ MonoBehaviour:
   treeTypes: []
   grassPrefabs:
   - enabled: 1
-    name: Grass_01
-    seed: 2380
-    probability: 25
+    name: SimpleGrass
+    seed: 680
+    probability: 100
     collisionCheck: 0
     rejectUnderwater: 0
     heightRange: {x: 0, y: 1000}
     slopeRange: {x: 0, y: 60}
     curvatureRange: {x: 0, y: 1}
-    layerMasks: []
-    instanceCount: 0
+    layerMasks:
+    - name: NormalGrass
+      layerID: 0
+      threshold: 0.5
+    instanceCount: 214592
     index: 0
     type: 0
     renderAsBillboard: 0
-    prefab: {fileID: 919132149155446097, guid: 1b605b6febb323e4da0fbc906169608c, type: 3}
+    prefab: {fileID: 6064169466855814595, guid: 4fc8034d52533c84bbab1bfdd5d1a260, type: 3}
     gpuInstancing: 1
     holeEdgePadding: 2
     alignToGround: 100
     positionJitter: 0
     useDensityScaling: 1
-    density: 0
+    density: 1.97
     billboard: {fileID: 0}
     mainColor: {r: 1, g: 1, b: 1, a: 1}
     secondaryColor: {r: 1, g: 1, b: 1, a: 1}
