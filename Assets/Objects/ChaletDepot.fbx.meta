@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7c29c40475bec254887b0052241c9db0
+guid: 1808c64acdf07014bbb987b8552e2a67
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,18 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Button
-    second: {fileID: 2100000, guid: c0c7ee7d6c394f64f8a8f7e87514e758, type: 2}
+      name: Log
+    second: {fileID: 2100000, guid: 0f49dff4ad8d06341a0eab456ec5cbde, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Display
-    second: {fileID: 2100000, guid: 301895111bb8e98488eb653413cc8065, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: 03a91fa380046dd49b670df0945e4cc7, type: 2}
+      name: Stone
+    second: {fileID: 2100000, guid: 182ba52b175e55c46979d2a347e53ef9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

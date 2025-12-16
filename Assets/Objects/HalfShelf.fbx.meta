@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 7c29c40475bec254887b0052241c9db0
+guid: ae03497e3aada0944a655bb8583491e8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Button
-    second: {fileID: 2100000, guid: c0c7ee7d6c394f64f8a8f7e87514e758, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Display
-    second: {fileID: 2100000, guid: 301895111bb8e98488eb653413cc8065, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: 03a91fa380046dd49b670df0945e4cc7, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
