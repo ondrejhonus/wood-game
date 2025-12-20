@@ -1445,8 +1445,8 @@ MonoBehaviour:
   growthDuration: 300
   trunkHeightRange: {x: 4, y: 6}
   trunkWidthRange: {x: 0.3, y: 0.45}
-  leavesPrefab: {fileID: 5229576915836765743, guid: 0a1541db58c42259383934a244242fcf, type: 3}
-  targetLeafSize: 3
+  leavesPrefab: {fileID: 919132149155446097, guid: 5caea1597bb0859498d44740037f2b06, type: 3}
+  targetLeafSize: 2
   hitsToChop: 6
   minPieceLength: 0.05
   playerInventory: {fileID: 4416926082273746340}
@@ -3290,8 +3290,8 @@ MonoBehaviour:
   growthDuration: 300
   trunkHeightRange: {x: 4, y: 6}
   trunkWidthRange: {x: 0.2, y: 0.4}
-  leavesPrefab: {fileID: 5229576915836765743, guid: d64cfd5f83dd6f0e487367a759f8e9c1, type: 3}
-  targetLeafSize: 2.5
+  leavesPrefab: {fileID: 919132149155446097, guid: 2ea35b94188c5d94abb0c1968211cb61, type: 3}
+  targetLeafSize: 2
   hitsToChop: 6
   minPieceLength: 0.05
   playerInventory: {fileID: 4416926082273746340}
