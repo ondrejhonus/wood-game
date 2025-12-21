@@ -27,6 +27,11 @@ public class PlayerStats : MonoBehaviour
         ShowPopup("+" + amount + "$H", worldPosition, Color.green);
     }
 
+    public void RemoveMoney(int amount, Vector3 worldPosition)
+    {
+        AddMoney(-amount, worldPosition);
+    }
+
     public void TakeDamage(int amount, Vector3 worldPosition)
     {
         health -= amount;
@@ -41,7 +46,7 @@ public class PlayerStats : MonoBehaviour
         healthText.text = health.ToString() + " HP";
     }
 
-    private void ShowPopup(string text, Vector3 worldPosition, Color color)
+    public void ShowPopup(string text, Vector3 worldPosition, Color color)
     {
         // Convert world position to screen position
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);

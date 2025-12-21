@@ -3960,7 +3960,7 @@ Transform:
   m_GameObject: {fileID: 1382330626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 840.51, y: 1.01, z: 141.39}
+  m_LocalPosition: {x: 843.47, y: 1.49, z: 139.43}
   m_LocalScale: {x: 10.6, y: 5.1, z: 9.46}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4817,9 +4817,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1679517069}
-    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1679517074}
   m_SourcePrefab: {fileID: 100100000, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
 --- !u!4 &1679517067 stripped
@@ -4832,21 +4829,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
   m_PrefabInstance: {fileID: 1679517066}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1679517069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679517068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  price: 50
-  isPurchased: 0
-  itemPrefab: {fileID: 1679517068}
 --- !u!114 &1679517074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5189,6 +5171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1843803684}
   - component: {fileID: 1843803685}
+  - component: {fileID: 1843803686}
   m_Layer: 0
   m_Name: CashDeskArea
   m_TagString: Untagged
@@ -5232,6 +5215,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0176392, y: 0.4326334, z: 2.1956253}
   m_Center: {x: 0.58206177, y: -0.2836833, z: 0.098155975}
+--- !u!114 &1843803686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843803683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7936c9a991949c2818fba0cbaa2b1d50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerStats: {fileID: 4416926082273746348}
 --- !u!1001 &1875415217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6354,6 +6350,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: a93f6f6e748065ae1b9ab981485f5be1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2128799170}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: a93f6f6e748065ae1b9ab981485f5be1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2128799171}
   m_SourcePrefab: {fileID: 100100000, guid: a93f6f6e748065ae1b9ab981485f5be1, type: 3}
 --- !u!4 &2128799165 stripped
 Transform:
@@ -6377,6 +6376,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &2128799171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708060677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 1
+  isPurchased: 0
+  itemPrefab: {fileID: 708060677}
+  itemName: IronAxe
 --- !u!1001 &2135530049
 PrefabInstance:
   m_ObjectHideFlags: 0
