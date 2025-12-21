@@ -154,6 +154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2128799165}
+  - {fileID: 1239757758}
   - {fileID: 1679517067}
   - {fileID: 2135530050}
   - {fileID: 453075491}
@@ -2802,6 +2803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 850983120}
   - component: {fileID: 850983121}
+  - component: {fileID: 850983122}
   m_Layer: 0
   m_Name: ShopArea
   m_TagString: Untagged
@@ -2845,6 +2847,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 28.899536, y: 7.878369, z: 15.200592}
   m_Center: {x: 2.2436523, y: 0.903167, z: 2.0931854}
+--- !u!114 &850983122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850983119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225d013a0f7c26b3c8dc03fa14e327ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerStats: {fileID: 4416926082273746348}
 --- !u!1 &890919709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5e65dd8367a70216fa3c198c6d352e63, type: 3}
@@ -3656,6 +3671,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1239757757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239757758}
+  - component: {fileID: 1239757759}
+  m_Layer: 9
+  m_Name: IronAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1239757758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239757757}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.00354, y: 0.14997005, z: 1.0904617}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1239757759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239757757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 708060677}
+  currentAxeItem: {fileID: 2128799171}
+  respawnDelay: 120
 --- !u!1 &1270985054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1808c64acdf07014bbb987b8552e2a67, type: 3}
@@ -6288,6 +6350,10 @@ PrefabInstance:
       value: IronAxe
       objectReference: {fileID: 0}
     - target: {fileID: 5048391394915993183, guid: a93f6f6e748065ae1b9ab981485f5be1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5048391394915993183, guid: a93f6f6e748065ae1b9ab981485f5be1, type: 3}
       propertyPath: m_TagString
       value: ShopItem
       objectReference: {fileID: 0}
@@ -6392,6 +6458,7 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 708060677}
   itemName: IronAxe
+  mySlot: {fileID: 1239757759}
 --- !u!1001 &2135530049
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,11 +6,12 @@ public class ShopItem : MonoBehaviour
 {
     public int price = 50;
     public bool isPurchased = false;
-    
+
     private Vector3 startPosition;
     private Quaternion startRotation;
     public GameObject itemPrefab; // The prefab to respawn
     public string itemName = "placeholder";
+    public InventoryRestocker mySlot; // Reference to the slot that spawned this item
 
     void Start()
     {
@@ -32,14 +33,7 @@ public class ShopItem : MonoBehaviour
     {
         if (!isPurchased)
         {
-            StartCoroutine(RespawnTimer());
+            mySlot.StartRespawnTimer();
         }
-    }
-
-    IEnumerator RespawnTimer()
-    {
-        yield return new WaitForSeconds(10f); // 2 minutses
-        Instantiate(itemPrefab, startPosition, startRotation);
-        // TODO: link to shop system
     }
 }

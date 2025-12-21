@@ -108,54 +108,59 @@ public class PlayerPickupDrop : MonoBehaviour
                 }
                 // Dont allow camera switch while holding an object
                 cameraSwitcher.enabled = false;
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            if (objectGrabbable != null)
-            {
-                // Drop the object
-                objectGrabbable.Drop();
-                // Unsubscribe from the event
-                objectGrabbable.OnDestroyed -= HandleGrabbedObjectDestroyed;
-                objectGrabbable = null;
-                // reset grab distance according to current camera mode
-                grabDistance = isFP ? firstPersonDistance : thirdPersonDistance;
-                // Allow camera switching again
-                cameraSwitcher.enabled = true;
-
-                // Destroy grab effect when dropping
-                if (grabEffectPrefab != null && grabPointInstance != null)
+                ShopItem shopItem = objectGrabbable.GetComponent<ShopItem>();
+                if (shopItem != null)
                 {
-                    Destroy(grabPointInstance);
-                    grabPointInstance = null;
+                    shopItem.OnPickedUp(); // notify shop iten that its been moved by th e player
                 }
             }
         }
-
-        // Update grab point position while holding an object
-        if (objectGrabbable != null)
-        {
-            Ray grabRay;
-
-            if (cameraSwitcher.IsFirstPerson)
+            if (Input.GetKeyUp(KeyCode.E))
             {
-                grabRay = currentCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                if (objectGrabbable != null)
+                {
+                    // Drop the object
+                    objectGrabbable.Drop();
+                    // Unsubscribe from the event
+                    objectGrabbable.OnDestroyed -= HandleGrabbedObjectDestroyed;
+                    objectGrabbable = null;
+                    // reset grab distance according to current camera mode
+                    grabDistance = isFP ? firstPersonDistance : thirdPersonDistance;
+                    // Allow camera switching again
+                    cameraSwitcher.enabled = true;
+
+                    // Destroy grab effect when dropping
+                    if (grabEffectPrefab != null && grabPointInstance != null)
+                    {
+                        Destroy(grabPointInstance);
+                        grabPointInstance = null;
+                    }
+                }
             }
-            else
-            {
-                // TODO: Fix issue where when i switch to TP, the object doesnt go to the mouse position, but it goes to top right until i move the mouse
-                Vector3 mousePos = Input.mousePosition;
-                grabRay = currentCam.ScreenPointToRay(mousePos);
-            }
 
-            objectGrabPointTransform.position = grabRay.origin + grabRay.direction * grabDistance;
-
-            // Update grab effect position
-            if (grabEffectPrefab != null && grabPointInstance != null)
+            // Update grab point position while holding an object
+            if (objectGrabbable != null)
             {
-                grabPointInstance.transform.position = objectGrabbable.transform.position + grabPointOffset;
+                Ray grabRay;
+
+                if (cameraSwitcher.IsFirstPerson)
+                {
+                    grabRay = currentCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                }
+                else
+                {
+                    // TODO: Fix issue where when i switch to TP, the object doesnt go to the mouse position, but it goes to top right until i move the mouse
+                    Vector3 mousePos = Input.mousePosition;
+                    grabRay = currentCam.ScreenPointToRay(mousePos);
+                }
+
+                objectGrabPointTransform.position = grabRay.origin + grabRay.direction * grabDistance;
+
+                // Update grab effect position
+                if (grabEffectPrefab != null && grabPointInstance != null)
+                {
+                    grabPointInstance.transform.position = objectGrabbable.transform.position + grabPointOffset;
+                }
             }
         }
     }
-}
