@@ -24,6 +24,21 @@ public class InventoryRestocker : MonoBehaviour
             itemScript.mySlot = this;
         }
         isTimerRunning = false;
+
+        currentAxeItem = newAxe.GetComponent<ShopItem>();
+        currentAxeItem.mySlot = this;
+        newAxe.GetComponent<ObjectGrabbable>().enabled = true;
+        newAxe.GetComponent<ShopItem>().enabled = true;
+        newAxe.GetComponent<Rigidbody>().isKinematic = false;
+        newAxe.GetComponent<ShopItem>().isPurchased = false;
+        newAxe.tag = "ShopItem";
+        newAxe.SetActive(true);
+
+        GameObject InventoryObject = GameObject.Find("Inventory");
+        if (InventoryObject != null)
+        {
+            newAxe.transform.SetParent(InventoryObject.transform);
+        }
     }
 
     public void StartRespawnTimer()
@@ -38,8 +53,10 @@ public class InventoryRestocker : MonoBehaviour
     {
         isTimerRunning = true;
         yield return new WaitForSeconds(respawnDelay);
-        Destroy(currentAxeItem.gameObject);
+        if (currentAxeItem != null && !currentAxeItem.isPurchased)
+        {
+            Destroy(currentAxeItem.gameObject);
+        }
         SpawnNewAxe();
-        // todo: parent to inventory
     }
 }
