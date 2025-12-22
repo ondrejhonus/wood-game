@@ -91,7 +91,12 @@ public class PlayerPickupDrop : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit hit, grabDistance, PickUpLayerMask))
                 {
-                    if (hit.transform.TryGetComponent(out objectGrabbable))
+                    ShopItem shopItem = hit.transform.GetComponent<ShopItem>();
+                    if (shopItem != null)
+                    {
+                        shopItem.OnPickedUp(); // notify shop iten that its been moved by th e player
+                    }
+                    if (hit.transform.TryGetComponent(out objectGrabbable) && (!shopItem.isPurchased || shopItem == null))
                     {
                         objectGrabbable.Grab(objectGrabPointTransform, hit.point);
 
@@ -108,11 +113,7 @@ public class PlayerPickupDrop : MonoBehaviour
                 }
                 // Dont allow camera switch while holding an object
                 cameraSwitcher.enabled = false;
-                ShopItem shopItem = objectGrabbable.GetComponent<ShopItem>();
-                if (shopItem != null)
-                {
-                    shopItem.OnPickedUp(); // notify shop iten that its been moved by th e player
-                }
+                
             }
         }
             if (Input.GetKeyUp(KeyCode.E))

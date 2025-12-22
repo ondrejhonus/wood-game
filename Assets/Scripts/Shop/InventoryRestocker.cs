@@ -40,7 +40,6 @@ public class InventoryRestocker : MonoBehaviour
             newAxe.transform.SetParent(InventoryObject.transform);
         }
     }
-
     public void StartRespawnTimer()
     {
         if (!isTimerRunning)
