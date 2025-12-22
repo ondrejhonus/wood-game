@@ -10,7 +10,6 @@ public class ShopItem : MonoBehaviour
     private Vector3 startPosition;
     private Quaternion startRotation;
     public GameObject itemPrefab; // The prefab to respawn
-    public string itemName = "placeholder";
     public InventoryRestocker mySlot; // Reference to the slot that spawned this item
 
     void Start()

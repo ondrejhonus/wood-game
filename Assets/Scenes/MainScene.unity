@@ -124,6 +124,53 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5048391394915993183, guid: 59a3139aa8967119b9a91765f65d2994, type: 3}
   m_PrefabInstance: {fileID: 840673569}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &67452028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67452029}
+  - component: {fileID: 67452030}
+  m_Layer: 9
+  m_Name: FireAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &67452029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67452028}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003418, y: 1.3799701, z: 1.1163559}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &67452030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67452028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 611858471}
+  currentAxeItem: {fileID: 2006732086}
+  respawnDelay: 120
 --- !u!1 &80722116
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,13 +203,21 @@ Transform:
   - {fileID: 2128799165}
   - {fileID: 1239757758}
   - {fileID: 1679517067}
+  - {fileID: 1263113106}
   - {fileID: 2135530050}
+  - {fileID: 211298698}
   - {fileID: 453075491}
+  - {fileID: 559089412}
   - {fileID: 840673570}
+  - {fileID: 1171741250}
   - {fileID: 334096446}
+  - {fileID: 569513062}
   - {fileID: 2006732076}
+  - {fileID: 67452029}
   - {fileID: 589791807}
+  - {fileID: 915033438}
   - {fileID: 1875415218}
+  - {fileID: 752423682}
   m_Father: {fileID: 647373093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &135925401
@@ -501,6 +556,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 865c842fff5a5834d8f9959804592916, type: 3}
   m_PrefabInstance: {fileID: 1438688443}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &211298697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211298698}
+  - component: {fileID: 211298699}
+  m_Layer: 9
+  m_Name: DiamondAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &211298698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211298697}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003479, y: 0.14997005, z: 3.1444473}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211298699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211298697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 1355216025}
+  currentAxeItem: {fileID: 2135530060}
+  respawnDelay: 120
 --- !u!1001 &261817671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -718,6 +820,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 23f6bc02ba2123ba8a9b4ed684b88c13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 334096451}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 23f6bc02ba2123ba8a9b4ed684b88c13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 334096456}
   m_SourcePrefab: {fileID: 100100000, guid: 23f6bc02ba2123ba8a9b4ed684b88c13, type: 3}
 --- !u!4 &334096446 stripped
 Transform:
@@ -741,6 +846,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &334096456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160325828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 10000
+  isPurchased: 0
+  itemPrefab: {fileID: 160325828}
+  mySlot: {fileID: 569513063}
 --- !u!1001 &361556227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1517,6 +1638,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5e65dd8367a70216fa3c198c6d352e63, type: 3}
       insertIndex: -1
       addedObject: {fileID: 890919714}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5e65dd8367a70216fa3c198c6d352e63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 890919719}
   m_SourcePrefab: {fileID: 100100000, guid: 5e65dd8367a70216fa3c198c6d352e63, type: 3}
 --- !u!4 &453075491 stripped
 Transform:
@@ -1702,6 +1826,53 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4488516306824289610, guid: 7c29c40475bec254887b0052241c9db0, type: 3}
+--- !u!1 &559089411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559089412}
+  - component: {fileID: 559089413}
+  m_Layer: 9
+  m_Name: ObsidianAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &559089412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559089411}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003418, y: 0.74996996, z: 1.1113663}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &559089413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559089411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 890919709}
+  currentAxeItem: {fileID: 890919719}
+  respawnDelay: 120
 --- !u!1 &566933522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,6 +1904,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1956898315}
   m_LocalEulerAnglesHint: {x: -134.02, y: 67, z: -24.11}
+--- !u!1 &569513061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 569513062}
+  - component: {fileID: 569513063}
+  m_Layer: 9
+  m_Name: AmethystAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &569513062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569513061}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003479, y: 0.74996996, z: 3.197464}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &569513063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569513061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 160325828}
+  currentAxeItem: {fileID: 334096456}
+  respawnDelay: 120
 --- !u!1001 &578914450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1881,6 +2099,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 880b0a1e02c9c4ac9b779e3515fcd340, type: 3}
       insertIndex: -1
       addedObject: {fileID: 765671852}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 880b0a1e02c9c4ac9b779e3515fcd340, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 765671857}
   m_SourcePrefab: {fileID: 100100000, guid: 880b0a1e02c9c4ac9b779e3515fcd340, type: 3}
 --- !u!4 &589791807 stripped
 Transform:
@@ -2230,6 +2451,53 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 517288063}
   m_SourcePrefab: {fileID: 100100000, guid: 7c29c40475bec254887b0052241c9db0, type: 3}
+--- !u!1 &752423681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752423682}
+  - component: {fileID: 752423683}
+  m_Layer: 9
+  m_Name: VoidAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &752423682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752423681}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003479, y: 1.3799701, z: 3.1994095}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &752423683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752423681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 1637694309}
+  currentAxeItem: {fileID: 1875415228}
+  respawnDelay: 120
 --- !u!1 &765671847 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5048391394915993183, guid: 880b0a1e02c9c4ac9b779e3515fcd340, type: 3}
@@ -2252,6 +2520,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &765671857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765671847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 100000
+  isPurchased: 0
+  itemPrefab: {fileID: 765671847}
+  mySlot: {fileID: 915033439}
 --- !u!1 &778402020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,6 +3054,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 59a3139aa8967119b9a91765f65d2994, type: 3}
       insertIndex: -1
       addedObject: {fileID: 840673575}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 59a3139aa8967119b9a91765f65d2994, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 840673580}
   m_SourcePrefab: {fileID: 100100000, guid: 59a3139aa8967119b9a91765f65d2994, type: 3}
 --- !u!4 &840673570 stripped
 Transform:
@@ -2793,6 +3080,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &840673580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29373571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 5000
+  isPurchased: 0
+  itemPrefab: {fileID: 29373571}
+  mySlot: {fileID: 1171741251}
 --- !u!1 &850983119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,6 +3185,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &890919719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890919709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 2000
+  isPurchased: 0
+  itemPrefab: {fileID: 890919709}
+  mySlot: {fileID: 559089413}
 --- !u!4 &893498957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 42a31383fb9f86743878aac73995a664, type: 3}
@@ -3024,6 +3343,53 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &915033437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 915033438}
+  - component: {fileID: 915033439}
+  m_Layer: 9
+  m_Name: UraniumAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &915033438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915033437}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003418, y: 1.3799701, z: 2.1263657}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915033439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915033437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 765671847}
+  currentAxeItem: {fileID: 765671857}
+  respawnDelay: 120
 --- !u!1001 &962274885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3588,6 +3954,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 42a31383fb9f86743878aac73995a664, type: 3}
   m_PrefabInstance: {fileID: 1678129578}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1171741249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171741250}
+  - component: {fileID: 1171741251}
+  m_Layer: 9
+  m_Name: EmeraldAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1171741250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171741249}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003418, y: 0.74996996, z: 2.1204605}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1171741251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171741249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 29373571}
+  currentAxeItem: {fileID: 840673580}
+  respawnDelay: 120
 --- !u!1 &1235321830
 GameObject:
   m_ObjectHideFlags: 0
@@ -3717,7 +4130,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
   axePrefab: {fileID: 708060677}
   currentAxeItem: {fileID: 2128799171}
-  respawnDelay: 10
+  respawnDelay: 120
+--- !u!1 &1263113105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1263113106}
+  - component: {fileID: 1263113107}
+  m_Layer: 9
+  m_Name: GoldenAxePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1263113106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263113105}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000010207295, w: 0.0000010207295}
+  m_LocalPosition: {x: -1.003418, y: 0.14997005, z: 2.1053696}
+  m_LocalScale: {x: 0.12175402, y: 0.28700936, z: 0.40520218}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80722117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1263113107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263113105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb86b7cec54f120b98648653136afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryRestocker
+  axePrefab: {fileID: 1679517068}
+  currentAxeItem: {fileID: 1679517079}
+  respawnDelay: 120
 --- !u!1 &1270985054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1808c64acdf07014bbb987b8552e2a67, type: 3}
@@ -4880,6 +5340,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1679517074}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1679517079}
   m_SourcePrefab: {fileID: 100100000, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
 --- !u!4 &1679517067 stripped
 Transform:
@@ -4908,6 +5371,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &1679517079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679517068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 150
+  isPurchased: 0
+  itemPrefab: {fileID: 1679517068}
+  mySlot: {fileID: 1263113107}
 --- !u!1 &1711939651
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,6 +5848,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 1e77e983761e4d5f385ddbf18beb373f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1875415223}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 1e77e983761e4d5f385ddbf18beb373f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1875415228}
   m_SourcePrefab: {fileID: 100100000, guid: 1e77e983761e4d5f385ddbf18beb373f, type: 3}
 --- !u!4 &1875415218 stripped
 Transform:
@@ -5392,6 +5874,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &1875415228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637694309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 1000000
+  isPurchased: 0
+  itemPrefab: {fileID: 1637694309}
+  mySlot: {fileID: 752423683}
 --- !u!1 &1905003439 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c9764a4a610e8de44a1bf869289dbcd6, type: 3}
@@ -5936,6 +6434,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 233ec6dc18b06ef5bac4026363f708bc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2006732081}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 233ec6dc18b06ef5bac4026363f708bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2006732086}
   m_SourcePrefab: {fileID: 100100000, guid: 233ec6dc18b06ef5bac4026363f708bc, type: 3}
 --- !u!4 &2006732076 stripped
 Transform:
@@ -5959,6 +6460,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &2006732086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611858471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 50000
+  isPurchased: 0
+  itemPrefab: {fileID: 611858471}
+  mySlot: {fileID: 67452030}
 --- !u!1 &2011065055
 GameObject:
   m_ObjectHideFlags: 0
@@ -6454,10 +6971,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  price: 1
+  price: 50
   isPurchased: 0
   itemPrefab: {fileID: 708060677}
-  itemName: IronAxe
   mySlot: {fileID: 1239757759}
 --- !u!1001 &2135530049
 PrefabInstance:
@@ -6534,6 +7050,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: bf04e2a2fe6586967806940186ad573c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2135530055}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: bf04e2a2fe6586967806940186ad573c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2135530060}
   m_SourcePrefab: {fileID: 100100000, guid: bf04e2a2fe6586967806940186ad573c, type: 3}
 --- !u!4 &2135530050 stripped
 Transform:
@@ -6557,6 +7076,22 @@ MonoBehaviour:
   massScaling: 1
   velocityLerp: 0.2
   cameraSwitcher: {fileID: 1076590325}
+--- !u!114 &2135530060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355216025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d830ce084308fe9a2380dbe8b43595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  price: 500
+  isPurchased: 0
+  itemPrefab: {fileID: 1355216025}
+  mySlot: {fileID: 211298699}
 --- !u!114 &135756642687074791
 MonoBehaviour:
   m_ObjectHideFlags: 0
