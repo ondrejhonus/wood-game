@@ -96,7 +96,7 @@ public class PlayerPickupDrop : MonoBehaviour
                     {
                         shopItem.OnPickedUp(); // notify shop iten that its been moved by th e player
                     }
-                    if (hit.transform.TryGetComponent(out objectGrabbable) && (!shopItem.isPurchased || shopItem == null))
+                    if (hit.transform.TryGetComponent(out objectGrabbable) && (shopItem == null || !shopItem.isPurchased))
                     {
                         objectGrabbable.Grab(objectGrabPointTransform, hit.point);
 
