@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
     [Header("Inventory Settings")]
-    public int inventorySize = 5;
+    public int inventorySize = 10;
     public GameObject[] slots; // Items stored
     public Transform handPosition; // Where items appear in hand
     private int selectedSlot = -1; // -1 = empty hand
@@ -13,10 +15,51 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private float thirdPersonDistance = 30f; // needs to be further away, coz the camera is behind the player
     private bool isFP;
 
+    [Header("UI References")]
+    public Image[] slotIcons;
+    public Sprite defaultIcon; // if no icon is set for an item, not an empty slot
+
+
 
     void Start()
     {
         slots = new GameObject[inventorySize];
+        UpdateInventoryUI();
+    }
+    // call everytime inventory changes
+    private void UpdateInventoryUI()
+    {
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (slots[i] != null)
+            {
+                string itemName = slots[i].name;
+
+                // Remove "(Clone)" from name if its a cloend prefab
+                if (itemName.Contains("(Clone)"))
+                    itemName = itemName.Replace("(Clone)", "").Trim();
+
+                // load from Assets/Resources/icons/<itemName>
+                Sprite loadedSprite = Resources.Load<Sprite>("icons/" + itemName);
+
+                if (loadedSprite != null)
+                {
+                    slotIcons[i].sprite = loadedSprite;
+                    slotIcons[i].enabled = true; // Show the image
+                }
+                else
+                {
+                    // If no specific icon found, use default icon
+                    slotIcons[i].sprite = defaultIcon;
+                    if (defaultIcon == null) slotIcons[i].enabled = false;
+                }
+            }
+            else
+            {
+                // Slot is empty, dont show any icon
+                slotIcons[i].enabled = false;
+            }
+        }
     }
 
     void Update()
@@ -37,7 +80,6 @@ public class PlayerInventory : MonoBehaviour
             return null;
         return slots[selectedSlot];
     }
-
 
     void HandlePickup()
     {
@@ -73,6 +115,7 @@ public class PlayerInventory : MonoBehaviour
             if (slots[i] == null)
             {
                 slots[i] = item;
+                UpdateInventoryUI();
                 return true;
             }
         }
@@ -82,19 +125,46 @@ public class PlayerInventory : MonoBehaviour
 
     void HandleSlotSwitch()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < inventorySize-1; i++)
         {
-            // Hotkeys 1-5
+            // Hotkeys 1-9
             if (Input.GetKeyDown((i + 1).ToString()))
             {
                 SelectSlot(i);
             }
         }
 
-        // Empty hand = 0
+        // slot 10 = 0
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
+            SelectSlot(9);
+        }
+        // empty hand = Backspace
+        else if (Input.GetKeyDown(KeyCode.Backspace))
+        {
             SelectSlot(-1);
+        }
+        // Mouse scroll wheel
+        else
+        {
+            // logic for mouse scroll wheel direction to switch slots
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll > 0f)
+            {
+                // Cycle to previous slot
+                int nextSlot = selectedSlot - 1;
+                if (nextSlot < 0)
+                    nextSlot = inventorySize - 1;
+                SelectSlot(nextSlot);
+            }
+            else if (scroll < 0f)
+            {
+                // Cycle to next slot
+                int nextSlot = selectedSlot + 1;
+                if (nextSlot >= inventorySize)
+                    nextSlot = 0;
+                SelectSlot(nextSlot);
+            }
         }
     }
 
@@ -146,5 +216,6 @@ public class PlayerInventory : MonoBehaviour
         // Remove from inventory
         slots[selectedSlot] = null;
         selectedSlot = -1; // Empty hand
+        UpdateInventoryUI();
     }
 }

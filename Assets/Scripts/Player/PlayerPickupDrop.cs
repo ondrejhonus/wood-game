@@ -68,7 +68,9 @@ public class PlayerPickupDrop : MonoBehaviour
             cameraSwitcher.enabled = true;
         }
 
-        // Reduce grab distance on wheel down, increase on wheel up
+        // Reduce grab distance on wheel down, increase on wheel up, while holding Shift
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0f)
         {
@@ -81,6 +83,7 @@ public class PlayerPickupDrop : MonoBehaviour
             {
                 grabDistance = Mathf.Clamp(grabDistance, 1f, 15f);
             }
+        }
         }
 
         if (Input.GetKey(KeyCode.E))
