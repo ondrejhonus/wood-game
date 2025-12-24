@@ -147,5 +147,4 @@ public class PlayerInventory : MonoBehaviour
         slots[selectedSlot] = null;
         selectedSlot = -1; // Empty hand
     }
-
 }

@@ -162,12 +162,10 @@ public class TreeGenerator : MonoBehaviour
         ChoppableLog ch = tree.GetComponent<ChoppableLog>();
         if (ch == null) ch = tree.AddComponent<ChoppableLog>();
 
-        // Width * 8
-        // (e.g., 0.4 * 8 = 3 hits.  1 * 8 = 8 hits.)
-        int calculatedHits = Mathf.RoundToInt(finalWidth * 8f);
+        // Calculate hits to chop based on size multiplied by base hits
+        int calculatedHits = Mathf.RoundToInt(finalWidth * hitsToChop * 2);
 
-        // Clamp between 3 and 10 hits
-        ch.hitsToChop = Mathf.Clamp(calculatedHits, 3, 10);
+        ch.hitsToChop = calculatedHits;
 
         ch.logPiecePrefab = logPrefab;
         ch.minPieceLength = minPieceLength;

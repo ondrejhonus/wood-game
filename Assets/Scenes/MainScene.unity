@@ -429,7 +429,7 @@ MonoBehaviour:
   trunkWidthRange: {x: 0.3, y: 0.45}
   leavesPrefab: {fileID: 0}
   targetLeafSize: 3
-  hitsToChop: 6
+  hitsToChop: 25
   minPieceLength: 0.05
   playerInventory: {fileID: 4416926082273746340}
   audioSource: {fileID: 8944336655733072416}
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   trunkWidthRange: {x: 0.3, y: 0.45}
   leavesPrefab: {fileID: 919132149155446097, guid: 5caea1597bb0859498d44740037f2b06, type: 3}
   targetLeafSize: 2
-  hitsToChop: 6
+  hitsToChop: 50
   minPieceLength: 0.05
   playerInventory: {fileID: 4416926082273746340}
   audioSource: {fileID: 8944336655733072416}
@@ -4041,7 +4041,7 @@ MonoBehaviour:
   trunkWidthRange: {x: 0.2, y: 0.4}
   leavesPrefab: {fileID: 919132149155446097, guid: 2ea35b94188c5d94abb0c1968211cb61, type: 3}
   targetLeafSize: 2
-  hitsToChop: 6
+  hitsToChop: 10
   minPieceLength: 0.05
   playerInventory: {fileID: 4416926082273746340}
   audioSource: {fileID: 8944336655733072416}
@@ -7399,7 +7399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7173912b59fcfb3539ccbb2c6d1c50a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  money: 50
+  money: 200
   health: 100
   moneyText: {fileID: 452868558}
   healthText: {fileID: 2073110095}

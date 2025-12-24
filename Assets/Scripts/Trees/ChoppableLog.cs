@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class ChopPoint
 {
     public float chopPercentage;
+    public float currentHitsUnrounded;
     public int currentHits;
     public Transform progressPivot;
     public Transform progressBar;
@@ -30,6 +31,7 @@ public class ChoppableLog : MonoBehaviour
     private List<ChopPoint> chopPoints = new List<ChopPoint>();
     public PlayerInventory playerInventory;
     public AudioSource audioSource;
+    private float chopStrength = 0;
 
     private void Awake()
     {
@@ -55,6 +57,44 @@ public class ChoppableLog : MonoBehaviour
         }
     }
 
+    private void SetChopStrength(string itemName)
+    {
+        switch (itemName)
+        {
+            case "IronAxe":
+                chopStrength = 1;
+                break;
+            case "GoldenAxe":
+                chopStrength = 2f;
+                break;
+            case "DiamondAxe":
+                chopStrength = 4;
+                break;
+            case "ObsidianAxe":
+                chopStrength = 6;
+                break;
+            case "EmeraldAxe":
+                chopStrength = 8f;
+                break;
+            case "AmethystAxe":
+                chopStrength = 10f;
+                break;
+            case "FireAxe":
+                chopStrength = 15f;
+                break;
+            case "UraniumAxe":
+                chopStrength = 20f;
+                break;
+            case "VoidAxe":
+                chopStrength = 50f;
+                break;
+            default:
+                break;
+            
+            
+        }
+    }
+
     private void Update()
     {
         // Check for mouse click
@@ -73,6 +113,9 @@ public class ChoppableLog : MonoBehaviour
                     GameObject heldItem = playerInventory.GetSelectedItem();
                     if (heldItem != null && heldItem.CompareTag("Axe"))
                     {
+                        // calc hitsToChop based on axe type
+                        SetChopStrength(heldItem.name);
+
                         HandleChop(hit.point);
                         if (audioSource != null)
                         {
@@ -144,7 +187,8 @@ public class ChoppableLog : MonoBehaviour
             target = newCp;
         }
 
-        target.currentHits++;
+        target.currentHitsUnrounded += chopStrength;
+        target.currentHits = Mathf.FloorToInt(target.currentHitsUnrounded);
         if (target.progressBar != null) UpdateProgressBar(target);
 
         if (target.currentHits >= hitsToChop)
