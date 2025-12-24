@@ -18,12 +18,14 @@ public class PlayerInventory : MonoBehaviour
     [Header("UI References")]
     public Image[] slotIcons;
     public Sprite defaultIcon; // if no icon is set for an item, not an empty slot
+    public RectTransform selectionHighlight; // a glowing border maybe
 
 
 
     void Start()
     {
         slots = new GameObject[inventorySize];
+        SelectSlot(-1);
         UpdateInventoryUI();
     }
     // call everytime inventory changes
@@ -52,6 +54,7 @@ public class PlayerInventory : MonoBehaviour
                     // If no specific icon found, use default icon
                     slotIcons[i].sprite = defaultIcon;
                     if (defaultIcon == null) slotIcons[i].enabled = false;
+                    else slotIcons[i].enabled = true;
                 }
             }
             else
@@ -59,6 +62,10 @@ public class PlayerInventory : MonoBehaviour
                 // Slot is empty, dont show any icon
                 slotIcons[i].enabled = false;
             }
+        }
+        if (GetSelectedItem() == null)
+        {
+            selectionHighlight.gameObject.SetActive(false);
         }
     }
 
@@ -152,17 +159,17 @@ public class PlayerInventory : MonoBehaviour
             if (scroll > 0f)
             {
                 // Cycle to previous slot
-                int nextSlot = selectedSlot - 1;
-                if (nextSlot < 0)
-                    nextSlot = inventorySize - 1;
+                int nextSlot = selectedSlot + 1;
+                if (nextSlot > inventorySize - 1)
+                    nextSlot = 0;
                 SelectSlot(nextSlot);
             }
             else if (scroll < 0f)
             {
                 // Cycle to next slot
-                int nextSlot = selectedSlot + 1;
-                if (nextSlot >= inventorySize)
-                    nextSlot = 0;
+                int nextSlot = selectedSlot - 1;
+                if (nextSlot < 0)
+                    nextSlot = inventorySize - 1;
                 SelectSlot(nextSlot);
             }
         }
@@ -171,6 +178,16 @@ public class PlayerInventory : MonoBehaviour
     public void SelectSlot(int slotIndex)
     {
         selectedSlot = slotIndex;
+
+        if (selectedSlot >= 0 && selectedSlot < slotIcons.Length)
+    {
+        selectionHighlight.gameObject.SetActive(true);
+        selectionHighlight.position = slotIcons[selectedSlot].transform.position;
+    }
+    else
+    {
+        selectionHighlight.gameObject.SetActive(false);
+    }
 
         for (int i = 0; i < slots.Length; i++)
         {
