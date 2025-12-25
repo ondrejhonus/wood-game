@@ -8,6 +8,7 @@ public class SaveManager : MonoBehaviour
 {
     [Header("References")]
     public Transform truckTransform;
+    public Transform playerTransform;
     public SaveZone saveZone;
     public GameObject logPrefab;
 
@@ -16,6 +17,13 @@ public class SaveManager : MonoBehaviour
     public PlayerInventory playerInventory;
 
     private string saveFilePath;
+
+    // Choppablelog thingies
+    public AudioSource audioSource;
+    public LayerMask chopLayer;
+    public int hitsToChop = 6;
+
+
 
     private void Awake()
     {
@@ -49,6 +57,14 @@ public class SaveManager : MonoBehaviour
         data.truckRotX = truckTransform.eulerAngles.x;
         data.truckRotY = truckTransform.eulerAngles.y;
         data.truckRotZ = truckTransform.eulerAngles.z;
+
+        // save player position
+        data.playerX = playerTransform.position.x;
+        data.playerY = playerTransform.position.y;
+        data.playerZ = playerTransform.position.z;
+        data.playerRotX = playerTransform.eulerAngles.x;
+        data.playerRotY = playerTransform.eulerAngles.y;
+        data.playerRotZ = playerTransform.eulerAngles.z;
 
         // save logs in save zone
         // get box collider of save zone
@@ -135,27 +151,37 @@ public class SaveManager : MonoBehaviour
 
         if (cc) cc.enabled = true;
 
+        // disable player for a bit, so it can teleport without issues
+        CharacterController pcc = playerTransform.GetComponent<CharacterController>();
+        if (pcc) pcc.enabled = false;
+
+        // load player position
+        playerTransform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
+        playerTransform.eulerAngles = new Vector3(data.playerRotX, data.playerRotY, data.playerRotZ);
+
+        if (pcc) pcc.enabled = true;
+
         // remove existing logs in the save zone, maybe delete this later, idk if its neccesary
-        BoxCollider zoneBox = saveZone.GetComponent<BoxCollider>();
-        Vector3 center = saveZone.transform.TransformPoint(zoneBox.center);
-        Vector3 halfExtents = Vector3.Scale(zoneBox.size, saveZone.transform.lossyScale) * 0.5f;
+        // BoxCollider zoneBox = saveZone.GetComponent<BoxCollider>();
+        // Vector3 center = saveZone.transform.TransformPoint(zoneBox.center);
+        // Vector3 halfExtents = Vector3.Scale(zoneBox.size, saveZone.transform.lossyScale) * 0.5f;
 
-        Collider[] hits = Physics.OverlapBox(center, halfExtents, saveZone.transform.rotation);
+        // Collider[] hits = Physics.OverlapBox(center, halfExtents, saveZone.transform.rotation);
 
-        foreach (Collider hit in hits)
-        {
-            if (hit.GetComponent<SaveableLog>())
-            {
-                Destroy(hit.gameObject);
-            }
-        }
-        // delete all logs outside of save zone
+        // foreach (Collider hit in hits)
+        // {
+        //     if (hit.GetComponent<SaveableLog>())
+        //     {
+        //         Destroy(hit.gameObject);
+        //     }
+        // }
+        // delete all logs in the scene that are not planted
         SaveableLog[] allLogsInScene = UnityEngine.Object.FindObjectsByType<SaveableLog>(FindObjectsSortMode.None);
         foreach (SaveableLog log in allLogsInScene)
         {
             // destroy all logs in the game, if they dont have .isPlanted true
             ChoppableLog choppableLog = log.GetComponent<ChoppableLog>();
-            if (choppableLog.isPlanted == false) Destroy(log.gameObject);
+            if (choppableLog && choppableLog.isPlanted == false) Destroy(log.gameObject);
         }
 
         // spawn logs to the save zone
@@ -169,6 +195,15 @@ public class SaveManager : MonoBehaviour
             GameObject newLog = Instantiate(logPrefab, pos, rot);
             // set scale
             newLog.transform.localScale = new Vector3(lData.sx, lData.sy, lData.sz);
+
+            // add choppablelog to it, and assign basic values
+            ChoppableLog ch = newLog.GetComponent<ChoppableLog>();
+            if (ch == null) ch = newLog.AddComponent<ChoppableLog>();
+            ch.logPiecePrefab = logPrefab;
+            ch.hitsToChop = hitsToChop;
+            ch.playerInventory = playerInventory;
+            ch.audioSource = audioSource;
+            ch.chopLayer = chopLayer;
 
             // Rigidbody rb = newLog.GetComponent<Rigidbody>();
             // if(rb) 

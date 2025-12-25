@@ -14,6 +14,10 @@ public class GameData
     public float truckX, truckY, truckZ;
     public float truckRotX, truckRotY, truckRotZ;
 
+    // player pos data
+    public float playerX, playerY, playerZ;
+    public float playerRotX, playerRotY, playerRotZ;
+
     // logs
     public List<LogData> allLogs = new List<LogData>();
 }

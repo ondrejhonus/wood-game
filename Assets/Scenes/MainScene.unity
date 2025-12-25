@@ -3984,10 +3984,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   truckTransform: {fileID: 1566994255}
+  playerTransform: {fileID: 3893294198566536993}
   saveZone: {fileID: 1382330629}
   logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
   playerStats: {fileID: 4416926082273746348}
   playerInventory: {fileID: 4416926082273746340}
+  audioSource: {fileID: 8944336655733072416}
+  chopLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  hitsToChop: 6
 --- !u!4 &821629051
 Transform:
   m_ObjectHideFlags: 0
