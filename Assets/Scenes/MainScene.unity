@@ -3987,6 +3987,7 @@ MonoBehaviour:
   saveZone: {fileID: 1382330629}
   logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
   playerStats: {fileID: 4416926082273746348}
+  playerInventory: {fileID: 4416926082273746340}
 --- !u!4 &821629051
 Transform:
   m_ObjectHideFlags: 0

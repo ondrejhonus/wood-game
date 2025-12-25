@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class GameData
@@ -7,8 +8,7 @@ public class GameData
     public int savedMoney;
     public float savedHP;
 
-    // inventory
-    // public List<string> InventoryItems = new List<InventoryItem>();
+    public GameObject[] InventoryItems;
 
     // truck data
     public float truckX, truckY, truckZ;

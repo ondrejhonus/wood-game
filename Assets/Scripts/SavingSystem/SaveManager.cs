@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq; // Needed for list filtering
+using System.Linq;
+using System; // Needed for list filtering
 
 public class SaveManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class SaveManager : MonoBehaviour
 
     // player stats
     public PlayerStats playerStats;
-    // public PlayerInventory playerInventory; 
+    public PlayerInventory playerInventory;
 
     private string saveFilePath;
 
@@ -31,6 +32,14 @@ public class SaveManager : MonoBehaviour
         {
             data.savedMoney = playerStats.GetMoney();
             data.savedHP = playerStats.GetHealth();
+        }
+
+        if (playerInventory != null)
+        {
+            playerInventory = playerInventory.GetComponent<PlayerInventory>();
+            GameObject[] itemsToSave = playerInventory.GetItemsInInventory();
+            data.InventoryItems = itemsToSave;
+            Debug.Log($"Saved {itemsToSave.Length} inventory items.");
         }
 
         // svave truck position
@@ -108,6 +117,15 @@ public class SaveManager : MonoBehaviour
             playerStats.SetHealth((int)data.savedHP);
         }
 
+        if (playerInventory != null)
+        {
+            playerInventory = playerInventory.GetComponent<PlayerInventory>();
+            GameObject[] itemsToLoad = data.InventoryItems;
+            playerInventory.LoadInventoryItems(itemsToLoad);
+            Debug.Log($"Loaded {itemsToLoad.Length} inventory items.");
+        }
+
+
         // load truck position, teleport it there
         CharacterController cc = truckTransform.GetComponent<CharacterController>();
         if (cc) cc.enabled = false;
@@ -130,6 +148,14 @@ public class SaveManager : MonoBehaviour
             {
                 Destroy(hit.gameObject);
             }
+        }
+        // delete all logs outside of save zone
+        SaveableLog[] allLogsInScene = UnityEngine.Object.FindObjectsByType<SaveableLog>(FindObjectsSortMode.None);
+        foreach (SaveableLog log in allLogsInScene)
+        {
+            // destroy all logs in the game, if they dont have .isPlanted true
+            ChoppableLog choppableLog = log.GetComponent<ChoppableLog>();
+            if (choppableLog.isPlanted == false) Destroy(log.gameObject);
         }
 
         // spawn logs to the save zone
@@ -155,6 +181,7 @@ public class SaveManager : MonoBehaviour
 
         Debug.Log("Game Loaded!");
     }
+
 
     private void Update()
     {

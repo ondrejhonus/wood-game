@@ -58,19 +58,21 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Allow player to hold an object on a specific point, not the mass center     
 ⚠️ Tree spawning system     
 ▶️ Vehicles for transporting logs   
-▶️ Progress saving mechanics (TODO: save inventory)   
-❌ Functional store, where you can buy axes     
+▶️ Progress saving mechanics (TODO: player position)   
+✅️ Functional store, where you can buy axes     
+✅️ Make each axe a different strength     
+❌ Add a popup to show the axe price
 
 ## Feature Roadmap (Modeling + others)
 ✅️ Create Axe model     
-❌ Have more purchasable axes   
+✅️ Have more purchasable axes   
 ▶️ Create a basic game map with mountains as borders  
 ❌ Add rigged character sprite with animations  
-❌ A place to sell logs     
-▶️ A store to buy a better axe for the currency     
-❌ Different wood textures + leaves     
+✅️ A place to sell logs     
+✅️ A store to buy a better axe for the currency     
+✅️ Different wood textures + leaves     
 ▶️ Create UI     
-❌ Add Items in inventory to UI     
+✅️ Add Items in inventory to UI     
 ❌ Vehicle model for transporting logs   
 ❌ Add sound effects and background music   
 

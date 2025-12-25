@@ -235,4 +235,30 @@ public class PlayerInventory : MonoBehaviour
         selectedSlot = -1; // Empty hand
         UpdateInventoryUI();
     }
+
+    public void LoadInventoryItems(GameObject[] itemsToLoad)
+    {
+        // Clear current inventory
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i] = null;
+        }
+
+        // Load items into inventory
+        for (int i = 0; i < itemsToLoad.Length && i < slots.Length; i++)
+        {
+            if (itemsToLoad[i] != null)
+            {
+                slots[i] = itemsToLoad[i];
+                itemsToLoad[i].SetActive(false); // Hide until selected
+                itemsToLoad[i].GetComponent<Rigidbody>().isKinematic = true; // Disable physics
+            }
+        }
+        UpdateInventoryUI();
+    }
+
+    public GameObject[] GetItemsInInventory()
+    {
+        return slots;
+    }
 }
