@@ -36,7 +36,7 @@ public class PricePopup : MonoBehaviour
                     Color c = playerStats.money >= pricePopup.shopItem.price ? Color.green : Color.red;
                     if (pricePopup != null)
                     {
-                        playerStats.ShowPopupOneFrame("$" + pricePopup.shopItem.price.ToString(), pricePopup.shopItem.transform.position, c);
+                        playerStats.ShowPopup("$" + pricePopup.shopItem.price.ToString(), pricePopup.shopItem.transform.position, c, Time.deltaTime * 2); // show for half a frame
                     }
                 }
             }
