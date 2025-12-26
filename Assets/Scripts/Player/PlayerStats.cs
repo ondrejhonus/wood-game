@@ -64,6 +64,25 @@ public class PlayerStats : MonoBehaviour
         Destroy(popup, 1f);
     }
 
+    // Show popup for one frame only, so it appears as long as the player looks at the object
+        public void ShowPopupOneFrame(string text, Vector3 worldPosition, Color color)
+    {
+        // Convert world position to screen position
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
+
+        // make popup
+        GameObject popup = Instantiate(popupPrefab, popupParent);
+        popup.transform.position = screenPos;
+
+        // set text to popup
+        TextMeshProUGUI popupText = popup.GetComponent<TextMeshProUGUI>();
+        popupText.text = text;
+        popupText.color = color;
+
+        // remove after 1 frame
+        Destroy(popup, Time.deltaTime * 2); // multiplied by 2 to ensure it lasts the full frame
+    }
+
     // Basic getters and setters for saving/loading
     public int GetMoney()
     {

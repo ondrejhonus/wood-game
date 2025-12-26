@@ -151,3 +151,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   fadeDuration: 2
+  popupPrefab: {fileID: 4342081017304356774}
+  popupParent: {fileID: 0}
