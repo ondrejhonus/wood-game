@@ -30,12 +30,13 @@ public class PricePopup : MonoBehaviour
             float grabDistance = isFP ? firstPersonDistance : thirdPersonDistance;
             if (Physics.Raycast(ray, out RaycastHit hit, grabDistance, PickUpLayerMask))
             {
-                if (hit.collider != null && hit.collider.CompareTag("ShopItem"))
+                if (hit.collider != null && hit.collider.GetComponent<PricePopup>() != null)
                 {
                     PricePopup pricePopup = hit.collider.GetComponent<PricePopup>();
+                    Color c = playerStats.money >= pricePopup.shopItem.price ? Color.green : Color.red;
                     if (pricePopup != null)
                     {
-                        playerStats.ShowPopupOneFrame("$" + shopItem.price.ToString(), shopItem.transform.position, Color.yellow);
+                        playerStats.ShowPopupOneFrame("$" + pricePopup.shopItem.price.ToString(), pricePopup.shopItem.transform.position, c);
                     }
                 }
             }

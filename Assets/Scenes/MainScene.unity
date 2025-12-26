@@ -1249,6 +1249,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 23f6bc02ba2123ba8a9b4ed684b88c13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 334096456}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 23f6bc02ba2123ba8a9b4ed684b88c13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 334096461}
   m_SourcePrefab: {fileID: 100100000, guid: 23f6bc02ba2123ba8a9b4ed684b88c13, type: 3}
 --- !u!4 &334096446 stripped
 Transform:
@@ -1288,6 +1291,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 160325828}
   mySlot: {fileID: 569513063}
+--- !u!114 &334096461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160325828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 334096456}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!1001 &361556227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2143,6 +2167,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5e65dd8367a70216fa3c198c6d352e63, type: 3}
       insertIndex: -1
       addedObject: {fileID: 890919719}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5e65dd8367a70216fa3c198c6d352e63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 890919724}
   m_SourcePrefab: {fileID: 100100000, guid: 5e65dd8367a70216fa3c198c6d352e63, type: 3}
 --- !u!4 &453075491 stripped
 Transform:
@@ -2816,6 +2843,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 880b0a1e02c9c4ac9b779e3515fcd340, type: 3}
       insertIndex: -1
       addedObject: {fileID: 765671857}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 880b0a1e02c9c4ac9b779e3515fcd340, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 765671862}
   m_SourcePrefab: {fileID: 100100000, guid: 880b0a1e02c9c4ac9b779e3515fcd340, type: 3}
 --- !u!4 &589791807 stripped
 Transform:
@@ -3612,6 +3642,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 765671847}
   mySlot: {fileID: 915033439}
+--- !u!114 &765671862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765671847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 765671857}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!1 &778402020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4140,6 +4191,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 59a3139aa8967119b9a91765f65d2994, type: 3}
       insertIndex: -1
       addedObject: {fileID: 840673580}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 59a3139aa8967119b9a91765f65d2994, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 840673585}
   m_SourcePrefab: {fileID: 100100000, guid: 59a3139aa8967119b9a91765f65d2994, type: 3}
 --- !u!4 &840673570 stripped
 Transform:
@@ -4179,6 +4233,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 29373571}
   mySlot: {fileID: 1171741251}
+--- !u!114 &840673585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29373571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 840673580}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!1 &850983119
 GameObject:
   m_ObjectHideFlags: 0
@@ -4359,6 +4434,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 890919709}
   mySlot: {fileID: 559089413}
+--- !u!114 &890919724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890919709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 890919719}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!4 &893498957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 42a31383fb9f86743878aac73995a664, type: 3}
@@ -7817,6 +7913,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1679517079}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1679517084}
   m_SourcePrefab: {fileID: 100100000, guid: 5ed931f82ee83589faa6cb6e43d4e93e, type: 3}
 --- !u!4 &1679517067 stripped
 Transform:
@@ -7861,6 +7960,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 1679517068}
   mySlot: {fileID: 1263113107}
+--- !u!114 &1679517084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679517068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 1679517079}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!1 &1711939651
 GameObject:
   m_ObjectHideFlags: 0
@@ -8400,6 +8520,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 1e77e983761e4d5f385ddbf18beb373f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1875415228}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 1e77e983761e4d5f385ddbf18beb373f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1875415233}
   m_SourcePrefab: {fileID: 100100000, guid: 1e77e983761e4d5f385ddbf18beb373f, type: 3}
 --- !u!4 &1875415218 stripped
 Transform:
@@ -8439,6 +8562,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 1637694309}
   mySlot: {fileID: 752423683}
+--- !u!114 &1875415233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637694309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 1875415228}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!1 &1905003439 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c9764a4a610e8de44a1bf869289dbcd6, type: 3}
@@ -9123,6 +9267,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 233ec6dc18b06ef5bac4026363f708bc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2006732086}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: 233ec6dc18b06ef5bac4026363f708bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2006732091}
   m_SourcePrefab: {fileID: 100100000, guid: 233ec6dc18b06ef5bac4026363f708bc, type: 3}
 --- !u!4 &2006732076 stripped
 Transform:
@@ -9162,6 +9309,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 611858471}
   mySlot: {fileID: 67452030}
+--- !u!114 &2006732091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611858471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 2006732086}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!1 &2011065055
 GameObject:
   m_ObjectHideFlags: 0
@@ -10096,6 +10264,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: bf04e2a2fe6586967806940186ad573c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2135530060}
+    - targetCorrespondingSourceObject: {fileID: 5048391394915993183, guid: bf04e2a2fe6586967806940186ad573c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2135530065}
   m_SourcePrefab: {fileID: 100100000, guid: bf04e2a2fe6586967806940186ad573c, type: 3}
 --- !u!4 &2135530050 stripped
 Transform:
@@ -10135,6 +10306,27 @@ MonoBehaviour:
   isPurchased: 0
   itemPrefab: {fileID: 1355216025}
   mySlot: {fileID: 211298699}
+--- !u!114 &2135530065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355216025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc35bb61b959ff0e48dd049cbc888b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  popupTextPrefab: {fileID: 4342081017304356774, guid: 78f183cebc809ba81b78e69fc9992204, type: 3}
+  shopItem: {fileID: 2135530060}
+  playerStats: {fileID: 4416926082273746348}
+  cameraSwitcher: {fileID: 1076590325}
+  PickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  firstPersonDistance: 5
+  thirdPersonDistance: 16
 --- !u!114 &135756642687074791
 MonoBehaviour:
   m_ObjectHideFlags: 0
