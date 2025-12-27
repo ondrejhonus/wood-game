@@ -63,6 +63,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Make each axe a different strength     
 ✅️ Add a popup to show the axe price    
 
+
 ## Feature Roadmap (Modeling + others)
 ✅️ Create Axe model     
 ✅️ Have more purchasable axes   
@@ -73,6 +74,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Different wood textures + leaves     
 ▶️ Create UI     
 ✅️ Add Items in inventory to UI     
+▶️ Create a main menu   
 ❌ Vehicle model for transporting logs   
 ❌ Add sound effects and background music   
 
