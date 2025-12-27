@@ -93,3 +93,4 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ## Technologies 🔧  
 - Unity engine (C#)
 - Blender
+- Gimp
