@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 42a31383fb9f86743878aac73995a664
+guid: b4a6f505610688d49a40ea7b800adc7b
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: 1fe08208711d37142bc0f3756e4d69c6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rubber
-    second: {fileID: 2100000, guid: fb91b5e88a0b51545a3aca77cde1e7e0, type: 2}
+      name: Rock
+    second: {fileID: 2100000, guid: e3acf1bbbc342cf478cb7244df35414e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -43,9 +38,9 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.5
+    globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
@@ -101,7 +96,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.5
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
