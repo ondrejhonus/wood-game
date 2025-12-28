@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject playerObject; // whole player/ prefab
     public GameObject carObject; // current /car prefab
 
+    public GameObject settingsMenu;
+    public GameObject mainMenu;
+
     void Start()
     {
         // pauseMenu.SetActive(false);
@@ -20,42 +23,63 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseMenu.activeSelf)
+            TogglePauseMenu();
+            if (settingsMenu.activeSelf)
             {
-                // Deactivate pause menu
-                pauseMenu.SetActive(false);
-                if (playerObject.GetComponent<CameraSwitcher>().IsFirstPerson || !carObject.GetComponent<CarEntrySystem>().isDriving)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                    playerInput.enabled = true;
-                    carInput.enabled = false;
-                }
-                else if(!playerObject.GetComponent<CameraSwitcher>().IsFirstPerson && !carObject.GetComponent<CarEntrySystem>().isDriving)
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    playerInput.enabled = true;
-                    carInput.enabled = false;
-                }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    playerInput.enabled = false;
-                    carInput.enabled = true;
-                }
-
-            }
-            // If not active, activate pause menu
-            else
-            {
-                pauseMenu.SetActive(true);
-                playerInput.enabled = false;
-                carInput.enabled = false;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                settingsMenu.SetActive(false);
+                mainMenu.SetActive(true);
             }
         }
+    }
+
+    public void TogglePauseMenu()
+    {
+        if (pauseMenu.activeSelf && !settingsMenu.activeSelf)
+        {
+            // Deactivate pause menu
+            pauseMenu.SetActive(false);
+            if (playerObject.GetComponent<CameraSwitcher>().IsFirstPerson || !carObject.GetComponent<CarEntrySystem>().isDriving)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                playerInput.enabled = true;
+                carInput.enabled = false;
+            }
+            else if (!playerObject.GetComponent<CameraSwitcher>().IsFirstPerson && !carObject.GetComponent<CarEntrySystem>().isDriving)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                playerInput.enabled = true;
+                carInput.enabled = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                playerInput.enabled = false;
+                carInput.enabled = true;
+            }
+        }
+        // If not active, activate pause menu
+        else
+        {
+            pauseMenu.SetActive(true);
+            playerInput.enabled = false;
+            carInput.enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    public void QuitToMainMenu(string sceneName)
+    {
+        Time.timeScale = 1f; // reset time scale
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void OpenSettingsMenu()
+    {
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(true);
     }
 }
