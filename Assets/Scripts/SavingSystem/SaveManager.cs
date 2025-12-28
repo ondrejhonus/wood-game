@@ -23,12 +23,43 @@ public class SaveManager : MonoBehaviour
     public LayerMask chopLayer;
     public int hitsToChop = 6;
 
+    public static bool loadAfterSceneLoad = false;
 
+    public static SaveManager Instance;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         // define save file path
         saveFilePath = Path.Combine(Application.persistentDataPath, "game_save.json");
+        Debug.Log($"Save file path: {saveFilePath}");
+    }
+
+    public void Start()
+    {
+        if (loadAfterSceneLoad)
+        {
+            // Reset the flag immediately
+            loadAfterSceneLoad = false;
+            // add a small delay, to allow scene to load
+            StartCoroutine(LoadRoutine());
+        }
+    }
+
+    private System.Collections.IEnumerator LoadRoutine()
+    {
+        // wait till the first frame is done, then load
+        yield return new WaitForEndOfFrame();
+        LoadGame();
     }
 
     public void SaveGame()

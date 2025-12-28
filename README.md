@@ -87,10 +87,12 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - [How to Make Beautiful Terrain in Unity 2020 - UGuruz](https://www.youtube.com/watch?v=ddy12WHqt-M)
 - [Kickstart your game with First and Third Person Controllers! - Code Monkey](https://www.youtube.com/watch?v=jXz5b_9z0Bc)
 - [How to Pick up and Drop Objects/Items! - Code Monkey](https://www.youtube.com/watch?v=2IhzPTS4av4)
+- [5 Minute MAIN MENU Unity Tutorial](https://youtu.be/-GWjA6dixV4?si=QBcQC8476n_pqzoU)
 
 
 
 ## Technologies 🔧  
-- Unity engine (C#)
-- Blender
-- Gimp
+- [Unity Engine (C#)](https://unity.com/) — Used game engine
+- [Blender](https://www.blender.org/) — 3D models, game objects
+- [GIMP](https://www.gimp.org/) — raster textures, sprites
+- [Aseprite](https://www.aseprite.org/) — 2D pixel sprites, menu background
