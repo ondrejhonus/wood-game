@@ -88,6 +88,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - [Kickstart your game with First and Third Person Controllers! - Code Monkey](https://www.youtube.com/watch?v=jXz5b_9z0Bc)
 - [How to Pick up and Drop Objects/Items! - Code Monkey](https://www.youtube.com/watch?v=2IhzPTS4av4)
 - [5 Minute MAIN MENU Unity Tutorial](https://youtu.be/-GWjA6dixV4?si=QBcQC8476n_pqzoU)
+- [Unity Loading Screen | Beginner Tutorial](https://www.youtube.com/watch?v=NyFYNsC3H8k)
 
 
 
