@@ -12,6 +12,7 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource audioSource;
     private float targetMaxVolume; // To remember the user's volume preference
+    public GameObject loadingScreen;
 
     void Awake()
     {
@@ -37,6 +38,8 @@ public class MusicManager : MonoBehaviour
             StartCoroutine(FadeToTrack(menuMusic));
         else if (scene.name == "MainScene")
             StartCoroutine(FadeToTrack(gameMusic));
+        else if (loadingScreen != null && loadingScreen.activeSelf)
+            StartCoroutine(FadeToTrack(null)); // No music, eg during loading
     }
 
     IEnumerator FadeToTrack(AudioClip newClip)

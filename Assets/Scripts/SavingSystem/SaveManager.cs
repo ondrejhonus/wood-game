@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System; // Needed for list filtering
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SaveManager : MonoBehaviour
 {
@@ -27,17 +29,21 @@ public class SaveManager : MonoBehaviour
 
     public static SaveManager Instance;
 
+    [Header("Loading UI")]
+    public CanvasGroup loadingScreen;
+    public float fadeSpeed = 5f;
+
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        // if (Instance == null)
+        // {
+        //     Instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
+        // else
+        // {
+        //     Destroy(gameObject);
+        // }
 
         // define save file path
         saveFilePath = Path.Combine(Application.persistentDataPath, "game_save.json");
@@ -48,18 +54,45 @@ public class SaveManager : MonoBehaviour
     {
         if (loadAfterSceneLoad)
         {
-            // Reset the flag immediately
             loadAfterSceneLoad = false;
-            // add a small delay, to allow scene to load
-            StartCoroutine(LoadRoutine());
+            // Start the sequence: Stay dark -> Load -> Fade out
+            StartCoroutine(LoadSequence());
+        }
+        else
+        {
+            // If it's a new game, just fade the screen out immediately
+            loadingScreen.gameObject.SetActive(true);
+            StartCoroutine(FadeOutOverlay());
         }
     }
 
-    private System.Collections.IEnumerator LoadRoutine()
+    IEnumerator LoadSequence()
     {
-        // wait till the first frame is done, then load
-        yield return new WaitForEndOfFrame();
+        // 1. Ensure overlay is visible immediately
+        loadingScreen.gameObject.SetActive(true);
+        loadingScreen.alpha = 1f;
+
+        // 2. Wait a tiny bit for the engine to settle (.2s)
+        yield return new WaitForSeconds(0.2f);
+
+        // 3. Trigger your existing Load function
         LoadGame();
+
+        // 4. Wait the remaining time to reach your .5s goal
+        yield return new WaitForSeconds(.5f);
+
+        // 5. Fade out
+        yield return StartCoroutine(FadeOutOverlay());
+    }
+
+    IEnumerator FadeOutOverlay()
+    {
+        while (loadingScreen.alpha > 0)
+        {
+            loadingScreen.alpha -= Time.deltaTime * fadeSpeed;
+            yield return null;
+        }
+        loadingScreen.gameObject.SetActive(false);
     }
 
     public void SaveGame()
@@ -147,6 +180,21 @@ public class SaveManager : MonoBehaviour
 
     public void LoadGame()
     {
+        // assign all objects if they are null
+        if (playerStats == null)
+            playerStats = FindFirstObjectByType<PlayerStats>();
+        if (playerInventory == null)
+            playerInventory = FindFirstObjectByType<PlayerInventory>();
+        if (truckTransform == null)
+            truckTransform = GameObject.FindWithTag("Truck").transform;
+        if (playerTransform == null)
+            playerTransform = GameObject.FindWithTag("Player").transform;
+        if (saveZone == null)
+            saveZone = FindFirstObjectByType<SaveZone>();
+        if (audioSource == null)
+            audioSource = FindFirstObjectByType<AudioSource>();
+
+
         if (!File.Exists(saveFilePath))
         {
             Debug.LogWarning("No save file found.");
@@ -246,12 +294,5 @@ public class SaveManager : MonoBehaviour
         }
 
         Debug.Log("Game Loaded!");
-    }
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F5)) SaveGame();
-        if (Input.GetKeyDown(KeyCode.F9)) LoadGame();
     }
 }

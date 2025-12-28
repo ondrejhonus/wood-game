@@ -32,7 +32,7 @@ public class SettingsMenu : MonoBehaviour
         fullscreenToggle.isOn = Screen.fullScreen;
     }
 
-    // RESOLUTION
+    // res
     void SetupResolutions()
     {
         resolutions = Screen.resolutions;
@@ -64,18 +64,19 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
     }
 
-    // GRAPHICS & FULLSCREEN
+    // graphics qualit yset
     public void SetQuality(int qualityIndex)
     {
-        QualitySettings.SetQualityLevel(qualityIndex == 0 ? 1 : 0); // invert values for Low/High, as dropdown 0 is Low, 1 is High, but i want high to be first
+        QualitySettings.SetQualityLevel(qualityIndex); // 0 = low, 1 = high
     }
 
+    // fullscreen set
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
     }
 
-    // AUDIO
+    // audio
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
