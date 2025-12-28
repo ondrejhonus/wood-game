@@ -8,15 +8,25 @@ public class MenuFunctions : MonoBehaviour
     [Header("Menu screen")]
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject settingsMenu;
     [Header("Slider")]
     [SerializeField] private Slider loadingSlider;
+    
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && settingsMenu.activeSelf)
+        {
+            // if in settings menu, go back to main menu
+            OpenSettings();
+        }
+    }
 
     public void StartNewGame(string sceneName)
     {
         // load game scene without loading saved data
         mainMenu.SetActive(false);
         loadingScreen.SetActive(true);
-        StartCoroutine(LoadSceneAsync(sceneName, false));
+        StartCoroutine(LoadSceneAsync(sceneName));
     }
 
     public void LoadGameButton(string sceneName)
@@ -24,12 +34,12 @@ public class MenuFunctions : MonoBehaviour
         mainMenu.SetActive(false);
         loadingScreen.SetActive(true);
         SaveManager.loadAfterSceneLoad = true;
-        StartCoroutine(LoadSceneAsync(sceneName, true));
+        StartCoroutine(LoadSceneAsync(sceneName));
     }
 
-    IEnumerator LoadSceneAsync(string sceneName, bool loadData)
+    IEnumerator LoadSceneAsync(string sceneName)
     {
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, loadData ? LoadSceneMode.Single : LoadSceneMode.Additive);
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
 
         while (!loadOperation.isDone)
         {
@@ -42,6 +52,8 @@ public class MenuFunctions : MonoBehaviour
     public void OpenSettings()
     {
         // hide current menu and show settings menu
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
         Debug.Log("Settings Menu Opened");
     }
 

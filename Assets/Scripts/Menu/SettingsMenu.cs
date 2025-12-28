@@ -17,6 +17,10 @@ public class SettingsMenu : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
 
+    [Header("Menu Panels")]
+    public GameObject mainMenu;
+    public GameObject settingsMenu;
+
     private Resolution[] resolutions;
 
     void Start()
@@ -85,5 +89,11 @@ public class SettingsMenu : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
+    }
+    
+    public void BackToMainMenu()
+    {
+        settingsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 }
