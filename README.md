@@ -74,8 +74,9 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Different wood textures + leaves     
 ▶️ Create UI     
 ✅️ Add Items in inventory to UI     
-▶️ Create a main menu   
-▶️ Make a functional settings menu   
+❌ Create inventory item icons   
+✅️ Create a main menu   
+✅️ Make a functional settings menu   
 ❌ Vehicle model for transporting logs   
 ❌ Add sound effects and background music   
 
@@ -90,6 +91,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - [How to Pick up and Drop Objects/Items! - Code Monkey](https://www.youtube.com/watch?v=2IhzPTS4av4)
 - [5 Minute MAIN MENU Unity Tutorial](https://youtu.be/-GWjA6dixV4?si=QBcQC8476n_pqzoU)
 - [Unity Loading Screen | Beginner Tutorial](https://www.youtube.com/watch?v=NyFYNsC3H8k)
+- [SETTINGS MENU in Unity](https://www.youtube.com/watch?v=YOaYQrN1oYQ)
 
 
 

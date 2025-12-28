@@ -5,6 +5,9 @@ using System.Linq;
 using System; // Needed for list filtering
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
+using System.Reflection.Emit;
+using TMPro;
 
 public class SaveManager : MonoBehaviour
 {
@@ -17,6 +20,7 @@ public class SaveManager : MonoBehaviour
     // player stats
     public PlayerStats playerStats;
     public PlayerInventory playerInventory;
+    public GameManager gameManager;
 
     private string saveFilePath;
 
@@ -32,6 +36,9 @@ public class SaveManager : MonoBehaviour
     [Header("Loading UI")]
     public CanvasGroup loadingScreen;
     public float fadeSpeed = 5f;
+
+    // button text
+    public TextMeshProUGUI buttonText;
 
     private void Awake()
     {
@@ -64,6 +71,27 @@ public class SaveManager : MonoBehaviour
             loadingScreen.gameObject.SetActive(true);
             StartCoroutine(FadeOutOverlay());
         }
+    }
+
+    public void SaveButton()
+    {
+        SaveGame();
+        // Set button text to "Saved"
+        buttonText.text = "Saved!";
+        // After 2 seconds, revert text back to "Save Game"
+        StartCoroutine(RevertSaveButtonText());
+    }
+
+    IEnumerator RevertSaveButtonText()
+    {
+        yield return new WaitForSeconds(2f);
+        buttonText.text = "Save Game";
+    }
+
+    public void LoadButton()
+    {
+        StartCoroutine(LoadSequence());
+        gameManager.TogglePauseMenu();
     }
 
     IEnumerator LoadSequence()

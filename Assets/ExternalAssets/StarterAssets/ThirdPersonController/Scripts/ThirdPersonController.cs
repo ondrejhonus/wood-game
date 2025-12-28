@@ -1,4 +1,5 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Audio; // Required for AudioMixerGroup
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -31,6 +32,10 @@ namespace StarterAssets
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+
+        [Header("Audio Routing")]
+        [Tooltip("Assign the SFX Group from your Audio Mixer here")]
+        public AudioMixerGroup SfxGroup; 
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
@@ -106,6 +111,9 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
+        // audio
+        private AudioSource _playerAudioSource; // Persistent source for routed audio
+
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
@@ -117,7 +125,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
                 return _playerInput.currentControlScheme == "KeyboardMouse";
 #else
-				return false;
+                return false;
 #endif
             }
         }
@@ -139,10 +147,16 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+
+            // Setup the AudioSource for SFX routing
+            _playerAudioSource = gameObject.AddComponent<AudioSource>();
+            _playerAudioSource.outputAudioMixerGroup = SfxGroup; // Assign to SFX group
+            _playerAudioSource.spatialBlend = 1.0f; // Set to 3D
+
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+            Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
             AssignAnimationIDs();
@@ -376,7 +390,8 @@ namespace StarterAssets
                 if (FootstepAudioClips.Length > 0)
                 {
                     var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    // Use persistent AudioSource with output routed to SfxGroup
+                    _playerAudioSource.PlayOneShot(FootstepAudioClips[index], FootstepAudioVolume);
                 }
             }
         }
@@ -385,7 +400,8 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                // Use persistent AudioSource with output routed to SfxGroup
+                _playerAudioSource.PlayOneShot(LandingAudioClip, FootstepAudioVolume);
             }
         }
     }
