@@ -75,6 +75,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ▶️ Create UI     
 ✅️ Add Items in inventory to UI     
 ▶️ Create a main menu   
+▶️ Make a functional settings menu   
 ❌ Vehicle model for transporting logs   
 ❌ Add sound effects and background music   
 
