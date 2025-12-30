@@ -6131,7 +6131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -218.76224, w: 0}
+  m_margin: {x: 0, y: 0, z: -995.0576, w: -31.227276}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -11893,6 +11893,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   hitsToChop: 6
+  inventoryItemPrefabs: []
   loadingScreen: {fileID: 958372619}
   fadeSpeed: 5
   buttonText: {fileID: 373143703}
@@ -28469,7 +28470,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -196.44032, w: 0}
+  m_margin: {x: -200.2089, y: 0, z: -196.44032, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -29956,7 +29957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7173912b59fcfb3539ccbb2c6d1c50a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  money: 200
+  money: 2147483647
   health: 100
   moneyText: {fileID: 452868558}
   healthText: {fileID: 2073110095}
