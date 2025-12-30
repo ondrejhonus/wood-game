@@ -8,7 +8,7 @@ public class GameData
     public int savedMoney;
     public float savedHP;
 
-    public GameObject[] InventoryItems;
+    public List<string> InventoryItems = new List<string>();
 
     // truck data
     public float truckX, truckY, truckZ;

@@ -29,7 +29,7 @@ public class PlayerInventory : MonoBehaviour
         UpdateInventoryUI();
     }
     // call everytime inventory changes
-    private void UpdateInventoryUI()
+    public void UpdateInventoryUI()
     {
         for (int i = 0; i < inventorySize; i++)
         {
@@ -115,7 +115,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // Add item to first empty slot
-    bool AddItem(GameObject item)
+    public bool AddItem(GameObject item)
     {
         for (int i = 0; i < slots.Length; i++)
         {
@@ -236,29 +236,31 @@ public class PlayerInventory : MonoBehaviour
         UpdateInventoryUI();
     }
 
-    public void LoadInventoryItems(GameObject[] itemsToLoad)
+    public GameObject[] GetItemsInInventory()
     {
-        // Clear current inventory
+        return slots;
+    }
+
+    public int GetItemCount()
+    {
+        int count = 0;
+        foreach (GameObject item in slots)
+        {
+            if (item != null)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void ClearInventory()
+    {
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i] = null;
         }
-
-        // Load items into inventory
-        for (int i = 0; i < itemsToLoad.Length && i < slots.Length; i++)
-        {
-            if (itemsToLoad[i] != null)
-            {
-                slots[i] = itemsToLoad[i];
-                itemsToLoad[i].SetActive(false); // Hide until selected
-                itemsToLoad[i].GetComponent<Rigidbody>().isKinematic = true; // Disable physics
-            }
-        }
+        selectedSlot = -1; // Empty hand
         UpdateInventoryUI();
-    }
-
-    public GameObject[] GetItemsInInventory()
-    {
-        return slots;
     }
 }

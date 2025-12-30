@@ -33,6 +33,8 @@ public class SaveManager : MonoBehaviour
 
     public static SaveManager Instance;
 
+    public List<string> inventoryItemPrefabs;
+
     [Header("Loading UI")]
     public CanvasGroup loadingScreen;
     public float fadeSpeed = 5f;
@@ -136,10 +138,16 @@ public class SaveManager : MonoBehaviour
 
         if (playerInventory != null)
         {
-            playerInventory = playerInventory.GetComponent<PlayerInventory>();
             GameObject[] itemsToSave = playerInventory.GetItemsInInventory();
-            data.InventoryItems = itemsToSave;
-            Debug.Log($"Saved {itemsToSave.Length} inventory items.");
+            foreach (GameObject item in itemsToSave)
+            {
+                if (item != null)
+                {
+                    string cleanName = item.name.Replace("(Clone)", "").Trim();
+                    data.InventoryItems.Add(cleanName);
+                }
+            }
+            Debug.Log($"Saved {data.InventoryItems.Count} inventory items.");
         }
 
         // svave truck position
@@ -242,10 +250,23 @@ public class SaveManager : MonoBehaviour
 
         if (playerInventory != null)
         {
-            playerInventory = playerInventory.GetComponent<PlayerInventory>();
-            GameObject[] itemsToLoad = data.InventoryItems;
-            playerInventory.LoadInventoryItems(itemsToLoad);
-            Debug.Log($"Loaded {itemsToLoad.Length} inventory items.");
+            playerInventory.ClearInventory();
+            foreach (string itemName in data.InventoryItems)
+            {
+                // prefabs are in Resources/prefabs/
+                GameObject itemPrefab = Resources.Load<GameObject>($"prefabs/{itemName}");
+                if (itemPrefab != null)
+                {
+                    GameObject newItem = Instantiate(itemPrefab);
+                    playerInventory.AddItem(newItem);
+                    playerInventory.UpdateInventoryUI();
+                }
+                else
+                {
+                    Debug.LogWarning($"Could not find prefab for inventory item: {itemName}");
+                }
+            }
+            Debug.Log($"Loaded {playerInventory.GetItemCount()} inventory items.");
         }
 
 
