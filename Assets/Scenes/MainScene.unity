@@ -11883,6 +11883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   truckTransform: {fileID: 1566994255}
   playerTransform: {fileID: 3893294198566536993}
+  playerCamera: {fileID: 0}
   saveZone: {fileID: 1382330629}
   logPrefab: {fileID: 5487388606568629506, guid: aa140fcd3e5161008937db65249a083d, type: 3}
   playerStats: {fileID: 4416926082273746348}
@@ -21994,7 +21995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fea88d09ec80f704848959a6404e73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 812578217}
   carInput: {fileID: 1551609292}
   playerInput: {fileID: 4416926082273746327}
   playerObject: {fileID: 4416926082273746331}
@@ -29744,6 +29745,8 @@ MonoBehaviour:
   BottomClamp: -60
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  _cinemachineTargetYaw: 0
+  _cinemachineTargetPitch: 0
 --- !u!143 &4416926082273746321
 CharacterController:
   m_ObjectHideFlags: 0
