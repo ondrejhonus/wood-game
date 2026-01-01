@@ -21111,6 +21111,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4451795180840118949, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
+      propertyPath: m_Mass
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 5412584185727345095, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -21995,8 +21999,8 @@ MonoBehaviour:
   playerInput: {fileID: 4416926082273746327}
   playerObject: {fileID: 4416926082273746331}
   carObject: {fileID: 1597378215}
-  settingsMenu: {fileID: 0}
-  mainMenu: {fileID: 0}
+  settingsMenu: {fileID: 365589943}
+  mainMenu: {fileID: 812578217}
 --- !u!1001 &1598704112
 PrefabInstance:
   m_ObjectHideFlags: 0

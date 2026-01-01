@@ -8,12 +8,15 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Reflection.Emit;
 using TMPro;
+using StarterAssets;
+using UnityEditor.TerrainTools;
 
 public class SaveManager : MonoBehaviour
 {
     [Header("References")]
     public Transform truckTransform;
     public Transform playerTransform;
+    public GameObject playerCamera;
     public SaveZone saveZone;
     public GameObject logPrefab;
 
@@ -44,17 +47,6 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        // if (Instance == null)
-        // {
-        //     Instance = this;
-        //     DontDestroyOnLoad(gameObject);
-        // }
-        // else
-        // {
-        //     Destroy(gameObject);
-        // }
-
-        // define save file path
         saveFilePath = Path.Combine(Application.persistentDataPath, "game_save.json");
         Debug.Log($"Save file path: {saveFilePath}");
     }
@@ -281,28 +273,23 @@ public class SaveManager : MonoBehaviour
 
         // disable player for a bit, so it can teleport without issues
         CharacterController pcc = playerTransform.GetComponent<CharacterController>();
+        var tpc = playerTransform.GetComponent<StarterAssets.ThirdPersonController>();
+        if (tpc) tpc.enabled = false;
         if (pcc) pcc.enabled = false;
 
-        // load player position
+        // teleport player
         playerTransform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
-        playerTransform.eulerAngles = new Vector3(data.playerRotX, data.playerRotY, data.playerRotZ);
 
+        if (tpc != null)
+        {
+            tpc._cinemachineTargetYaw = data.playerRotY;
+            tpc._cinemachineTargetPitch = data.playerRotX;
+        }
+
+        Physics.SyncTransforms();
+        if (tpc) tpc.enabled = true;
         if (pcc) pcc.enabled = true;
 
-        // remove existing logs in the save zone, maybe delete this later, idk if its neccesary
-        // BoxCollider zoneBox = saveZone.GetComponent<BoxCollider>();
-        // Vector3 center = saveZone.transform.TransformPoint(zoneBox.center);
-        // Vector3 halfExtents = Vector3.Scale(zoneBox.size, saveZone.transform.lossyScale) * 0.5f;
-
-        // Collider[] hits = Physics.OverlapBox(center, halfExtents, saveZone.transform.rotation);
-
-        // foreach (Collider hit in hits)
-        // {
-        //     if (hit.GetComponent<SaveableLog>())
-        //     {
-        //         Destroy(hit.gameObject);
-        //     }
-        // }
         // delete all logs in the scene that are not planted
         SaveableLog[] allLogsInScene = UnityEngine.Object.FindObjectsByType<SaveableLog>(FindObjectsSortMode.None);
         foreach (SaveableLog log in allLogsInScene)
