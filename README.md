@@ -78,7 +78,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Create a main menu   
 ✅️ Make a functional settings menu   
 ❌ Vehicle model for transporting logs   
-❌ Add sound effects and background music   
+▶️ Add sound effects and background music   
 
 
 ## Used Assets
@@ -100,3 +100,5 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - [Blender](https://www.blender.org/) — 3D models, game objects
 - [GIMP](https://www.gimp.org/) — raster textures, sprites
 - [Aseprite](https://www.aseprite.org/) — 2D pixel sprites, menu background
+- [Bitwig Studio](https://www.bitwig.com/) — Digital audio, game soundtracks, sound effects
+- [Audacity](https://www.audacityteam.org/) — Quick audio effects
