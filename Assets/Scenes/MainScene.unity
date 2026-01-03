@@ -29887,19 +29887,14 @@ MonoBehaviour:
   SprintSpeed: 5
   RotationSmoothTime: 0.3
   SpeedChangeRate: 10
-  LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
+  LandingAudioClip: {fileID: 8300000, guid: 1d6adc877bf7bf16e93a374b4ae836e5, type: 3}
   FootstepAudioClips:
-  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
-  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
-  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
-  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
-  - {fileID: 8300000, guid: 14e8a8d2158bec840b56c54f5266e692, type: 3}
-  - {fileID: 8300000, guid: 29841e7d5bbfb5b419c9ad16ca8bc4c1, type: 3}
-  - {fileID: 8300000, guid: dd1af302b8902684d9381de1f2d3a5af, type: 3}
-  - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
-  - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
-  - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
-  FootstepAudioVolume: 0.144
+  - {fileID: 8300000, guid: ead941423e5e5c16699d9a7ecb42e623, type: 3}
+  - {fileID: 8300000, guid: 9345e0941a534b5df81e6d7a6cfa888e, type: 3}
+  - {fileID: 8300000, guid: 2718c13dd8fb177a5bcefb7bb5394ea1, type: 3}
+  - {fileID: 8300000, guid: 46694cd2689c3670b9553ff453963b17, type: 3}
+  - {fileID: 8300000, guid: 1d6adc877bf7bf16e93a374b4ae836e5, type: 3}
+  FootstepAudioVolume: 0.5
   SfxGroup: {fileID: 5308882279536798229, guid: dbf228f178f23728396ca64b68a77a2c, type: 2}
   JumpHeight: 1.2
   Gravity: -15
