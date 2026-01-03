@@ -21,7 +21,7 @@ public class MusicManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             audioSource = GetComponent<AudioSource>();
-            targetMaxVolume = audioSource.volume; 
+            targetMaxVolume = audioSource.volume;
         }
         else
         {
@@ -35,40 +35,49 @@ public class MusicManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "MainMenu")
+        {
+            Debug.Log("MainMenu music loaded");
             StartCoroutine(FadeToTrack(menuMusic));
+        }
         else if (scene.name == "MainScene")
+        {
+            Debug.Log("MainScene music loaded");
             StartCoroutine(FadeToTrack(gameMusic));
+        }
         else if (loadingScreen != null && loadingScreen.activeSelf)
+        {
             StartCoroutine(FadeToTrack(null)); // No music, eg during loading
+            Debug.Log("Loading screen active, no music");
+        }
     }
 
     IEnumerator FadeToTrack(AudioClip newClip)
     {
-        if (audioSource.clip == newClip) yield break;
+        // 1. If the clip is already playing, don't restart it
+        if (audioSource.clip == newClip && audioSource.isPlaying) yield break;
 
-        // Fade out
-        float currentTime = 0;
+        // 2. Fade out current music
         float startVolume = audioSource.volume;
-
-        while (currentTime < fadeDuration)
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            currentTime += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(startVolume, 0, currentTime / fadeDuration);
+            audioSource.volume = Mathf.Lerp(startVolume, 0, t / fadeDuration);
             yield return null;
         }
-
-        // Change audio clip
+        audioSource.volume = 0;
         audioSource.Stop();
-        audioSource.clip = newClip;
-        audioSource.Play();
 
-        // Fade in
-        currentTime = 0;
-        while (currentTime < fadeDuration)
+        // 3. Switch and Play
+        audioSource.clip = newClip;
+        if (newClip != null)
         {
-            currentTime += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(0, 1, currentTime / fadeDuration);
-            yield return null;
+            audioSource.Play();
+            // 4. Fade in to the original target volume
+            for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+            {
+                audioSource.volume = Mathf.Lerp(0, targetMaxVolume, t / fadeDuration);
+                yield return null;
+            }
+            audioSource.volume = targetMaxVolume;
         }
     }
 }

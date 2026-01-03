@@ -7004,7 +7004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   menuMusic: {fileID: 0}
-  gameMusic: {fileID: 0}
+  gameMusic: {fileID: 8300000, guid: 3addae52f248d79d19256a0e111dca70, type: 3}
   fadeDuration: 1.2
   loadingScreen: {fileID: 2105814845}
 --- !u!4 &1905989692
