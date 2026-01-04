@@ -1,0 +1,429 @@
+% ŠABLONA PRO ZÁVĚREČNOU STUDIJNÍ PRÁCI - ONDŘEJ HONUS (WOOD GAME)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt, a4paper, oneside, openright]{report}
+
+% --- Vyčištění zbytků a nastavení dokumentu ---
+\AtBeginDocument{%
+    \immediate\write16{(cleaning stray figureversions output...)}%
+    % \clearpage
+    % \thispagestyle{empty}
+    \let\superiorSup\relax
+    \let\textOsF\relax
+    \let\fontspechyperref\relax
+    % \null
+    % \newpage
+}
+
+%% Proměnné (Tvá data)
+\newcommand\obor{INFORMAČNÍ TECHNOLOGIE}
+\newcommand\kodOboru{18-20-M/01}
+\newcommand\zamereni{se zaměřením na počítačové sítě a programování }
+\newcommand\skola{Střední škola průmyslová a umělecká, Opava}
+\newcommand\trida{IT4}
+\newcommand\jmenoAutora{Ondřej Honus}
+\newcommand\skolniRok{2025/2026}
+\newcommand\datumOdevzdani{6. 1. 2026}
+\newcommand\nazevPrace{Vývoj videohry v Unity: Wood Game}
+
+\title{\nazevPrace}
+\author{\jmenoAutora}
+\date{\datumOdevzdani}
+
+%% Nutné balíčky
+\usepackage[top=2.5cm, bottom=2.5cm, left=3.5cm, right=1.5cm]{geometry}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{cmap}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{amsmath, amsfonts, esint}
+\usepackage{mathptmx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage{tocloft}
+\usepackage[pagestyles]{titlesec}
+\usepackage{fancyhdr}
+
+%% Nastavení vzhledu
+\linespread{1.25}
+\setlength{\parskip}{0.5em}
+
+% make upper margin smaller
+
+\titleformat{\chapter}[block]{\bfseries\LARGE}{\thechapter}{10pt}{}
+\titlespacing*{\chapter}{0pt}{-20pt}{10pt}
+
+\titleformat{\section}[block]{\scshape\bfseries\Large}{\thesection}{10pt}{\vspace{0pt}}
+\titleformat{\subsection}[block]{\bfseries\large}{\thesubsection}{10pt}{\vspace{0pt}}
+
+% Hlavička s informacemi: název práce, autor, třída a školní rok
+\usepackage{fancyhdr}
+\fancyhf{} % vyčistit hlavičky a patičky
+\fancyhead[L]{\small Závěrečná studijní práce, \jmenoAutora -- \nazevPrace}
+\fancyhead[R]{\small \trida\ -- \skolniRok}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.025pt}
+
+%% Definice barev a stylů pro kód (C# pro Unity)
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+
+\lstdefinelanguage{CSharp}{
+    morekeywords={abstract, event, new, struct, as, explicit, null, switch, base, extern, object, this, bool, false, operator, throw, break, finally, out, true, byte, fixed, override, try, case, float, params, typeof, catch, for, private, uint, char, foreach, protected, ulong, checked, goto, public, unchecked, class, if, readonly, unsafe, const, implicit, ref, ushort, continue, in, return, using, decimal, int, sbyte, virtual, default, interface, sealed, volatile, delegate, internal, short, void, do, is, static, while, double, lock, stackalloc, else, long, static, enum, namespace, string},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+}
+
+\lstset{
+    language=CSharp,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{bluekeywords},
+    commentstyle=\color{greencomments},
+    stringstyle=\color{redstrings},
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    showstringspaces=false
+}
+
+\begin{document}
+    
+    \pagestyle{empty}
+    \pagenumbering{Roman}
+    
+    %% Titulní strana
+    \begin{titlepage}
+        \centering
+        {\fontfamily{phv}\selectfont
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.6\linewidth]{image/logo-skoly.png} 
+            \end{figure}
+            
+            \vspace{0.025 \textheight}
+            {\bfseries \LARGE ZÁVĚREČNÁ STUDIJNÍ PRÁCE \par \large dokumentace \par}
+            \vspace{0.025 \textheight}
+            {\bfseries \LARGE \nazevPrace \par}
+			{\LARGE \jmenoAutora \par}
+			\begin{figure}[h]
+				\centering
+				\vspace{1em}
+				\includegraphics[width=0.5\linewidth]{image/logo.png}
+				\vspace{1em}
+			\end{figure}
+            
+            \vfill
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{ll}
+                    \textbf{Autor:} & \jmenoAutora\\ 
+                    \textbf{Obor:} & \kodOboru { } \obor\\
+                    \textbf{Zaměření:} & \zamereni\\
+                    \textbf{Třída:} & \trida\\
+                    \textbf{Školní rok:} & \skolniRok\\
+                \end{tabular}
+            \end{table}     
+        }
+    \end{titlepage}
+
+    \cleardoublepage
+
+    %% Prohlášení
+	%% Odsadit na spod stránky
+    \vspace*{0.7\textheight}
+
+    \noindent{\large{\bfseries{Prohlášení}\\}}
+    \noindent{Prohlašuji, že jsem závěrečnou práci vypracoval samostatně a uvedl veškeré použité informační zdroje.\\}
+    \noindent{Souhlasím, aby tato studijní práce byla použita k výukovým a prezentačním účelům na Střední průmyslové a umělecké škole v Opavě, Praskova 399/8.}
+    \vfill
+    \noindent{V Opavě dne \datumOdevzdani\\}
+    \noindent
+    \begin{minipage}{\linewidth}
+        \hspace{9.5cm} 
+        \begin{tabular}{@{}p{6cm}@{}}
+            \dotfill \\
+            Podpis autora
+        \end{tabular}
+    \end{minipage}
+    
+    \cleardoublepage
+
+    %% Abstrakt
+    \noindent{\Large{\bfseries{Abstrakt}\\}}
+    \noindent Tato závěrečná práce se věnuje průběhu vývoje videohry s názvem 
+	Wood Game v prostředí Unity. Je popsán proces vývoje především backendových prvků, ale také
+	tvorba 2D grafických prvků, hudby a zvukových efektů, nikoli však tvorba grafické části, která nebyla tvořena mnou. 
+	Cílem projektu bylo vytvořit funkční videohru zaměřenou na těžbu dřeva, 
+	ekonomický systém a fyziku prostředí. Uživatel může ovládat postavu, 
+	která interaguje s herním světem, používá nástroje a spravuje zdroje. 
+
+    \vspace{18pt}
+    \noindent{\large{\bfseries{Klíčová slova}}}
+	\newline
+    \noindent Videohra, Unity, C\#, vývoj herního backendu, simulátor těžby dřeva, 2D grafika, tvorba hudby a zvuků.
+
+    %% Anglická verze
+    \vspace{36pt}
+    \noindent{\Large{\bfseries{Abstract}\\}}
+    \noindent This final thesis focuses on the development process of a video game called
+    Wood Game in the Unity environment. The development process primarily covers backend elements, but also the creation of 2D graphics, music, and sound effects, excluding the graphical part which was not created by me.
+    The goal of the project was to create a functional video game focused on wood harvesting,
+    an economic system, and environmental physics. The user can control a character
+    that interacts with the game world, uses tools, and manages resources.
+    
+    \vspace{18pt}
+    \noindent{\large{\bfseries{Keywords}}}
+    \newline
+    \noindent Video game, Unity, C\#, game backend development, wood harvesting simulator
+, 2D graphics, music and sound creation.
+
+    \clearpage
+
+    \tableofcontents
+
+    \cleardoublepage
+
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+    \pagestyle{fancy}
+
+    %% Úvod
+
+    \chapter*{Úvod}
+    \addcontentsline{toc}{chapter}{Úvod}
+    \thispagestyle{fancy}
+    Cílem práce bylo vytvořit videohru, ve které může ve 3D prostředí uživatel kácet stromy, které se vyskytují v různých místech s různou hodnotou.
+    Dřevo poté může prodat za herní měnu, za kterou si může koupit lepší nástroje pro rychlejší kácení stromů, nebo také automobil pro přepravu dřeva.
+    Uživatel má také možnost uložit svůj postup a načíst jej později.
+
+    Původně videohra měla mít funkci hry pro více hráčů, ale z časových důvodů jsem se rozhodl tuto funkci vypustit.
+
+    Téma tvorby videohry jsem si zvolil, protože mi tvorba videoher nebyla příliš vzdálená a dostal jsem nabídku spolupráce od jednoho spolužáka, který se na vývoji hry podílel po grafické stránce.
+
+    \clearpage
+    \newpage
+    %% Kapitola 1
+    \chapter{TEORETICKÁ VÝCHODISKA}
+    \thispagestyle{fancy}
+
+    \section{Herní design}   Herní design je proces vytváření pravidel, mechanik a struktur, 
+    které tvoří základ herního zážitku. 
+    Důležité je zaměřit se na interakci hráče s herním světem a na to, 
+    jakým způsobem budou herní prvky spolupracovat.
+
+    \subsection{Proces vývoje her}
+    Cesta od abstraktního nápadu k plně vyvinuté hře zahrnuje složité plánování a realizaci. 
+    Začíná konceptualizací—fází, kde je pečlivě vytvořen počáteční koncept, včetně žánru hry, 
+    estetiky a interaktivních prvků. Tato fáze je klíčová, určuje směr pro všechny následné 
+    vývojové aktivity.
+    Designéři musí integrovat demografii hráčů, cíle hraní a vizuální styl, aby tyto komponenty spojili do 
+    koherentního plánu. [1]
+
+    \section{UX a UI design}
+    Uživatelské rozhraní (UI) a uživatelská zkušenost (UX) jsou klíčové aspekty herního designu, 
+    které ovlivňují, jak hráči interagují s hrou a jak ji vnímají.
+    \subsection{UI}
+
+    UI zahrnuje všechny vizuální prvky, jako jsou menu, tlačítka a ikony, které hráči používají k navigaci ve hře.
+    Důležité je, aby bylo UI přehledné, intuitivní a esteticky příjemné, aby měl uživatel příjemný zážitek.
+    Dobrá praktika je minimalizovat počet kroků potřebných k dosažení cíle a zajistit, aby byly všechny prvky snadno dostupné.
+    
+    \newpage
+    \subsection{UX}
+    UX se zaměřuje na celkový zážitek hráče, včetně intuitivnosti ovládání, plynulosti interakcí a celkové spokojenosti s hrou.
+    Mezi UX patří i zvukové efekty a hudba, které mohou výrazně ovlivnit atmosféru hry.
+
+    {\begin{figure}[h]
+        \centering
+        \includegraphics[width=.75\linewidth]{image/navrh-menu.png}
+        \caption{Příklad návrhu menu pro hru Wood Game.}
+        \label{fig:ui-ux}
+    \end{figure}}
+
+    \begin{figure}[h]
+        \centering
+        \begingroup
+            \setlength{\fboxsep}{4pt}% padding between image and frame
+            \setlength{\fboxrule}{1pt}% frame thickness
+            \fcolorbox{black}{white}{\includegraphics[width=0.75\linewidth]{image/navrh-UI.png}}
+        \endgroup
+        \caption{Příklad návrhu herního rozhraní pro hru Wood Game.}
+        \label{fig:navrh-UI}
+    \end{figure}
+
+    \clearpage
+
+    \section{Herní mechaniky}
+    Herní mechaniky jsou základními stavebními kameny, které definují interakce hráče s herním světem. 
+    Tyto mechaniky zahrnují pravidla, systémy a procesy, které určují, jak hráči dosahují cílů ve hře. 
+
+    Mezi běžné herní mechaniky patří sbírání předmětů, řešení problémů, ekonomický systém a přežívání. 
+    V dobře navržené hře jsou herní mechaniky intuitivní a zábavné, což přispívá k celkovému zážitku hráče.
+
+    \section{Herní engine}
+    Herní engine (někdy také herní motor) je softwarový framework, 
+    který soustřeďuje obecné funkce používané v počítačových hrách, 
+    díky čemuž dovoluje zrychlit a zlevnit vývoj nových her. 
+    Rozsah funkcí se u různých enginů liší a lze tak nalézt jak jednoduché knihovny 
+    omezující se na vykreslování, tak rozsáhlé enginy i s vlastní sadou vývojových nástrojů. [2] \newline 
+    Mezi nejznámější herní enginy patří například:
+    \begin{itemize}
+        \item Unity
+        \item Unreal Engine
+        \item Godot
+        \item CryEngine
+        \item GameMaker Studio
+    \end{itemize}
+
+    \subsection{Výběr herního enginu}
+    Výběr herního enginu závisí na požadavcích projektu, dostupných zdrojích a zkušenostech vývojového týmu.
+    Každý engine má své výhody a nevýhody, které je třeba zvážit při plánování vývoje hry.
+    Jako například Unity je oblíbený pro svou uživatelskou přívětivost a širokou komunitu,
+    zatímco Unreal Engine je známý pro svou pokročilou grafiku a výkon. 
+
+    \section{Tvorba hudby a zvukových efektů}
+    Hudba a zvukové efekty hrají klíčovou roli ve vytváření atmosféry a zvyšování imerze ve videohrách.
+    Správně zvolená hudba může podpořit emocionální odezvu hráče, zatímco zvukové efekty mohou zlepšit 
+    pochopení a vnímaní herního světa a interakcí.
+
+    \subsection{Tvorba hudby}
+    Při tvorbě hudby do pozadí je důležité zvážit styl hry, tempo a náladu, kterou chcete vyvolat.
+    Například pro akční hru může být vhodná rychlá a energická hudba, zatímco pro dobrodružnou hru může být lepší
+    klidnější a atmosférická hudba.
+
+    \subsection{Tvorba zvukových efektů}
+    Zvukové efekty by měly být realistické a odpovídat akcím ve hře, jako jsou kroky postavy, zvuky zbraní nebo
+    interakce s objekty. Důležité je také zajistit, aby zvukové efekty nebyly příliš rušivé a nepřehlušovaly hudbu.
+
+    \clearpage
+
+    %% Kapitola 2 (Využité technologie)
+    \chapter{VYUŽITÉ TECHNOLOGIE}
+    \thispagestyle{fancy}
+
+    \section{Herní engine Unity}
+    Unity jsem zvolil jako herní engine pro vývoj hry Wood Game z několika důvodů.
+    Především je to velmi populární engine s velkou komunitou, což znamená, že je k dispozici
+    mnoho zdrojů, tutoriálů a assetů (např. mechaniky pohybu, fyziky), které mohou
+    usnadnit vývoj a implementaci herních prvků.
+    Unity také podporuje širokou škálu platforem, což umožňuje snadné nasazení hry na různé 
+    operační systémy, jako jsou Windows, macOS, Android a iOS.
+
+    \textbf{Unity} je multiplatformní herní engine vyvinutý společností Unity Technologies.
+    Byl použit pro vývoj her pro PC, konzole, mobily a web. [3]
+
+    \section{Programovací jazyk C\#}
+    Pro vývoj her v Unity se používá programovací jazyk C\#. 
+
+    \begin{itemize}
+        \item C\# je moderní objektově orientovaný jazyk vytvořený společností Microsoft, nedílná součást platformy .NET a široce používaný v oboru.
+        \item Nabízí všestrannost pro desktopové, webové i mobilní aplikace, široký ekosystém knihoven a aktivní komunitu, která usnadňuje učení.
+        \item Podporuje objektově orientované programování, robustní zpracování výjimek, statické typy a jmenné prostory, které podporují modulární a udržovatelný kód.
+        \item Díky neustálému vývoji společností Microsoft a použití v .NET a Xamarin si C\# udržuje vysokou poptávku po platformě a neustálý vývoj. [4]
+    \end{itemize}
+
+    C\# v Unity umožňuje vývojářům vytvářet skripty pro herní logiku, ovládání postav, interakce s objekty a další herní funkce.
+
+    \section{2D grafika}
+    Pro tvorbu 2D grafiky jsem použil program \textbf{Aseprite}, 
+    který je specializovaný na pixel art (druh počítačové grafiky, která je vytvářena po jednotlivých pixelech [5]).
+    Tento program nabízí uživatelsky přívětivé rozhraní a nástroje, které usnadňují tvorbu pixel art grafiky.
+    Pro mě byl Aseprite ideální volbou díky své jednoduchosti a intuitivnosti.
+
+    \subsection{Aseprite}
+    Aseprite (dříve ASE nebo Allegro Sprite Editor) je proprietární bitmapový editor 
+    od společnosti Igara Studio napsaný v Qt (C++). Je zaměřený na tvorbu 
+    animovaných spritů a pixel artu pro videohry a využívá se v oblasti digitálního umění, 
+    animace a vývoji videoher. [6]
+
+    \section{Zvukové efekty a hudba}
+    Pro tvorbu zvukových efektů a hudby jsem použil program \textbf{Bitwig Studio} a \textbf{Audacity}.
+    Bitwig Studio jsem využil, protože ho již znám díky mé zkušenosti s tvorbou hudby a také protože
+    nativně podporuje operační systém Linux.
+    Audacity jsem použil pro úpravu a nahrávání zvukových efektů, protože je to jednoduchý a 
+    efektivní nástroj pro základní úpravy zvuku.
+
+    \subsection{Bitwig Studio}
+    Bitwig Studio je moderní software pro tvorbu hudby (DAW), který slouží k nahrávání, 
+    skládání, zvukovému designu i živému vystupování. Na rozdíl od tradičních 
+    programů se zaměřuje na extrémní flexibilitu a modulární přístup, což z něj 
+    dělá oblíbený nástroj pro producenty elektronické hudby. [7]
+
+    \subsection{Audacity}
+    Audacity je volně dostupný, multiplatformní zvukový editor. Začali ho vytvářet 
+    Dominic Mazzoni a Roger Dannenberg na Carnegie Mellon University na podzim roku 1999. 
+    Funguje na operačním systému Mac OS X, Microsoft Windows, GNU/Linux, ale i v dalších operačních systémech. [8]
+
+    %% Kapitola 3 (Herní koncept)
+    \clearpage
+    \chapter{HERNÍ KONCEPT}
+    \thispagestyle{fancy}
+
+    \section{Gameplay}
+    Hráč začíná u sebe doma s prázdnou kapsou a 50 Shmecklů (herní měna). Jeho první úkol je
+    zajít do obchodu a koupit si sekeru, aby mohl začít kácet stromy.
+    Po zakoupení sekery může hráč vyrazit do lesa, kde najde různé druhy stromů.
+
+    Každý strom má jinou hodnotu a úderů potřebných pro jeho pokácení. Po pokácení stromu 
+    z něj opadnou listy, které zmizí a hráčovi zůstane dřevo, které může dále rozporcovat a 
+    prodat v obchodě za Shmeckly.
+
+    S penězi může hráč nakupovat lepší nástroje, které mu umožní kácet stromy rychleji, 
+    nebo vozidlo, které mu umožní přepravit více dřeva najednou.
+
+    Hráč může také ukládat svůj postup tím, že si v menu hry vybere možnost "Uložit hru".
+    Uloží se vše, co má hráč na svém pozemku (auto, stromy), jeho peníze, životy a předměty v inventáři.
+    Pokud hráč má auto, tak se uloží i jeho pozice na mapě včetně nákladu dřeva v autě.
+
+    \section{Herní svět}
+    Herní svět je tvořen 3D prostředím s různými lokacemi, jako jsou různé typy lesů, 
+    obchod a domov hráče.
+    Prostředí je navrženo tak, aby hráč ze začátku měl nejlehčí přístup k nejméně hodnotným stromům,
+    a postupně se dostával k hodnotnějším stromům, které jsou umístěny dále od jeho domova.
+    
+    Pro zjednodušení navigace hráče v lese je vytvořena z hlíny cesta, kterou může hráč následovat,
+    aby se v lese neztratil.
+
+    Mapa je rozdělená na tři různé typy lesů:
+    \begin{itemize}
+        \item Dubový les - nejméně hodnotné stromy
+        \item Kaktusový les - středně hodnotné stromy
+        \item Zamrzlý les - nejvíce hodnotné stromy
+    \end{itemize}
+
+
+    %% Kapitola 4 (Závěr a zdroje)
+    \clearpage
+    \noindent{\Large{\bfseries{Závěr}}\\}
+    Věřím, že tento projekt Wood Game a jeho dokumentace splňují požadavky na závěrečnou studijní práci. Během vývoje jsem se naučil pracovat s fyzikálními enginy a optimalizací 3D modelů.
+    
+    \vspace{18pt}
+
+    \noindent{\Large{\bfseries{Seznam použitých zdrojů}\\}}
+    \begin{enumerate}
+        \renewcommand\labelenumi{[\arabic{enumi}]}
+        \item Meshy – Základy návrhu her: Průvodce pro začátečníky [online]. [cit. 2024-12-26]. Dostupné z: \url{https://www.meshy.ai/cz/blog/game-design#proces-hern%C3%ADho-designu}
+        \item Wikipedia: Herní engine [online]. [cit. 2025-11-6]. Dostupné z: \url{https://cs.wikipedia.org/wiki/Hern%C3%AD_engine}
+        \item Wikipedia: Unity (herní engine) [online]. [cit. 2025-12-20]. Dostupné z: \url{https://cs.wikipedia.org/wiki/Unity_(hern%C3%AD_engine)}
+        \item ITD: Úvod do programovacího jazyka C# [online]. [cit. 2025-10-10]. Dostupné z: \url{https://informatecdigital.com/cs/%C3%9Avod-do-programovac%C3%ADho-jazyka-CSHARP/}
+        \item Wikipedia: Pixel art [online]. [cit. 2023-11-4]. Dostupné z: \url{https://cs.wikipedia.org/wiki/Pixel_art}
+        \item Wikipedia: Aseprite [online]. [cit. 2024-11-6]. Dostupné z: \url{https://cs.wikipedia.org/wiki/Aseprite}
+        \item Bitwig: Bitwig Studio [online]. [cit. 2025-8-27] Dostupné z: \url{https://www.bitwig.com/}
+        \item WikiKnihovna: Audacity [online]. [cit. 2009-6-2] Dostupné z: \url{https://wiki.knihovna.cz/index.php/Audacity} 
+
+    \end{enumerate}
+
+\end{document}

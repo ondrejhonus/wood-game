@@ -108,3 +108,6 @@ ServerData
 *.tmp
 *.user
 *.userprefs
+
+# Latex
+.latex-preview-cache

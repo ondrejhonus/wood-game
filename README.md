@@ -62,6 +62,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Functional store, where you can buy axes     
 ✅️ Make each axe a different strength     
 ✅️ Add a popup to show the axe price    
+❌ Save objects in car trunk   
 ❌ Make functional doors in houses      
 
 
@@ -104,4 +105,5 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 - [GIMP](https://www.gimp.org/) — raster textures, sprites
 - [Aseprite](https://www.aseprite.org/) — 2D pixel sprites, menu background
 - [Bitwig Studio](https://www.bitwig.com/) — Digital audio, game soundtracks, sound effects
+- [EzDrummer 3](https://www.toontrack.com/product/ezdrummer-3/) — Drum sounds for soundtracks
 - [Audacity](https://www.audacityteam.org/) — Quick audio effects
