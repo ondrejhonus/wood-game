@@ -64,6 +64,14 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Add a popup to show the axe price    
 ❌ Save objects in car trunk   
 ❌ Make functional doors in houses      
+❌ Fix controller bug when getting out of car      
+❌ Fix loading screen sprite quality      
+❌ Add option to show FPS in settings     
+❌ Implement buying the car from the store      
+❌ Implement fuel system for vehicles     
+❌ Implement wood processing mechanics      
+❌ Implement fishing mechanics      
+
 
 
 ## Feature Roadmap (Modeling + others)
@@ -76,13 +84,14 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Different wood textures + leaves     
 ▶️ Create UI     
 ✅️ Add Items in inventory to UI     
-❌ Create inventory item icons   
+✅️ Create inventory item icons   
 ✅️ Create a main menu   
 ✅️ Make a functional settings menu   
 ❌ Vehicle model for transporting logs   
+❌ NPC models to interact with   
 ✅️ Create a calm game soundtrack   
 ▶️ Add sound effects for chopping, walking, selling logs, etc.  
-❌ Create a logo for the game
+✅️ Create a logo for the game
 
 
 ## Used Assets
