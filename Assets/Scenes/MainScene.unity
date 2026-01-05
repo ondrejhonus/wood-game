@@ -1766,6 +1766,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8762286023885395077, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 765.46906
@@ -3434,17 +3438,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 555.23413
+      value: 766.0147
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.124
+      value: 5.8973947
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.468
+      value: 108.79181
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12447,7 +12455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570827f7f6507124386228280d5ac9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeRenderManager
-  player: {fileID: 8762286023994099281}
+  player: {fileID: 8944336655733072412}
   renderDistance: 150
   checkInterval: 0.2
 --- !u!4 &869189585
@@ -30392,11 +30400,6 @@ Transform:
 --- !u!1 &8762286023994099280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8762286023885395077, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
-  m_PrefabInstance: {fileID: 176607957}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8762286023994099281 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8762286023885395322, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
   m_PrefabInstance: {fileID: 176607957}
   m_PrefabAsset: {fileID: 0}
 --- !u!20 &8944336655733072411 stripped
