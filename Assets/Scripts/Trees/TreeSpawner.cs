@@ -213,6 +213,15 @@ public class TreeGenerator : MonoBehaviour
         {
             StartCoroutine(GrowTreeRoutine(tree.transform, finalWidth, finalHeight, position));
         }
+
+        if (TreeRenderManager.instance != null)
+        {
+            TreeRenderManager.instance.RegisterTree(tree);
+        }
+        else
+        {
+            Debug.LogWarning("TreeRenderManager is missing in the scene!");
+        }
     }
 
     // Grow animation routine
