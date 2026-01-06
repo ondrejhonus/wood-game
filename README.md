@@ -1,7 +1,7 @@
 # Wood Game 🪵
 A 3D first-person/third-person simulation game developed in Unity as a final high school thesis. The player engages in wood harvesting, resource management, and exploration in a forest terrain.
 
-<img src="Assets/Images/logo.png" alt="Wood Game Logo" width="256" height="256" style="image-rendering: pixelated;"/>
+<img src="Assets/Images/logo_scaled_255x255.png" alt="Wood Game Logo">
 
 ## Table of Contents 📚
 - [About the Project ℹ️](#about-the-project-ℹ️)
