@@ -25,20 +25,20 @@ public class SellPoint : MonoBehaviour
         switch (item.objectType)
         {
             case "basicLog":
-                baseValue = 1;
+                baseValue = 3;
                 break;
             case "cacti":
-                baseValue = 5;
+                baseValue = 15;
                 break;
             case "winterLog":
-                baseValue = 12;
+                baseValue = 36;
                 break;
             default:
                 baseValue = 1;
                 break;
         }
 
-        return Mathf.RoundToInt(baseValue * item.transform.localScale.x * (item.transform.localScale.y * 3)); // my custom formula that doesnt make that much 
+        return Mathf.RoundToInt(baseValue * item.transform.localScale.x * (item.transform.localScale.y)); // my custom formula that doesnt make that much 
                                                                                                             // sense i just like it
     }
 }
