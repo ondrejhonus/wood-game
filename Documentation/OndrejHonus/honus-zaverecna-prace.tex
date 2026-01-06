@@ -196,8 +196,9 @@
     \setcounter{page}{4}
 
     \renewcommand{\contentsname}{Obsah}
-    \vspace*{-5em} % Adjust this value to reduce top padding (e.g., -1em, -1.5em, etc.)
+    \vspace*{-6em} % Adjust this value to reduce top padding (e.g., -1em, -1.5em, etc.)
     \tableofcontents
+    \vspace*{-10em} % Adjust this value to reduce top padding (e.g., -1em, -1.5em, etc.)
 
     \cleardoublepage
 
@@ -587,7 +588,8 @@
     
     \clearpage
 
-    \noindent{\Large{\bfseries{Seznam použitých informačních zdrojů}\\}}
+    \chapter*{Seznam použitých informačních zdrojů}
+    \addcontentsline{toc}{chapter}{Seznam použitých informačních zdrojů}
     \begin{enumerate}
         \renewcommand\labelenumi{[\arabic{enumi}]}
         \item Meshy – Základy návrhu her: Průvodce pro začátečníky [online]. [cit. 2026-01-04]. Dostupné z: \url{https://www.meshy.ai/cz/blog/game-design#proces-hern%C3%ADho-designu}
