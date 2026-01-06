@@ -1,46 +1,45 @@
-# Wood Game 🪵  
-A low poly style game developed in Unity, where you can cut down trees, collect the wood, process the wood and then maybe sell it.
+# Wood Game 🪵
+A 3D first-person/third-person simulation game developed in Unity as a final high school thesis. The player engages in wood harvesting, resource management, and exploration in a forest terrain.
 
-## Table of Contents 📚  
-- [Features ✨](#planned-features-✨)  
-- [Game Logic](#game-logic)
-- [Roadmap](#feature-roadmap)
+<img src="Assets/Images/logo.png" alt="Wood Game Logo" width="256" height="256" style="image-rendering: pixelated;"/>
+
+## Table of Contents 📚
+- [About the Project ℹ️](#about-the-project-ℹ️)
+- [Key Features ✨](#key-features-✨)
+- [Game World 🌍](#game-world-🌍)
+- [Controls 🎮](#controls-🎮)
+- [Feature Roadmap (Programming)](#feature-roadmap-programming)
+- [Feature Roadmap (Modeling)](#feature-roadmap-modeling--others)
 - [Used Assets](#used-assets)
-- [Technologies 🔧](#technologies-🔧)  
+- [Used Materials](#used-materials)
+- [Technologies 🔧](#technologies-🔧)
 
-## Planned Features ✨  
-#### **Will definetly happen:**
-- **Wood Gathering**: Chop down trees, collect logs.
-- **Basic map**: With interactable elements like trees and a sell point.
-- **Player Model**: A simple humanoid character with animations.
-- **Economy Management**: Sell wood to earn money, invest in better tools.
-- **Tree generation**: Make the trees grow on random places on the map.
-- **Vehicles for transport**: Purchase a vehicle to transport logs faster and more effectively.
+## About the Project ℹ️
+This project documents the development of a video game focused on wood harvesting, economic systems, and environmental physics. The user controls a character that interacts with the game world, uses purchased tools (axes), and manages resources (wood/money).
 
-#### **If it goes well:**
-- **Process wood**: After gathering your wood, process it to make it gain value.
-- **Local saving**: Save your progress to continue another day (locally).
-- **NPCs**: Stationary NPCs throughout the map. 
-- **Fishing + Cooking**: Fish for fishies to have food, cook them so they don't taste so bland.
+## Key Features ✨
+* **Physics-Based Chopping**: Trees are cut based on where the player hits them. Logs fall dynamically and react to gravity.
+* **Economy System**: Earn "Shmeckles" ($H) by selling wood. Buy better axes and vehicles in the shop.
+* **Save & Load System**: Saving game state (Player position, Inventory, Money, World objects, Vehicle position & cargo) into a JSON file.
+* **Inventory System**: Pick up, carry, and store items.
+* **Vehicle System**: Purchase and drive a truck to transport larger quantities of wood.
+* **Dynamic UI**: Main menu, Pause menu, Settings (Graphics, Audio, Resolution), and interactive shop interface.
+* **Custom Audio**: Original soundtrack and sound effects created specifically for the game.
 
-#### **If it goes really well:**
-- **Animations**: Animations corresponding to user action.
-- **Car Modification**: Car mechanic for vehicle modification.
-- **Clothing**: Make your character wear clothing of your choice. 
-- **Building**: Use the wood to build yourself a house. 
-- **Multiplayer Mode**: Cut down trees with your friends (Server based/Coop).
-- **Cloud saving**: Save your progress to continue another day and never lose it.
+## Game World 🌍
+The map is divided into three distinct biomes, offering progression in difficulty and reward:
+1.  **Oak Forest**: Starting area with the least valuable trees.
+2.  **Cactus Forest**: Medium difficulty and value.
+3.  **Frozen Forest**: Hardest to reach, contains the most valuable trees.
 
-## Game logic
-- The player starts on a square with shops, where they buys the default axe and gets to know the place of his own plot.
-- They then goes out to gather some trees, which they will sell at the wood sell point for some Shmeckles ($H).
-- They can then use the money to buy better axes, a vehicle for transporting logs, or other items which will be implemented, etc. a wood processer.
-- The vehicle will either be able to be upgraded (engine, wheel size, fuel tank size), or the player will simply buy a better one.
-- They can refill their fuel for exchange for some $H at a specified gas station, that will appear at different set locations.
-- There will be more types of forrests that will introduce more difficulty of getting into, and gear requirements such as better axes and more durable cars (Wood hardness, rivers for drowning small cars, hard terrain).
-- The more far away and difficult the forest will be, the better quality wood it will contain (More expensive, heavier, thicker wood).
-- There will also be a food system, they will either need to buy some food, or fish for fishies so they don't have to pay.
-
+## Controls 🎮
+* **WASD**: Movement
+* **RMB + Move Mouse**: Look around
+* **LMB (Left Click)**: Use item / Chop tree
+* **E**: Interact / Pick up object / Enter car
+* **ESC**: Pause Menu
+* **C**: Toggle between First-Person and Third-Person view.
+---
 
 ## Feature Roadmap (Programming)
 ✅ Movement mechanics + Collisions  
@@ -58,7 +57,7 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ✅️ Allow player to hold an object on a specific point, not the mass center     
 ⚠️ Tree spawning system     
 ▶️ Vehicles for transporting logs   
-✅️ Progress saving mechanics      
+✅️ Progress saving mechanics (JSON)     
 ✅️ Functional store, where you can buy axes     
 ✅️ Make each axe a different strength     
 ✅️ Add a popup to show the axe price    
@@ -71,8 +70,6 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ❌ Implement fuel system for vehicles     
 ❌ Implement wood processing mechanics      
 ❌ Implement fishing mechanics      
-
-
 
 ## Feature Roadmap (Modeling + others)
 ✅️ Create Axe model     
@@ -93,26 +90,31 @@ A low poly style game developed in Unity, where you can cut down trees, collect 
 ▶️ Add sound effects for chopping, walking, selling logs, etc.  
 ✅️ Create a logo for the game
 
+---
 
 ## Used Assets
 - [Unity FirstPerson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-firstperson-updates-in-new-charactercontroller-pa-196525)
-- [Unity Thirdperson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-thirdperson-updates-in-new-charactercontroller-pa-196526)
+- [Unity ThirdPerson Starter Asset](https://assetstore.unity.com/packages/essentials/starter-assets-thirdperson-updates-in-new-charactercontroller-pa-196526)
+- [Ezreal Car Controller](https://assetstore.unity.com/packages/tools/physics/ezereal-car-controller-302577)
 
 ## Used Materials
 - [How to Make Beautiful Terrain in Unity 2020 - UGuruz](https://www.youtube.com/watch?v=ddy12WHqt-M)
 - [Kickstart your game with First and Third Person Controllers! - Code Monkey](https://www.youtube.com/watch?v=jXz5b_9z0Bc)
 - [How to Pick up and Drop Objects/Items! - Code Monkey](https://www.youtube.com/watch?v=2IhzPTS4av4)
+- [SAVE & LOAD SYSTEM in Unity](https://www.youtube.com/watch?v=XOjd_qU2Ido)
+- [How to make a Save & Load System in Unity](https://www.youtube.com/watch?v=aUi9aijvpgs)
 - [5 Minute MAIN MENU Unity Tutorial](https://youtu.be/-GWjA6dixV4?si=QBcQC8476n_pqzoU)
 - [Unity Loading Screen | Beginner Tutorial](https://www.youtube.com/watch?v=NyFYNsC3H8k)
 - [SETTINGS MENU in Unity](https://www.youtube.com/watch?v=YOaYQrN1oYQ)
 
+## Technologies 🔧
+* **[Unity Engine](https://unity.com/)** (C#) — Core game engine & Physics
+* **[Aseprite](https://www.aseprite.org/)** — 2D Pixel art (UI elements, Menu backgrounds)
+* **[Bitwig Studio](https://www.bitwig.com/)** — Music composition & Sound design
+* **[EZDrummer 3](https://www.toontrack.com/product/ezdrummer-3/)** — Drum synthesis
+* **[Audacity](https://www.audacityteam.org/)** — Audio recording and post-processing
+* **[Blender](https://www.blender.org/)** — 3D Modeling (External collaboration)
 
-
-## Technologies 🔧  
-- [Unity Engine (C#)](https://unity.com/) — Used game engine
-- [Blender](https://www.blender.org/) — 3D models, game objects
-- [GIMP](https://www.gimp.org/) — raster textures, sprites
-- [Aseprite](https://www.aseprite.org/) — 2D pixel sprites, menu background
-- [Bitwig Studio](https://www.bitwig.com/) — Digital audio, game soundtracks, sound effects
-- [EzDrummer 3](https://www.toontrack.com/product/ezdrummer-3/) — Drum sounds for soundtracks
-- [Audacity](https://www.audacityteam.org/) — Quick audio effects
+---
+**Programming, 2D Art, Sound & Music by:** Ondřej Honus     
+**3D Modeling, 2D Art by:** Matyáš Bezděk
