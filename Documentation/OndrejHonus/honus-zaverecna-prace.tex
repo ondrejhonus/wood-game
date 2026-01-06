@@ -5,13 +5,9 @@
 % --- Vyčištění zbytků a nastavení dokumentu ---
 \AtBeginDocument{%
     \immediate\write16{(cleaning stray figureversions output...)}%
-    % \clearpage
-    % \thispagestyle{empty}
     \let\superiorSup\relax
     \let\textOsF\relax
     \let\fontspechyperref\relax
-    % \null
-    % \newpage 
 }
 
 %% Proměnné (Tvá data)
@@ -53,8 +49,6 @@
 %% Nastavení vzhledu
 \linespread{1.25}
 \setlength{\parskip}{0.5em}
-
-% make upper margin smaller
 
 \titleformat{\chapter}[block]{\bfseries\LARGE}{\thechapter}{10pt}{}
 \titlespacing*{\chapter}{0pt}{-20pt}{10pt}
@@ -103,7 +97,6 @@
 \begin{document}
     
     \pagestyle{empty}
-    % \pagenumbering{}
     
     %% Titulní strana
     \begin{titlepage}
@@ -143,7 +136,6 @@
     \cleardoublepage
 
     %% Prohlášení
-    %% Odsadit na spod stránky
     \vspace*{0.7\textheight}
 
     \noindent{\large{\bfseries{Prohlášení}\\}}
@@ -164,13 +156,12 @@
 
     %% Abstrakt
     \noindent{\Large{\bfseries{Abstrakt}\\}}
-    \noindent Tato závěrečná práce dokumentuje proces vývoje videohry s~názvem Wood Game v~herním enginu Unity. 
-    Text se zaměřuje především na návrh herní logiky, ale také na tvorbu 2D grafických prvků (např. uživatelského rozhraní) 
-    v~programu Aseprite, kompozici hudby v~Bitwig Studiu a~nahrávání zvukových efektů v~Audacity. 
-    Proces tvorby 3D modelů zde není popsán, jelikož nebyl realizován mnou.
-
-    Cílem projektu bylo vytvořit funkční hru zaměřenou na těžbu dřeva, ekonomický systém a~fyziku prostředí. 
-    Uživatel ovládá postavu, která interaguje s~herním světem a~používá zakoupené nástroje a~vybavení.
+    \noindent Tato závěrečná práce se zabývá vývojem 3D videohry Wood Game v~herním enginu Unity. 
+    Cílem práce je vytvoření hratelné videohry založené na těžbě dřeva. Hlavními funkcemi jsou ekonomika, vozidla, 
+    ukládání postupu, inventář a hlavní menu. Herní funkce jsou realizované v jazyce C\#. 
+    Data se ukládají do formátu JSON. 2D grafika a uživatelskéhé rozhraní jsou vytvořeny v~programu Aseprite.
+    Hudba byla vytvořena v~Bitwig Studiu a~zvukové efekty v Audacity. 
+    Výsledkem je hratelný prototyp hry, ve které hráč těží dřevo, prodává ho a vylepšuje své vybavení.
 
     \vspace{18pt}
     \noindent{\large{\bfseries{Klíčová slova}}}
@@ -180,11 +171,12 @@
     %% Anglická verze
     \vspace{36pt}
     \noindent{\Large{\bfseries{Abstract}\\}}
-    \noindent This final thesis focuses on the development process of a video game called
-    Wood Game in the Unity environment. The development process primarily covers backend elements, but also the creation of 2D graphics, music, and sound effects, excluding the 3D graphical part which was not created by me.
-    The goal of the project was to create a functional video game focused on wood harvesting,
-    an economic system, and environmental physics. The user can control a character
-    that interacts with the game world, uses tools, and manages resources. 
+    \noindent This final thesis focuses on the development of a 3D video game called Wood Game using the Unity game engine.
+    The objective of the project is to create a playable video game centered around wood harvesting.
+    The main features include an economy system, vehicles, save/load functionality, inventory, and a main menu.
+    The game mechanics are implemented in C\# programming language, and data is stored in JSON format.
+    The 2D graphics and user interface are created using Aseprite, while the music is composed in Bitwig Studio and sound effects are produced in Audacity.
+    The result is a playable game prototype where players can harvest wood, sell it, and upgrade their equipment.
     
     \vspace{18pt}
     \noindent{\large{\bfseries{Keywords}}}
@@ -196,27 +188,35 @@
     \setcounter{page}{4}
 
     \renewcommand{\contentsname}{Obsah}
-    \vspace*{-6em} % Adjust this value to reduce top padding (e.g., -1em, -1.5em, etc.)
+    \vspace*{-6em} 
     \tableofcontents
-    \vspace*{-10em} % Adjust this value to reduce top padding (e.g., -1em, -1.5em, etc.)
+    \vspace*{-10em} 
 
     \cleardoublepage
 
     \pagestyle{fancy}
 
     %% Úvod
-
     \chapter*{Úvod}
     \addcontentsline{toc}{chapter}{Úvod}
     \thispagestyle{fancy}
-    Cílem práce bylo vytvořit videohru, ve které může uživatel ve 3D prostředí kácet stromy, které se vyskytují na různých místech a~mají různou hodnotu.
-    Dřevo lze následně prodat za herní měnu, za kterou si může koupit lepší nástroje pro rychlejší kácení stromů, nebo také automobil pro přepravu dřeva.
+    Cílem této práce bylo vytvořit 3D videohru v Unity, ve které může uživatel ve 3D prostředí kácet stromy, 
+    získávat za ně peníze a vylepšovat své vybavení. Stromy, které se ve hře vyskytují 
+    na různých místech a~mají různou hodnotu, lze pokácet sekerou a~prodat. Za získanou měnu lze nakupovat lepší sekery či vozidlo.
     Uživatel má také možnost uložit svůj postup a~načíst jej později.
 
-    Videohra měla původně obsahovat funkci hry pro více hráčů, ale z~časových důvodů jsem se rozhodl tuto funkci vypustit.
+    Téma tvorby videohry jsem si zvolil, protože mi je svět herního vývoje blízký a~dostal jsem nabídku spolupráce od spolužáka, který se na vývoji hry podílel po grafické
+    stránce. Také jsem ale chtěl rozšířit  své znalosti v~oblasti objektového programování a~práce s~herním enginem. 
+    Byla to pro mě příležitost vyzkoušet si komplexní proces vývoje od návrhu architektury až po finální ladění.
 
-    Téma tvorby videohry jsem si zvolil, protože mi tvorba videoher nebyla příliš vzdálená a~dostal jsem nabídku spolupráce od spolužáka, 
-    který se na vývoji hry podílel po grafické stránce.
+    Na projektu jsem spolupracoval se spolužákem. Měli jasně rozdělené role. 
+    Já jsem byl v roli hlavního programátora a~technického designéra. Měl jsem na starosti veškerý backend, 
+    herní logiku (skripty), fyziku, systém ukládání dat (save/load system), část tvorby 2D grafiky (UI), 
+    a~také celou stránku audia (hudba a~efekty). 
+    Spolužák se zaměřil na vizuální stránku 3D prostředí, konkrétně na modelování 3D objektů a~texturování. 
+
+    Jedním z plánů byl i režim pro více hráčů (multiplayer), ale kvůli časovému omezení a~složitosti tohoto úkolu jsem se rozhodl
+    funkci vynechat a prozatím se zaměřit na vytvoření kvalitního singleplayerového zážitku.
 
     \clearpage
     \newpage
@@ -224,7 +224,8 @@
     \chapter{TEORETICKÁ VÝCHODISKA}
     \thispagestyle{fancy}
 
-    \section{Herní design}   Herní design je proces vytváření pravidel, mechanik a~struktur, 
+    \section{Herní design}
+    Herní design je proces vytváření pravidel, mechanik a~struktur, 
     které tvoří základ herního zážitku. 
     Důležité je zaměřit se na interakci hráče s~herním světem a~na to, 
     jakým způsobem budou herní prvky fungovat.
@@ -393,6 +394,15 @@
     Uloží se vše, co má hráč na svém pozemku (auto, stromy), jeho peníze, životy a~předměty v~inventáři.
     Pokud hráč má auto, tak se uloží i~jeho pozice na mapě včetně nákladu dřeva v~autě.
 
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\linewidth]{image/player-house.png}
+        \caption{Ukázka domova od hráče.}
+        \label{fig:herni-svet}
+    \end{figure}
+
+    \clearpage
+
     \section{Herní svět}
     Herní svět je tvořen 3D prostředím s~různými lokacemi, jako jsou různé typy lesů, 
     obchod a~domov hráče.
@@ -408,6 +418,13 @@
         \item Kaktusový les - středně hodnotné stromy
         \item Zamrzlý les - nejvíce hodnotné stromy
     \end{itemize}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\linewidth]{image/forest.png}
+        \caption{Ukázka dubového lesa.}
+        \label{fig:herni-svet}
+    \end{figure}
 
     \clearpage
 
@@ -435,11 +452,25 @@
     if (Physics.Raycast(ray, out RaycastHit hit, 100f, chopLayer)) {
         // Je zasáhnutý objekt (strom) dostatečně blízko hráči?
         if (hit.collider.gameObject == gameObject && Vector3.Distance(playerInventory.transform.position, hit.point) <= chopRange) {
-            // Spustit funkci na přeseknutí stromu
+            // Spustit funkci na seknutí do stromu
             HandleChop(hit.point);
         }
     }
     \end{lstlisting}
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\linewidth]{image/progress-bar.png}
+        \caption{Ukázka indikace průběhu sekání stromu.}
+        \label{fig:kaceni}
+    \end{figure}
+
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\linewidth]{image/cut-tree.png}
+        \caption{Ukázka pokáceného stromu.}
+        \label{fig:kaceni}
+    \end{figure}
 
     Počet seknutí potřebných k~pokácení stromu závisí na druhu sekery, 
     kterou má hráč zrovna v~ruce. Dále také závisí na typu stromu a~jeho tloušťce.
@@ -478,8 +509,6 @@
     }
     \end{lstlisting}
 
-    \clearpage
-
     \subsubsection{Implementace načítání}
     Při načítání hry se načtou data ze souboru JSON a~přiřadí se do daných herních objektů.
     Poté se nastaví souřadnice hráče a~popřípadě jeho auta na pozici, ve které hru uložil. 
@@ -489,11 +518,20 @@
     Pro načítání inventáře hráče jsem vytvořil funkci, která podle názvu uloženého předmětu najde odpovídající prefab (předpřipravený objekt) 
     a~přidá ho do inventáře hráče.
 
+    \clearpage
+
     \subsection{Obchod}
     V~obchodě může hráč nakupovat lepší sekery, nebo také automobil pro přepravu dřeva.
     Každý předmět má svou cenu, která je zobrazena při najetí myší na daný předmět.
     Pokud hráč nemá dostatek peněz, tak se mu zobrazí cenovka červeně. Pokud má dostatek peněz,
     tak se zobrazí zeleně.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\linewidth]{image/shop-inside.png}
+        \caption{Ukázka regálu se sekerama a~cenovkou.}
+        \label{fig:obchod}
+    \end{figure}
 
     Pokladna funguje tak, že když hráč přinese objekt s~označením "Sellable" (prodejné) na pokladnu, tak se mu strhne částka z~jeho peněz.
     Každý prodejný objekt má připojený skript, který obsahuje cenu daného objektu.
@@ -502,6 +540,8 @@
 
     Pokud se hráč pokusí prodejný předmět ukrást, tak se mu zobrazí červená varovná hláška, a~objekt se vrátí zpět do regálu.
     Podobně funguje i~obnovení objektu po koupi. Spustí se stejná funkce, která vrátí objekt zpět do regálu.
+
+    \clearpage
 
     \subsection{Prodej dřeva}
     Hned vedle obchodu se nachází místo, kde může hráč prodat nasbírané dřevo.
@@ -513,6 +553,13 @@
     $\text{cena dřeva} = \text{index\_typu\_dřeva} \times \text{velikost.x} \times \text{velikost.y}$
 
     kde \textit{index\_typu\_dřeva} je číslo reprezentující hodnotu daného druhu stromu, které jsem určil na základě jeho vzácnosti.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\linewidth]{image/sell-wood.png}
+        \caption{Ukázka prodeje dřeva ve hře Wood Game.}
+        \label{fig:prodej-dreva}
+    \end{figure}
 
     \clearpage
 
@@ -553,6 +600,7 @@
     Hlavní část soundtracku je tvořena opakujícími se čtyřmi akordy hranými na elektrickou kytaru.
     Přes tuto smyčku jsem poté přidal zvuk bicích, který jsem získal pomocí MIDI nástroje EZdrummer 3, který jsem připojil do Bitwig Studia jako VST plugin.
     Efektu pro elektrickou kytaru jsem dosáhl pomocí Phaseru, reverbu a~odstranění nízkých a~vysokých frekvencí pomocí ekvalizéru.
+    Soundtrack je dostupný na YouTube pod názvem "Wood Game OST | Fair Sapling" na adrese: \url{https://www.youtube.com/watch?v=x9g16xBjPlY}.
 
     Podobná hudba byla použita i~v~menu hry, ale s~mírně klidnější a~jednodušší melodií, aby se odlišila od hudby během hraní.
 
@@ -565,26 +613,19 @@
     \chapter*{Závěr}
     \addcontentsline{toc}{chapter}{Závěr}
     \thispagestyle{fancy}
-
-    Cílem této závěrečné práce bylo vytvořit funkční 3D videohru v~prostředí Unity, která bude obsahovat těžbu dřeva, 
-    ekonomický systém a~možnost ukládání postupu. Tento cíl se podařilo naplnit. 
-    Výsledkem je hratelná videohra Wood Game.
-
-    Během vývoje jsem narazil na řadu výzev, zejména v~oblasti interakce objektů a~optimalizace herních skriptů. 
-    Řešení těchto problémů mi umožnilo výrazně zlepšit mé znalosti v~oblasti objektově orientovaného programování, 
-    řešení algoritmů a~návrhu herní struktury. Také jsem si vyzkoušel proces tvorby hry od úplného začátku.
-
-    Vzhledem k~časové náročnosti projektu považuji současnou verzi hry za pouhý základ, 
-    který se stále potřebuje vyvíjet. Jsem si vědom určitých nedostatků, zejména v~oblasti fyziky nošení předmětů, 
-    která je v~současné verzi problematická kvůli kolizím. Také vzhled 
-    stromů by do budoucna vyžadoval lepší zpracování, například přidání větví, jelikož současné stromy jsou pouhé klády s~listím.
-
-    Do budoucna plánuji projekt dále rozvíjet. Kromě zmíněných oprav chyb je v~plánu přidání režimu pro více hráčů (multiplayer), 
-    který byl původně zvažován, a~rozšíření herního světa o~nové lokace a~nástroje.
-
-    I~přes zmíněné možnosti pro budoucí vylepšení považuji projekt za úspěšný. 
-    Všechny klíčové mechaniky fungují a~hra poskytuje uspokojivý uživatelský zážitek.
+    Cílem této závěrečné práce bylo vytvořit funkční 3D videohru v~prostředí Unity, 
+    která bude obsahovat mechaniky těžby dřeva, ekonomický systém a~možnost ukládání postupu. Tento cíl byl naplněn.
+    Vytvořená aplikace demonstruje funkční zhotovení všech klíčových systémů: 
+    od interakce s~objektama, kácení stromů, přes správu inventáře a~ekonomiky, až po ukládání dat.
     
+    Ačkoliv se jedná o~prototyp, hra obsahuje všechny důležité prvky a~je plně hratelná. 
+    Výsledný produkt slouží jako solidní základ, který je možné v~budoucnu dále rozšiřovat o~nové mechaniky, 
+    jako je multiplayer, detailnější vizuální zpracování stromů nebo pokročilejší fyzika přenášení předmětů.
+
+    Kompletní zdrojový kód projektu a~spustitelná verze hry jsou dostupné v~repozitáři na adrese:
+    \begin{center}
+        \url{https://github.com/ondrejhonus/wood-game}
+    \end{center}
     
     \clearpage
 
@@ -599,7 +640,7 @@
         \item Wikipedia: Pixel art [online]. [cit. 2026-01-04]. Dostupné z: \url{https://cs.wikipedia.org/wiki/Pixel_art}
         \item Wikipedia: Aseprite [online]. [cit. 2026-01-04]. Dostupné z: \url{https://cs.wikipedia.org/wiki/Aseprite}
         \item Bitwig: Bitwig Studio [online]. [cit. 2026-01-05]. Dostupné z: \url{https://www.bitwig.com/}
-        \item WikiKnihovna: Audacity [online]. [cit. 2026-01-05]. Dostupné z: \url{https://wiki.knihovna.cz/index.php/Audacity}
+        \item WikiKnihovna: Audacity [online]. [cit. 2026-01-05]. Dostupné z: \url{https://wiki.knihovna.cz/index.php/Audacity} 
 
     \end{enumerate}
 
