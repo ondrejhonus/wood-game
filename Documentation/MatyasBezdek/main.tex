@@ -1,0 +1,734 @@
+% ŠABLONA PRO PSANÍ ZÁVĚREČNÉ STUDIJNÍ PRÁCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Autor: Jakub Dokulil (kubadokulil99@gmail.com)
+% Tato šablona byla vytvořena tak, aby pomocí ní mohli v systému LaTeX soutěžící sázet své práce a zároveň odpovídala požadavkům na formátování vyplývajícím z wordové šablony umístěné na webu soc.cz.
+%
+\documentclass[12pt, a4paper,
+%oneside,      %% -- odkomentujte, pokud chcete svou práci mít pouze jednostrannou, mezera pro hřbet pak automaticky bude pouze na levé straně
+twoside,        %% -- pro oboustranné práce, mezera pro hřbet následně střídá strany.
+openright
+]{report}
+
+
+% --- odstraneni zbytkoveho textu "superiorSup" a pod. ---
+\AtBeginDocument{%
+	% pojistka proti nechtenemu textu nactenemu z aux/toc
+	\immediate\write16{(cleaning stray figureversions output...)}%
+	\clearpage
+	\thispagestyle{empty}
+	% uplne vyprazdneni vseho, co by se objevilo mimo hlavni text
+	\let\superiorSup\relax
+	\let\textOsF\relax
+	\let\textTOsF\relax
+	\let\liningLF\relax
+	\let\liningTLF\relax
+	\let\tabularTab\relax
+	\let\proportionalProp\relax
+	\let\tabularmath\relax
+	\let\proportionalmath\relax
+	\let\fontspechyperref\relax
+	% zajisteni, ze se nic nezobrazi pred titulni stranou
+	\null
+	\newpage
+}
+%% Nutné balíčky a nastavení
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Proměnné
+\newcommand\obor{INFORMAČNÍ TECHNOLOGIE} %% -- napiš číslo a název tvého oboru
+\newcommand\kodOboru{18-20-M/01} %% -- napiš číslo a název tvého oboru
+\newcommand\zamereni{se zaměřením na počítačové sítě a programování} %% -- napiš číslo a název tvého oboru
+\newcommand\skola{Střední škola průmyslová a umělecká, Opava} %% vyplň název školy
+\newcommand\trida{IT4} %% vyplň jméno svého konzultanta
+\newcommand\jmenoAutora{Matyáš Bezděk}  %% vyplň své jméno
+\newcommand\skolniRok{2025/26} %% vyplň rok
+\newcommand\datumOdevzdani{6. 1. 2024} %% vyplň rok
+\newcommand\nazevPrace{Vývoj videohry v Unity: Wood Game} %% vyplň název své práce
+
+\title{\nazevPrace} %% -- Název tvé práce
+\author{\jmenoAutora} %% -- tvé jméno
+\date{\datumOdevzdani} %% -- rok, kdy píšeš SOČku
+
+\usepackage[top=2.5cm, bottom=2.5cm, left=3.5cm, right=1.5cm]{geometry} %% nastaví okraje, left -- vnitřní okraj, right -- vnější okraj
+
+\usepackage[czech]{babel} %% balík babel pro sazbu v češtině
+\usepackage[utf8]{inputenc} %% balíky pro kódování textu
+\usepackage[T1]{fontenc}
+\usepackage{cmap} %% balíček zajišťující, že vytvořené PDF bude prohledávatelné a kopírovatelné
+
+\usepackage{graphicx} %% balík pro vkládání obrázků
+
+\usepackage{subcaption} %% balíček pro vkládání podobrázků
+
+\usepackage{hyperref} %% balíček, který v PDF vytváří odkazy
+
+\linespread{1.25} %% řádkování
+\setlength{\parskip}{0.5em} %% odsazení mezi odstavci
+
+
+\usepackage[pagestyles]{titlesec} %% balíček pro úpravu stylu kapitol a sekcí
+\titleformat{\chapter}[block]{\scshape\bfseries\LARGE}{\thechapter}{10pt}{\vspace{0pt}}[\vspace{-22pt}]
+\titleformat{\section}[block]{\scshape\bfseries\Large}{\thesection}{10pt}{\vspace{0pt}}
+\titleformat{\subsection}[block]{\bfseries\large}{\thesubsection}{10pt}{\vspace{0pt}}
+
+
+\usepackage{tocloft} % Balíček umožní přizpůsobit vzhled tabulky obsahu
+\setlength{\cftbeforechapskip}{0pt}  % Menší rozestup pro kapitoly
+\setlength{\cftbeforesecskip}{0pt}   % Menší rozestup pro sekce
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{1}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.025pt}
+
+\usepackage{booktabs}
+
+\usepackage{url}
+
+%% Balíčky co se můžou hodit :) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pdfpages} %% Balíček umožňující vkládat stránky z PDF souborů, 
+
+\usepackage{upgreek} %% Balíček pro sazbu stojatých řeckých písmen, třeba u jednotky mikrometr. Například stojaté mí: \upmu, stojaté pí: \uppi
+
+\usepackage{amsmath}    %% Balíčky amsmath a amsfonts 
+\usepackage{amsfonts}   %% pro sazbu matematických symbolů
+\usepackage{esint}     %% pro sazbu různých integrálů (např \oiint)
+\usepackage{mathrsfs}
+\usepackage{helvet} % Helvet font
+\usepackage{mathptmx} % Times New Roman
+\makeatletter
+\@namedef{ver@figureversions.sty}{9999/99/99}
+\newcommand{\DeclareFigureVersion}[2]{}
+\newcommand{\figureversion}[1]{}
+\makeatother
+
+
+\makeatletter
+\providecommand{\superiorSup}{}
+\providecommand{\textOsF}{}
+\providecommand{\textTOsF}{}
+\providecommand{\liningLF}{}
+\providecommand{\liningTLF}{}
+\providecommand{\tabularTab}{}
+\providecommand{\proportionalProp}{}
+\makeatother
+\makeatletter
+\providecommand{\superiorSup}{}
+\providecommand{\textOsF}{}
+\providecommand{\textTOsF}{}
+\providecommand{\liningLF}{}
+\providecommand{\liningTLF}{}
+\providecommand{\tabularTab}{}
+\providecommand{\proportionalProp}{}
+\providecommand{\tabularmath}{}
+\providecommand{\proportionalmath}{}
+\makeatother
+
+\usepackage{mathrsfs}
+\usepackage{helvet} % Helvet font
+\usepackage{mathptmx} % Times New Roman
+
+% \usepackage{Oswald} % Oswald font - ZPŮSOBUJE CHYBU V TEXLIVE 2025
+
+%% makra pro sazbu matematiky
+\newcommand{\dif}{\mathrm{d}} %% makro pro sazbu diferenciálu, místo toho
+%% abych musel psát '\mathrm{d}' mi stačí napsat '\dif' což je mnohem 
+%% kratší a mohu si tak usnadnit práci
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\renewcommand{\lstlistingname}{Kód}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{Seznam programových kódů}% List of Listings -> List of Algorithms
+
+%% Definice 
+\lstdefinelanguage{JavaScript}{
+	morekeywords=[1]{break, continue, delete, else, for, function, if, in,
+		new, return, this, typeof, var, void, while, with},
+	% Literals, primitive types, and reference types.
+	morekeywords=[2]{false, null, true, boolean, number, undefined,
+		Array, Boolean, Date, Math, Number, String, Object},
+	% Built-ins.
+	morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+	sensitive,
+	morecomment=[s]{/*}{*/},
+	morecomment=[l]//,
+	morecomment=[s]{/**}{*/}, % JavaDoc style comments
+	morestring=[b]',
+	morestring=[b]"
+}[keywords, comments, strings]
+
+
+\lstdefinelanguage[ECMAScript2015]{JavaScript}[]{JavaScript}{
+	morekeywords=[1]{await, async, case, catch, class, const, default, do,
+		enum, export, extends, finally, from, implements, import, instanceof,
+		let, static, super, switch, throw, try},
+	morestring=[b]` % Interpolation strings.
+}
+
+\lstalias[]{ES6}[ECMAScript2015]{JavaScript}
+
+% Nastavení barev
+% Requires package: color.
+\definecolor{mediumgray}{rgb}{0.3, 0.4, 0.4}
+\definecolor{mediumblue}{rgb}{0.0, 0.0, 0.8}
+\definecolor{forestgreen}{rgb}{0.13, 0.55, 0.13}
+\definecolor{darkviolet}{rgb}{0.58, 0.0, 0.83}
+\definecolor{royalblue}{rgb}{0.25, 0.41, 0.88}
+\definecolor{crimson}{rgb}{0.86, 0.8, 0.24}
+
+% Definice jazyka C#
+\lstdefinelanguage{CSharp}{
+	morekeywords={abstract, as, base, bool, break, byte, case, catch, char, checked, class, const, continue, decimal, default, delegate, do, double, else, enum, event, explicit, extern, false, finally, fixed, float, for, foreach, goto, if, implicit, in, int, interface, internal, is, lock, long, namespace, new, null, object, operator, out, override, params, private, protected, public, readonly, ref, return, sbyte, sealed, short, sizeof, stackalloc, static, string, struct, switch, this, throw, true, try, typeof, uint, ulong, unchecked, unsafe, ushort, using, virtual, void, volatile, while},
+	sensitive=true,
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[b]'
+}
+
+% Styl pro C# (Unity)
+\lstdefinestyle{CSharpStyle}{
+	language=CSharp,
+	backgroundcolor=\color{white},
+	basicstyle=\ttfamily\footnotesize, % Trochu zmenšené písmo, ať se vejdou dlouhé řádky
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	commentstyle=\color{forestgreen}\itshape,
+	keywordstyle=\color{mediumblue}\bfseries,
+	stringstyle=\color{crimson},
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{mediumgray},
+	frame=single,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	literate=%
+	{á}{{\'a}}1 {č}{{\v{c}}}1 {ď}{{\v{d}}}1 {é}{{\'e}}1 {ě}{{\v{e}}}1
+	{í}{{\'i}}1 {ň}{{\v{n}}}1 {ó}{{\'o}}1 {ř}{{\v{r}}}1 {š}{{\v{s}}}1
+	{ť}{{\v{t}}}1 {ú}{{\'u}}1 {ů}{{\r{u}}}1 {ý}{{\'y}}1 {ž}{{\v{z}}}1
+}
+
+% Nastavení pro Python
+\lstdefinestyle{Python}{
+	language=Python,
+	backgroundcolor=\color{white},
+	basicstyle=\ttfamily,
+	breakatwhitespace=false,
+	breaklines=false,
+	captionpos=b,
+	columns=fullflexible,
+	commentstyle=\color{mediumgray}\upshape,
+	emph={},
+	emphstyle=\color{crimson},
+	extendedchars=true,  % requires inputenc
+	fontadjust=true,
+	frame=single,
+	identifierstyle=\color{black},
+	keepspaces=true,
+	keywordstyle=\color{mediumblue},
+	keywordstyle={[2]\color{darkviolet}},
+	keywordstyle={[3]\color{royalblue}},
+	literate=%
+	{á}{{\'a}}1 {č}{{\v{c}}}1 {ď}{{\v{d}}}1 {é}{{\'e}}1 {ě}{{\v{e}}}1
+	{í}{{\'i}}1 {ň}{{\v{n}}}1 {ó}{{\'o}}1 {ř}{{\v{r}}}1 {š}{{\v{s}}}1
+	{ť}{{\v{t}}}1 {ú}{{\'u}}1 {ů}{{\r{u}}}1 {ý}{{\'y}}1 {ž}{{\v{z}}}1,		
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{black},
+	rulecolor=\color{black},
+	showlines=true,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	stringstyle=\color{forestgreen},
+	tabsize=2,
+	title=\lstname,
+	upquote=true  % requires textcomp	
+}
+
+
+\lstdefinestyle{JSES6Base}{
+	backgroundcolor=\color{white},
+	basicstyle=\ttfamily,
+	breakatwhitespace=false,
+	breaklines=false,
+	captionpos=b,
+	columns=fullflexible,
+	commentstyle=\color{mediumgray}\upshape,
+	emph={},
+	emphstyle=\color{crimson},
+	extendedchars=true,  % requires inputenc
+	fontadjust=true,
+	frame=single,
+	identifierstyle=\color{black},
+	keepspaces=true,
+	keywordstyle=\color{mediumblue},
+	keywordstyle={[2]\color{darkviolet}},
+	keywordstyle={[3]\color{royalblue}},
+ literate=%
+{á}{{\'a}}1 {č}{{\v{c}}}1 {ď}{{\v{d}}}1 {é}{{\'e}}1 {ě}{{\v{e}}}1
+{í}{{\'i}}1 {ň}{{\v{n}}}1 {ó}{{\'o}}1 {ř}{{\v{r}}}1 {š}{{\v{s}}}1
+{ť}{{\v{t}}}1 {ú}{{\'u}}1 {ů}{{\r{u}}}1 {ý}{{\'y}}1 {ž}{{\v{z}}}1,		
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{black},
+	rulecolor=\color{black},
+	showlines=true,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	stringstyle=\color{forestgreen},
+	tabsize=2,
+	title=\lstname,
+	upquote=true  % requires textcomp
+}
+
+\lstdefinestyle{JavaScript}{
+	language=JavaScript,
+	style=JSES6Base,
+}
+\lstdefinestyle{ES6}{
+	language=ES6,
+	style=JSES6Base
+}
+
+\setlength{\headheight}{15pt}
+
+%% Bordel pro práci - můžeš smáznout :) 
+%%%%%%%%%%%%%%%%%%%
+
+\usepackage{lipsum} %% balíček který píše lipsum (nesmyslný text, který se používá pro kontrolu typografie)
+
+\AtBeginDocument{\clearpage\pagestyle{empty}}
+
+%% Začátek dokumentu
+%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	
+	\pagestyle{empty}
+	\pagenumbering{Roman}
+	
+	\cleardoublepage
+
+%% Titulní stránka s informacemi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	{\fontfamily{phv}\selectfont
+		%% Logo školy
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.6\linewidth]{image/logo-skoly.png} 
+		\end{figure}
+		
+		
+		%% Hlavička práce a její název (viz proměnná \nazev prace)
+		%% \sffamily %%% bezpatkové písmo - sans serif
+		{\bfseries %%% písmo na stránce je tučně
+			\begin{center}
+				\vspace{0.025 \textheight}
+				\LARGE{ZÁVĚREČNÁ STUDIJNÍ PRÁCE}\\
+				\large{dokumentace}\\
+				\vspace{0.075 \textheight}
+				\LARGE {\nazevPrace}\\
+			\end{center}  
+		}%%%
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.5\linewidth]{image/logo.png} 
+		\end{figure}
+		
+		\vspace{0.02 \textheight}
+		\begin{table}[h!]
+			\begin{tabular}{ll}
+				\textbf{Autor:} & \jmenoAutora\\ 
+				\textbf{Obor:} & \kodOboru { } \obor\\
+				\textbf{} & \zamereni\\
+				\textbf{Třída:} & \trida\\
+				\textbf{Školní rok:} & \skolniRok\\
+			\end{tabular}
+			
+		\end{table}		
+	}
+	
+\cleardoublepage %% Zalomení dvojstránky
+	
+%% Stránka obsahující poděkování a prohlášení
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Poděkování - nepovinné
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+%%\noindent{\large{\bfseries{Poděkování}\\}}
+%%\noindent Prostor k poděkování (například vedoucímu práce).
+	
+%%\vspace*{0.7\textheight} %% Vertikální mezeru je možné upravit
+
+%% Prohlášení - povinné
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\noindent{\large{\bfseries{Prohlášení}\\}}  %% uprav si koncovky podle toho na jaký rod se cítíš, vypadá to pak lépe :) 
+	\noindent{Prohlašuji, že jsem závěrečnou práci vypracoval samostatně a uvedl veškeré použité 
+		informační zdroje.\\}
+	\noindent{Souhlasím, aby tato studijní práce byla použita k výukovým a prezentačním účelům na Střední průmyslové a umělecké škole v Opavě, Praskova 399/8.}
+	\vfill
+	\noindent{V Opavě \datumOdevzdani\\}
+	\noindent
+	\begin{minipage}{\linewidth}
+		\hspace{9.5cm} 
+		\begin{tabular}{@{}p{6cm}@{}}
+			\dotfill \\
+			Podpis autora
+		\end{tabular}
+	\end{minipage}
+	
+	\cleardoublepage %% Zalomení dvojstránky
+
+%% Stránka obsahující abstrakt (anotaci)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+%% Abstrakt v češtině
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{\Large{\bfseries{Abstrakt}\\}}
+\noindent Tato maturitní práce se zabývá vývojem videohry \textit{Wood Game} v herním enginu Unity. Dokument popisuje proces tvorby herních doplňků a prostředí s využitím grafických nástrojů Blender a Gimp. Hlavní důraz je kladen na modelování 3D objektů, tvorbu 2D grafiky a textur. Práce rovněž popisuje implementaci vybraných částí kódu týkajících se renderingu a vizuální stránky projektu, neřeší však komplexní backendovou logiku, která nebyla předmětem mého zadání. Cílem projektu bylo vytvořit simulátor těžby dřeva s ekonomickými prvky, který využívá fyziku herního prostředí, zejména při kácení stromů. Výsledkem práce je funkční hratelný prototyp, který demonstruje navržené mechaniky a umožňuje uživateli ovládat herní postavu v pohledu první osoby, používat nástroje a interagovat s vytvořenými herními prvky.
+
+\vspace{18pt}
+
+\noindent{\large{\bfseries{Klíčová slova}}}
+
+\noindent Unity, Gimp, Blender, VS Code, 3D grafika, 2D grafika, tvorba textur, tvorba objektů, vývoj herního prostředí, simulátor těžby dřeva, C\#.
+
+\vspace{18pt}
+
+%% Abstrakt v angličtině
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\noindent{\Large{\bfseries{Abstract}}}
+
+\noindent This graduation thesis focuses on the development of the video game \textit{Wood Game} using the Unity game engine. The text documents the process of creating game assets and environments using Blender and Gimp software tools. The primary emphasis is placed on 3D modeling, 2D graphics, and texture creation. The thesis also describes the implementation of specific code segments related to rendering and the visual aspects of the project, excluding complex backend logic which was not part of the assignment. The aim of the project was to create a wood logging simulator with economic features, utilizing game environment physics, particularly for tree felling. The outcome of the thesis is a functional playable prototype that demonstrates the designed mechanics and allows the user to control a character, utilize tools, and interact with the created game elements.
+
+\vspace{18pt}
+
+\noindent{\large{\bfseries{Keywords}}}
+
+\noindent Unity, Gimp, Blender, VS Code, 3D graphics, 2D graphics, texture creation, object creation, environment development, wood logging simulator, C\#.
+
+\clearpage %% Zalomení stránky
+
+%% Stránka s generovaným obsahem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	
+	\tableofcontents %% Vygeneruje tabulku s obsahem
+
+	\pagenumbering{arabic} %% Nastavení způsobu číslování stránek (alternativy roman | Roman)
+	\setcounter{page}{1} %% Nastavení počitadla stránek
+
+%% UVOD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
+
+Téma maturitní práce jsem si zvolil na základě svého dlouhodobého vztahu k videohrám a ze zájmu vyzkoušet si proces jejich vývoje v praxi. Společně s kolegou jsme se rozhodli vytvořit vlastní projekt, přičemž jsme chtěli postavit hratelnost na mechanice, která není zcela běžná – na fyzikálně věrném kácení a zpracování stromů.
+
+Cílem projektu bylo vytvořit funkční prototyp hry s názvem \textit{Wood Game}, primárně zaměřený na aplikaci fyziky dřeva v herním prostředí a osvojení si práce v herním enginu Unity. Hra je koncipována jako simulátor z pohledu první osoby (FPS) s jednoduchou, stylizovanou grafikou.
+
+Hráč začíná s počátečním kapitálem, který mu umožňuje zakoupit základní sekeru. Herní náplní je těžba tří typů dřeva, které jsou ve světě rozmístěny s rostoucí obtížností dostupnosti – od dubového dřeva v blízkosti startovní pozice, přes cestu pouští, až po vzácnější zmrzlé dřevo. Vytěženou surovinu lze s pomocí vozidla transportovat, prodávat a získané finance investovat do lepšího vybavení. Hra rovněž obsahuje systém ukládání postupu.
+
+Zatímco herní logika, backend a zmíněný systém ukládání byly řešeny v kooperaci s dalším vývojářem, tato práce dokumentuje mou část projektu. Zaměřuji se zde primárně na roli \textit{Technical \& Environment Artista}. Hlavní náplní mé práce byla tvorba herního prostředí (Level Design), modelování 3D objektů, tvorba textur a následná technická integrace a optimalizace těchto prvků v Unity pomocí skriptů v jazyce C\#.
+
+Práce je rozdělena na teoretickou a praktickou část. Teoretická část vymezuje základní pojmy herního designu, grafiky a používaných technologií. Praktická část pak detailně popisuje workflow tvorby assetů – od 2D nákresu přes 3D modelování v Blenderu až po finální post-processing ve hře.
+
+%% TEORETICKA VYCHODISKA VYVOJE HER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Teoretická východiska vývoje her}
+\label{chap:teorie}
+
+Tato kapitola shrnuje základní teoretické poznatky z oblasti herního vývoje, které byly aplikovány při tvorbě projektu \textit{Wood Game}. Zaměřuje se na proces designu, vizuální stránku, uživatelské rozhraní a technické pozadí používaných nástrojů.
+
+\section{Herní design a vizuální styl}
+Herní design (Game Design) je proces navrhování obsahu a pravidel hry. Z vizuálního hlediska je klíčové zvolit takový grafický styl, který podporuje atmosféru hry a zároveň je realizovatelný v rámci dostupných časových a technických možností.
+
+Častým přístupem u nezávislých (indie) vývojářů je využití tzv. \textbf{stylizované grafiky} nebo \textbf{low-poly} stylu. Tento směr se nesnaží o fotorealismus, ale využívá menšího počtu polygonů a zjednodušených textur k dosažení specifické estetiky. Výhodou je nižší náročnost na výpočetní výkon a rychlejší tvorba assetů.
+
+\subsection{Vizuální pojetí Wood Game}
+Pro projekt \textit{Wood Game} byla zvolena stylizovaná grafika s důrazem na čistotu a přehlednost. Tento přístup mi umožnil soustředit se na tvorbu koherentního herního světa bez nutnosti vytvářet časově náročné fotorealistické textury. Jednoduchost modelů zároveň zajišťuje, že hra běží plynule i při větším počtu objektů (stromů) ve scéně.
+
+\section{Proces vývoje her}
+Vývoj videohry je komplexní disciplína, kterou lze rozdělit do tří základních fází:
+\begin{enumerate}
+    \item \textbf{Pre-produkce:} Fáze nápadu, tvorby konceptu, sepisování GDD (Game Design Document) a volby technologií.
+    \item \textbf{Produkce:} Samotná realizace. Zahrnuje programování, tvorbu grafiky (modelování, texturování), level design a zvukovou produkci.
+    \item \textbf{Post-produkce:} Testování, ladění chyb (bugfixing) a vydání.
+\end{enumerate}
+
+V profesionálních studiích jsou role striktně rozděleny (Game Designer, Programmer, Environment Artist, Level Designer). V menších týmech dochází ke kumulaci rolí.
+
+\subsection{Organizace vývoje projektu}
+Na projektu jsme pracovali ve dvoučlenném týmu. Mé zaměření pokrývalo vizuální stránku hry, tedy roli \textit{Environment Artista} a \textit{Level Designera}, a částečně roli \textit{Technical Artista} při řešení importů a optimalizačních skriptů. Kolega zajišťoval backendovou logiku a systémy ukládání dat.
+
+\section{Teorie UX a UI ve hrách}
+Zkratka **UX** (User Experience) označuje celkový zážitek hráče a to, jak intuitivně se hra ovládá. **UI** (User Interface) představuje konkrétní prvky na obrazovce, jako jsou menu, ukazatele zdraví nebo inventář (HUD - Head-Up Display). Kvalitní UI musí být čitelné a konzistentní s vizuálním stylem hry.
+
+\subsection{Implementace UI}
+Pro uživatelské rozhraní, konkrétně pro inventář a ikony nástrojů, byl zvolen styl **Pixel Art**. Tento retro styl založený na viditelných pixelech přináší do hry žádaný kontrast vůči 3D prostředí a zajišťuje jasnou čitelnost ikon. Pro jejich tvorbu byl využit rastrový editor GIMP, se kterým mám předchozí zkušenosti.
+
+\section{Herní enginy a technologie}
+Herní engine je softwarový framework určený pro tvorbu videoher. Poskytuje vývojářům sadu nástrojů pro rendering (vykreslování) grafiky, fyzikální simulace, detekci kolizí a správu zvuku. Mezi nejznámější současné enginy patří Unity, Unreal Engine a Godot.
+
+\subsection{Unity Engine}
+Pro realizaci projektu byl zvolen engine **Unity**. Důvody pro tuto volbu byly následující:
+\begin{itemize}
+    \item \textbf{Podpora jazyka C\#:} Jazyk C\# je standardem v oblasti vývoje aplikací na platformě .NET a jeho znalost je součástí mého studia.
+    \item \textbf{Dostupnost a komunita:} Unity má rozsáhlou dokumentaci a aktivní komunitu, což usnadňuje řešení technických problémů.
+    \item \textbf{Licence:} Pro studentské a nekomerční projekty je engine zdarma (Unity Personal).
+\end{itemize}
+
+\subsection{Grafické nástroje (Blender a GIMP)}
+Pro tvorbu 3D modelů byl využit open-source software **Blender**. Volba padla na tento nástroj díky předchozím zkušenostem nabytým během studia, což urychlilo proces modelování. Pro úpravu textur a 2D grafiky byl využit editor **GIMP**, který představuje efektivní bezplatnou alternativu k nástrojům jako Adobe Photoshop.
+
+\section{Herní mechaniky}
+Herní mechaniky definují pravidla a způsoby interakce hráče s herním světem. V žánru simulátorů je kladen důraz na uvěřitelnost těchto interakcí.
+
+\subsection{Aplikované mechaniky}
+Jádrem hry je mechanika těžby d+řeva. Na rozdíl od jednoduchého "kliknutí a zmizení stromu" využívá náš projekt fyzikální simulace pádu stromu a jeho následného zpracování. Další klíčovou mechanikou je ekonomický cyklus: \textit{Těžba $\rightarrow$ Transport $\rightarrow$ Prodej $\rightarrow$ Nákup lepšího vybavení}. Interakce s objekty je technicky řešena pomocí metody \textit{Raycasting} (vysílání paprsku z kamery hráče).
+
+\section{Grafická pipeline a rendering}
+Grafická pipeline (vykreslovací řetězec) je sekvence kroků, které grafická karta provádí, aby převedla 3D data (vertexy, textury) na 2D obraz na monitoru. Klíčovými pojmy jsou zde **Shader** (program určující vzhled povrchu) a **Draw Calls** (požadavky na vykreslení).
+
+\subsection{Workflow v projektu}
+Proces tvorby grafiky probíhal v krocích:
+\begin{enumerate}
+    \item Modelování geometrie a UV mapování v Blenderu.
+    \item Export do formátu FBX.
+    \item Import do Unity a nastavení materiálů (PBR workflow).
+    \item Optimalizace vykreslování pomocí skriptů (řešení viditelnosti objektů pro snížení zátěže GPU).
+\end{enumerate}
+
+
+
+
+%% HERNI KONCEPT A SVET
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Herní koncept a svět}
+\label{chap:koncept}
+
+Před samotnou technickou realizací bylo nutné definovat pravidla hry, strukturu herního světa a způsob, jakým bude hráč postupovat hrou. Tato kapitola popisuje návrh gameplay smyčky a rozvržení herního prostředí.
+
+\section{Gameplay a herní smyčka}
+Hra je koncipována jako simulátor těžby dřeva z pohledu první osoby (FPS). Hráč se ocitá v roli dřevorubce v otevřeném světě. Cílem není jen bezduché kácení, ale efektivní management zdrojů a času.
+
+Základní herní smyčka (Game Loop) funguje na následujícím principu:
+\begin{enumerate}
+    \item \textbf{Příprava:} Hráč začíná s určitým finančním obnosem, za který si v obchodě zakoupí základní vybavení (sekeru).
+    \item \textbf{Těžba:} Vyhledání vhodných stromů v herním světě a jejich pokácení. Zde se uplatňuje fyzikální model – strom padá reálně podle směru seku a gravitace.
+    \item \textbf{Transport:} Vytěžené dřevo je nutné naložit a dopravit pomocí vozidla do výkupny. Vozidlo hraje klíčovou roli při přesunu větších objemů suroviny na delší vzdálenosti.
+    \item \textbf{Ekonomika:} Prodejem dřeva hráč získává herní měnu.
+    \item \textbf{Progrese:} Získané finance lze investovat do lepšího vybavení (efektivnější sekery, vylepšení), což umožňuje přístup k tvrdším a vzácnějším typům dřeva.
+\end{enumerate}
+
+Celý postup lze kdykoliv uložit pomocí implementovaného Save systému, což hráči umožňuje budovat své zázemí dlouhodobě.
+
+\section{Herní svět a biomy}
+Herní mapa je koncipována jako jeden spojitý celek. Hráč začíná v bezpečném středu mapy a postupně expanduje do vzdálenějších oblastí.
+
+\subsection{Začáteční zóna}
+Startovní lokace hráče. Nachází se zde dům (spawn point), garáž pro vozidlo a obchodní místo. Tato zóna slouží jako ekonomické zázemí hry – zde probíhá veškerý prodej natěžených surovin a nákup nového vybavení.
+
+\subsection{Dubový les}
+Oblast navazující na začáteční zónu. Je tvořena jednoduchým travnatým terénem a duby. Tato surovina je nejlevnější, ale pro začínajícího hráče nejdostupnější.
+
+\subsection{Poušť}
+Písečná oblast, která slouží jako mezistupeň mezi lesem a finální lokací. Hráč zde může těžit kaktusy, které mají vyšší hodnotu, ale jejich svoz je kvůli vzdálenosti časově náročnější.
+
+\subsection{Zamrzlá krajina}
+Nejvzdálenější část herního světa pokrytá sněhem. Roste zde zmrzlé dřevo – nejtvrdší a nejdražší surovina ve hře.
+
+Cílem tohoto rozvržení bylo vytvořit uvěřitelné, i když stylizované prostředí, které hráče vizuálně odměňuje za prozkoumávání světa.
+
+
+
+
+%% TVORBA GRAFICKYCH AKTIV (ASSETS)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Tvorba grafických aktiv (Assets)}
+\label{chap:assets}
+
+Tato kapitola popisuje praktický postup tvorby herních modelů a textur. Vzhledem k tomu, že hra běží v reálném čase a obsahuje velké množství vegetace, byl při tvorbě kladen důraz na optimalizaci geometrie (Low-poly) a efektivní využití textur.
+
+\section{Využité nástroje}
+Pro tvorbu vizuální stránky hry byly zvoleny volně dostupné nástroje, které jsou standardem v nezávislém herním vývoji:
+\begin{itemize}
+    \item \textbf{Blender:} Open-source program pro 3D modelování a UV mapování.
+    \item \textbf{GIMP:} Rastrový grafický editor využitý pro tvorbu textur a Pixel Art grafiky.
+\end{itemize}
+
+\section{Tvorba vegetace}
+Vegetace tvoří drtivou většinu objektů ve scéně. Bylo nutné najít rovnováhu mezi vizuální hustotou lesa a výkonem počítače.
+
+\subsection{Modelování trávy}
+Pro trávu jsem se rozhodl nepoužívat techniku \textit{billboard} (2D obrázek, který se natáčí vždy směrem ke kameře), protože v pohledu první osoby působí ploše. Místo toho jsem v Blenderu vytvořil vlastní 3D modely trsů.
+\begin{itemize}
+    \item \textbf{Konstrukce:} Každý trs trávy je tvořen několika křížícími se plochami (planes), na které je aplikována textura.
+    \item \textbf{Optimalizace:} Tento přístup využívá velmi nízký počet polygonů, ale díky textuře s průhledností (Alpha Channel) působí tráva hustě a prostorově.
+\end{itemize}
+
+\subsection{Stylizované stromy}
+Stromy byly modelovány s cílem zachovat stylizovaný vzhled. Koruna stromu není tvořena jednotlivými listy, ale vychází z geometrického primitiva koule (IcoSphere), která byla deformována a randomizována, aby působila přirozeně nepravidelně. Na tento tvar byla následně aplikována textura listí. Kmen je tvořen jednoduchým kvádrem, který je ve hře dynamicky upravován skriptem podle délky kmene.
+
+Pro zvýšení plasticity byla materiálům stromů přidána tzv. \textbf{Normal Map} (mapa normál), která i na plochém modelu simuluje nerovnosti kůry a listí pomocí hry světla a stínu.
+
+\section{Hranice biomů (Kameny)}
+Pro vizuální i fyzické oddělení jednotlivých biomů (hranice mapy nebo přechody oblastí) jsem vytvořil sadu čtyř různých kamenů. Postup tvorby byl následující:
+\begin{enumerate}
+    \item Vytvoření základní krychle (Cube).
+    \item Rozdělení geometrie (Subdivide) pro získání více vrcholů.
+    \item Aplikace funkce \textit{Randomize Vertices} pro náhodné zdeformování tvaru.
+    \item Manuální úprava vrcholů do finálního "skalnatého" tvaru a aplikace materiálu.
+\end{enumerate}
+
+\section{Tvorba nástrojů (Hard-surface modeling)}
+Pro interakci se světem (kácení) hráč využívá sekeru. Při jejím modelování byla využita technika \textit{Box modeling}.
+\begin{itemize}
+    \item \textbf{Hlava sekery:} Vychází ze základní krychle (Cube), která byla postupně dělena řezy (Loop Cuts) a vytahována (Extrude) do tvaru ostří.
+    \item \textbf{Topůrko:} Vzniklo z válce, který byl deformován a modelován do ergonomického tvaru.
+\end{itemize}
+U těchto modelů jsem ponechal automatické rozbalení UV map (Auto UV), což u stylizované grafiky postačovalo a výrazně urychlilo práci.
+
+\section{2D Grafika a UI}
+Veškeré 2D prvky, včetně textur povrchů a uživatelského rozhraní, vznikaly v editoru GIMP.
+\begin{itemize}
+    \item \textbf{Seamless textury:} Pro kůru stromů a terén bylo nutné vytvořit bezešvé (seamless) textury, které na sebe plynule navazují ve všech směrech.
+    \item \textbf{Pixel Art UI:} Inventář a ikony předmětů byly nakresleny stylem Pixel Art. Tento styl využívá přesnou mřížku pixelů a omezenou paletu barev, což zajišťuje dobrou čitelnost na obrazovce.
+\end{itemize}
+
+
+
+
+%% IMPLEMENTACE V UNITY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Implementace v Unity a Level Design}
+\label{chap:unity_implementace}
+
+Samotné modely by bez importu do herního enginu nefungovaly. Tato kapitola popisuje technickou integraci vytvořených aktiv a proces tvorby herního světa (Level Design).
+
+\section{Import modelů a technické výzvy}
+Kritickou částí práce byl přenos modelů z Blenderu do Unity (formát FBX). Během tohoto procesu bylo nutné vyřešit několik technických problémů:
+
+\subsection{Rozdílné souřadné systémy}
+Blender využívá jako vertikální osu \textbf{Z} (Z-up), zatímco Unity využívá osu \textbf{Y} (Y-up). Při importu často docházelo k nechtěné rotaci modelů o -90 stupňů na ose X, což bylo nutné manuálně korigovat v nastavení importu nebo aplikovat rotaci a měřítko přímo v Blenderu před exportem.
+
+\subsection{Nastavení materiálů}
+Materiály z Blenderu nejsou plně kompatibilní s Unity shadery, proto musely být vytvořeny znovu přímo v enginu.
+\begin{itemize}
+    \item U trávy a listí bylo nutné nastavit parametr \textbf{Transparency} na režim \textit{Alpha Cutout}, aby průhledné části textury nebyly vykresleny jako černé plochy.
+    \item U nástrojů byly upraveny parametry \textbf{Smoothness} a \textbf{Metallic}, aby kovová část sekery odrážela světlo jinak než dřevěné topůrko.
+\end{itemize}
+
+\section{Tvorba herního světa (Level Design)}
+Tvorba mapy neprobíhala náhodně, ale s cílem vytvořit uvěřitelné biomy a jasné hranice mezi nimi.
+
+\subsection{Modelování terénu}
+Základ terénu byl vytvořen pomocí vestavěných nástrojů Unity Terrain. Pro dosažení přirozenějšího vzhledu eroze a nerovností jsem si doinstaloval rozšířenou sadu štětců (Brushes). Tím jsem se vyhnul nepřirozeně hladkým a uniformním kopcům, které vznikají při použití pouze základních nástrojů.
+
+\subsection{Procedurální generování vegetace}
+Vzhledem k rozloze mapy nebylo možné umisťovat každý trs trávy ručně. Pro tento účel byl využit nástroj \textit{Vegetation Generator}. V něm jsem definoval pravidla pro jednotlivé biomy:
+\begin{itemize}
+    \item \textbf{Dubový les:} Generuje se hustá zelená tráva pokrývající většinu plochy.
+    \item \textbf{Poušť:} Generace je řídká, používá se varianta suché trávy.
+    \item \textbf{Zimní krajina:} Střední hustota porostu, využívá se textura zmrzlé trávy.
+\end{itemize}
+
+\subsection{Manuální dotváření scény}
+Zatímco vegetace byla generována procedurálně, důležité prvky a detaily byly umisťovány manuálně (Hand-placed), aby měl level designér plnou kontrolu nad hratelností.
+\begin{itemize}
+    \item \textbf{Hranice biomů:} Pro jasné vizuální oddělení jednotlivých zón (např. les a poušť) byly použity modely kamenů, které vytvářejí přirozené bariéry a přechody.
+\end{itemize}
+
+
+
+
+
+%% OPTIMALIZACE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Programová optimalizace scény}
+\label{chap:optimalizace}
+
+Jedním z největších problémů otevřených světů v Unity je náročnost na vykreslování (Rendering). Vzhledem k tomu, že scéna \textit{Wood Game} obsahuje tisíce stromů a hustou vegetaci, narážel vývoj na limity grafického výkonu.
+
+\section{Problém s výkonem (Draw Calls)}
+Při vykreslení celého lesa najednou docházelo k výraznému poklesu snímkovací frekvence (FPS). I když jsou objekty daleko, grafická karta je musí zpracovat. Standardní Unity řešení (Occlusion Culling) v tomto případě nebylo dostatečně efektivní nebo vyžadovalo složité předpočítávání (baking), které nebylo vhodné pro naše dynamické prostředí.
+
+Hlavní zátěží byly tzv. **Draw Calls** – požadavky procesoru na grafickou kartu, aby vykreslila konkrétní síť (Mesh).
+
+\section{Vlastní skript pro Distance Culling}
+Jako řešení jsem naprogramoval vlastní optimalizační systém v jazyce C\#. Na rozdíl od vypínání celých objektů (což by mohlo narušit herní logiku nebo backend), tento systém vypíná pouze vizuální stránku objektů.
+
+\subsection{Princip fungování}
+Skript je umístěn na objektu **Main Camera**. Funguje jako centrální manažer, který má přehled o všech stromech ve scéně.
+
+
+Logika skriptu probíhá v následujících krocích:
+\begin{itemize}
+    \item \textbf{Nastavitelný rádius:} V inspektoru lze definovat vzdálenost (např. 150 metrů), ve které jsou objekty viditelné.
+    \item \textbf{Kontrola vzdálenosti:} Skript v každém snímku (nebo v intervalech) vypočítá vzdálenost mezi kamerou hráče a každým stromem pomocí funkce \texttt{Vector3.Distance}.
+    \item \textbf{Přepínání MeshRendereru:}
+    \begin{itemize}
+        \item Pokud je strom \textbf{uvnitř} rádiusu $\rightarrow$ zapne se jeho komponenta \texttt{MeshRenderer} (strom je vidět).
+        \item Pokud je strom \textbf{vně} rádiusu $\rightarrow$ \texttt{MeshRenderer} se vypne.
+    \end{itemize}
+\end{itemize}
+
+Tímto způsobem se vykresluje pouze to, co hráč skutečně vidí nebo co je v jeho bezprostřední blízkosti, zatímco vzdálené stromy nezatěžují grafickou kartu, ačkoli jejich herní logika (např. pozice, data o typu dřeva) zůstává v paměti aktivní.
+
+\section{Implementace kódu}
+Níže je uvedena klíčová část skriptu, který zajišťuje tuto optimalizaci.
+
+\begin{lstlisting}[style=CSharpStyle, caption={Skript pro optimalizaci vykreslování (Distance Culling)}, label={code:opt_script}]
+// kod
+\end{lstlisting}
+
+\section{Výsledek optimalizace}
+Po nasazení tohoto skriptu došlo k rapidnímu nárůstu FPS. Hra je nyní plynulá i v nejhustších částech lesa, protože v každém okamžiku se reálně vykresluje jen zlomek z celkového počtu objektů.
+
+%% ZÁVĚR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Závěr}
+\addcontentsline{toc}{chapter}{Závěr}
+
+Cílem této maturitní práce bylo vytvoření vizuální stránky a technická optimalizace herního světa pro projekt \textit{Wood Game}. Závěrem mohu konstatovat, že stanovené cíle byly splněny. Podařilo se nám vytvořit funkční prototyp hry, který demonstruje navržené mechaniky v kompletním 3D prostředí.
+
+Během realizace jsem vytvořil ucelenou sadu grafických aktiv a navrhl tři odlišné biomy. Největší technickou výzvou byla integrace modelů z Blenderu do Unity a následná optimalizace výkonu pomocí vlastního C\# skriptu. Ověřil jsem si, že pro plynulý běh hry v otevřeném světě je nutné aktivně řídit vykreslování objektů, nikoliv se spoléhat pouze na automatické procesy enginu.
+
+Práce na projektu mi přinesla cenné zkušenosti, které přesahují rámec samotného programování. Poprvé jsem měl možnost pracovat na dlouhodobějším projektu v týmu, což vyžadovalo pravidelnou komunikaci a koordinaci. Osvojil jsem si základy práce s verzovacím systémem Git a nástrojem GitHub Desktop, což považuji za klíčovou dovednost pro svou budoucí praxi v IT.
+
+Zároveň mi tento projekt posloužil jako důležitý experiment v oblasti herní grafiky. Zjistil jsem, že tvorba vizuálně atraktivního a konzistentního stylu (Game Art) je časově i technicky
+náročná disciplína.
+
+Pokud by byl projekt dále rozvíjen, zaměřil bych se na zvýšení variability prostředí. Hra by profitovala z přidání drobných detailů, jako jsou různé druhy květin, menší kameny, variace travin a více druhů stromů, které by rozbily vizuální sterilitu některých pasáží a dodaly světu větší hloubku.
+%% LITERATURA
+\begin{thebibliography}{99}
+	\bibitem{unityDocs} Unity Technologies. \textit{Unity User Manual 202x.x} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://docs.unity3d.com/Manual/index.html}
+	\bibitem{csharpDocs} Microsoft. \textit{C\# documentation} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://learn.microsoft.com/en-us/dotnet/csharp/}
+\end{thebibliography}
+
+%% SEZNAMY OBRÁZKŮ A TABULEK
+\listoffigures
+%\listoftables
+
+%% PŘÍLOHY
+\appendix
+\titleformat{\chapter}[block]{\scshape\bfseries\LARGE}{Příloha \thechapter}{10pt}{\vspace{0pt}}[\vspace{-22pt}]
+
+\chapter{Ukázky ze hry}
+\begin{figure}[h!]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{image/screen1.jpg}
+    \caption{Ukázka herního prostředí}
+\end{figure}
+
+\end{document}
