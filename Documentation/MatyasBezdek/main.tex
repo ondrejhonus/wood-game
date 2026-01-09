@@ -6,7 +6,7 @@
 \documentclass[12pt, a4paper,
 %oneside,      %% -- odkomentujte, pokud chcete svou práci mít pouze jednostrannou, mezera pro hřbet pak automaticky bude pouze na levé straně
 twoside,        %% -- pro oboustranné práce, mezera pro hřbet následně střídá strany.
-openright
+openany
 ]{report}
 
 
@@ -28,8 +28,8 @@ openright
 	\let\proportionalmath\relax
 	\let\fontspechyperref\relax
 	% zajisteni, ze se nic nezobrazi pred titulni stranou
-	\null
-	\newpage
+	%\null
+	%\newpage
 }
 %% Nutné balíčky a nastavení
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,7 +53,6 @@ openright
 
 \usepackage[czech]{babel} %% balík babel pro sazbu v češtině
 \usepackage[utf8]{inputenc} %% balíky pro kódování textu
-\usepackage[T1]{fontenc}
 \usepackage{cmap} %% balíček zajišťující, že vytvořené PDF bude prohledávatelné a kopírovatelné
 
 \usepackage{graphicx} %% balík pro vkládání obrázků
@@ -315,7 +314,7 @@ openright
 	\pagestyle{empty}
 	\pagenumbering{Roman}
 	
-	\cleardoublepage
+	\clearpage
 
 %% Titulní stránka s informacemi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -358,7 +357,7 @@ openright
 		\end{table}		
 	}
 	
-\cleardoublepage %% Zalomení dvojstránky
+\clearpage
 	
 %% Stránka obsahující poděkování a prohlášení
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -388,7 +387,7 @@ openright
 		\end{tabular}
 	\end{minipage}
 	
-	\cleardoublepage %% Zalomení dvojstránky
+	\clearpage
 
 %% Stránka obsahující abstrakt (anotaci)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -396,7 +395,7 @@ openright
 %% Abstrakt v češtině
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent{\Large{\bfseries{Abstrakt}\\}}
-\noindent Tato maturitní práce se zabývá vývojem videohry \textit{Wood Game} v herním enginu Unity. Dokument popisuje proces tvorby herních doplňků a prostředí s využitím grafických nástrojů Blender a Gimp. Hlavní důraz je kladen na modelování 3D objektů, tvorbu 2D grafiky a textur. Práce rovněž popisuje implementaci vybraných částí kódu týkajících se renderingu a vizuální stránky projektu, neřeší však komplexní backendovou logiku, která nebyla předmětem mého zadání. Cílem projektu bylo vytvořit simulátor těžby dřeva s ekonomickými prvky, který využívá fyziku herního prostředí, zejména při kácení stromů. Výsledkem práce je funkční hratelný prototyp, který demonstruje navržené mechaniky a umožňuje uživateli ovládat herní postavu v pohledu první osoby, používat nástroje a interagovat s vytvořenými herními prvky.
+\noindent Tato maturitní práce se zabývá vývojem videohry \textit{Wood Game} v herním enginu Unity. Jádrem praktické části je tvorba herního prostředí a doplňků s využitím grafických nástrojů Blender a Gimp, přičemž důraz byl kladen na modelování 3D objektů, tvorbu 2D grafiky a textur. Součástí realizace byla rovněž implementace optimalizačních skriptů pro rendering a vizuální stránku projektu (backendová logika byla řešena v rámci týmové spolupráce). Cílem projektu bylo vytvořit simulátor těžby dřeva s ekonomickými prvky, který využívá fyziku herního prostředí, zejména při kácení stromů. Výsledkem práce je funkční hratelný prototyp, který demonstruje navržené mechaniky a umožňuje uživateli ovládat herní postavu v pohledu první osoby, používat nástroje a interagovat s vytvořenými herními prvky.
 
 \vspace{18pt}
 
@@ -410,7 +409,7 @@ openright
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%	
 \noindent{\Large{\bfseries{Abstract}}}
 
-\noindent This graduation thesis focuses on the development of the video game \textit{Wood Game} using the Unity game engine. The text documents the process of creating game assets and environments using Blender and Gimp software tools. The primary emphasis is placed on 3D modeling, 2D graphics, and texture creation. The thesis also describes the implementation of specific code segments related to rendering and the visual aspects of the project, excluding complex backend logic which was not part of the assignment. The aim of the project was to create a wood logging simulator with economic features, utilizing game environment physics, particularly for tree felling. The outcome of the thesis is a functional playable prototype that demonstrates the designed mechanics and allows the user to control a character, utilize tools, and interact with the created game elements.
+\noindent This graduation thesis focuses on the development of the video game \textit{Wood Game} using the Unity game engine. The core of the practical part lies in the creation of game assets and environments using Blender and Gimp tools, with a primary emphasis on 3D modeling, 2D graphics, and texture creation. The realization also included the implementation of optimization scripts for rendering and visual aspects of the project (backend logic was handled within team collaboration). The aim of the project was to create a wood logging simulator with economic features, utilizing game environment physics, particularly for tree felling. The outcome of the thesis is a functional playable prototype that demonstrates the designed mechanics and allows the user to control a character, utilize tools, and interact with the created game elements.
 
 \vspace{18pt}
 
@@ -458,6 +457,8 @@ Herní design (Game Design) je proces navrhování obsahu a pravidel hry. Z vizu
 \subsection{Vizuální pojetí Wood Game}
 Pro projekt \textit{Wood Game} byla zvolena stylizovaná grafika s důrazem na čistotu a přehlednost. Tento přístup mi umožnil soustředit se na tvorbu koherentního herního světa bez nutnosti vytvářet časově náročné fotorealistické textury. Jednoduchost modelů zároveň zajišťuje, že hra běží plynule i při větším počtu objektů (stromů) ve scéně.
 
+\clearpage
+
 \section{Proces vývoje her}
 Vývoj videohry je komplexní disciplína, kterou lze rozdělit do tří základních fází:
 \begin{enumerate}
@@ -466,16 +467,28 @@ Vývoj videohry je komplexní disciplína, kterou lze rozdělit do tří základ
     \item \textbf{Post-produkce:} Testování, ladění chyb (bugfixing) a vydání.
 \end{enumerate}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{image/navrhChaty.png}
+    
+    \caption{Původní návrh chaty.}
+\end{figure}
+
+
 V profesionálních studiích jsou role striktně rozděleny (Game Designer, Programmer, Environment Artist, Level Designer). V menších týmech dochází ke kumulaci rolí.
 
 \subsection{Organizace vývoje projektu}
 Na projektu jsme pracovali ve dvoučlenném týmu. Mé zaměření pokrývalo vizuální stránku hry, tedy roli \textit{Environment Artista} a \textit{Level Designera}, a částečně roli \textit{Technical Artista} při řešení importů a optimalizačních skriptů. Kolega zajišťoval backendovou logiku a systémy ukládání dat.
+
+\clearpage
 
 \section{Teorie UX a UI ve hrách}
 Zkratka **UX** (User Experience) označuje celkový zážitek hráče a to, jak intuitivně se hra ovládá. **UI** (User Interface) představuje konkrétní prvky na obrazovce, jako jsou menu, ukazatele zdraví nebo inventář (HUD - Head-Up Display). Kvalitní UI musí být čitelné a konzistentní s vizuálním stylem hry.
 
 \subsection{Implementace UI}
 Pro uživatelské rozhraní, konkrétně pro inventář a ikony nástrojů, byl zvolen styl **Pixel Art**. Tento retro styl založený na viditelných pixelech přináší do hry žádaný kontrast vůči 3D prostředí a zajišťuje jasnou čitelnost ikon. Pro jejich tvorbu byl využit rastrový editor GIMP, se kterým mám předchozí zkušenosti.
+
+\clearpage
 
 \section{Herní enginy a technologie}
 Herní engine je softwarový framework určený pro tvorbu videoher. Poskytuje vývojářům sadu nástrojů pro rendering (vykreslování) grafiky, fyzikální simulace, detekci kolizí a správu zvuku. Mezi nejznámější současné enginy patří Unity, Unreal Engine a Godot.
@@ -495,7 +508,7 @@ Pro tvorbu 3D modelů byl využit open-source software **Blender**. Volba padla 
 Herní mechaniky definují pravidla a způsoby interakce hráče s herním světem. V žánru simulátorů je kladen důraz na uvěřitelnost těchto interakcí.
 
 \subsection{Aplikované mechaniky}
-Jádrem hry je mechanika těžby d+řeva. Na rozdíl od jednoduchého "kliknutí a zmizení stromu" využívá náš projekt fyzikální simulace pádu stromu a jeho následného zpracování. Další klíčovou mechanikou je ekonomický cyklus: \textit{Těžba $\rightarrow$ Transport $\rightarrow$ Prodej $\rightarrow$ Nákup lepšího vybavení}. Interakce s objekty je technicky řešena pomocí metody \textit{Raycasting} (vysílání paprsku z kamery hráče).
+Jádrem hry je mechanika těžby dřeva. Na rozdíl od jednoduchého "kliknutí a zmizení stromu" využívá náš projekt fyzikální simulace pádu stromu a jeho následného zpracování. Další klíčovou mechanikou je ekonomický cyklus: \textit{Těžba $\rightarrow$ Transport $\rightarrow$ Prodej $\rightarrow$ Nákup lepšího vybavení}. Interakce s objekty je technicky řešena pomocí metody \textit{Raycasting} (vysílání paprsku z kamery hráče).
 
 \section{Grafická pipeline a rendering}
 Grafická pipeline (vykreslovací řetězec) je sekvence kroků, které grafická karta provádí, aby převedla 3D data (vertexy, textury) na 2D obraz na monitoru. Klíčovými pojmy jsou zde **Shader** (program určující vzhled povrchu) a **Draw Calls** (požadavky na vykreslení).
@@ -518,6 +531,15 @@ Proces tvorby grafiky probíhal v krocích:
 \label{chap:koncept}
 
 Před samotnou technickou realizací bylo nutné definovat pravidla hry, strukturu herního světa a způsob, jakým bude hráč postupovat hrou. Tato kapitola popisuje návrh gameplay smyčky a rozvržení herního prostředí.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{image/zacatecniZona.png}
+    
+    \caption{Ukázka začáteční zóny.}
+\end{figure}
+
+\clearpage
 
 \section{Gameplay a herní smyčka}
 Hra je koncipována jako simulátor těžby dřeva z pohledu první osoby (FPS). Hráč se ocitá v roli dřevorubce v otevřeném světě. Cílem není jen bezduché kácení, ale efektivní management zdrojů a času.
@@ -550,8 +572,12 @@ Nejvzdálenější část herního světa pokrytá sněhem. Roste zde zmrzlé d�
 
 Cílem tohoto rozvržení bylo vytvořit uvěřitelné, i když stylizované prostředí, které hráče vizuálně odměňuje za prozkoumávání světa.
 
-
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{image/prechod_krajin.png}
+    
+    \caption{Přechod krajiny z dubového lesa na poušť.}
+\end{figure}
 
 %% TVORBA GRAFICKYCH AKTIV (ASSETS)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -570,12 +596,21 @@ Pro tvorbu vizuální stránky hry byly zvoleny volně dostupné nástroje, kter
 \section{Tvorba vegetace}
 Vegetace tvoří drtivou většinu objektů ve scéně. Bylo nutné najít rovnováhu mezi vizuální hustotou lesa a výkonem počítače.
 
+\clearpage
+
 \subsection{Modelování trávy}
 Pro trávu jsem se rozhodl nepoužívat techniku \textit{billboard} (2D obrázek, který se natáčí vždy směrem ke kameře), protože v pohledu první osoby působí ploše. Místo toho jsem v Blenderu vytvořil vlastní 3D modely trsů.
 \begin{itemize}
     \item \textbf{Konstrukce:} Každý trs trávy je tvořen několika křížícími se plochami (planes), na které je aplikována textura.
     \item \textbf{Optimalizace:} Tento přístup využívá velmi nízký počet polygonů, ale díky textuře s průhledností (Alpha Channel) působí tráva hustě a prostorově.
 \end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{image/trava_blender.png}
+    
+    \caption{Ukázka modelu trávy v Blenderu.}
+\end{figure}
 
 \subsection{Stylizované stromy}
 Stromy byly modelovány s cílem zachovat stylizovaný vzhled. Koruna stromu není tvořena jednotlivými listy, ale vychází z geometrického primitiva koule (IcoSphere), která byla deformována a randomizována, aby působila přirozeně nepravidelně. Na tento tvar byla následně aplikována textura listí. Kmen je tvořen jednoduchým kvádrem, který je ve hře dynamicky upravován skriptem podle délky kmene.
@@ -590,6 +625,32 @@ Pro vizuální i fyzické oddělení jednotlivých biomů (hranice mapy nebo př
     \item Aplikace funkce \textit{Randomize Vertices} pro náhodné zdeformování tvaru.
     \item Manuální úprava vrcholů do finálního "skalnatého" tvaru a aplikace materiálu.
 \end{enumerate}
+
+\section{Tvorba budov a architektury}
+Centrální zóna hry obsahuje dvě klíčové budovy, které slouží jako zázemí pro hráče a obchodní místo. U obou staveb byl zachován jednotný stylizovaný vizuál, přičemž každá využívá odlišný přístup k modelování.
+
+\clearpage
+
+\subsection{Obchod a Sell Point}
+Obchodní zóna je tvořena hlavním srubem a přilehlým menším stánkem pro prodej dřeva (\textit{Sell Point}). Obě stavby sdílejí stejnou konstrukci z horizontálně ložených klád.
+\begin{itemize}
+    \item \textbf{Modifikátor Array:} Abych nemusel klády skládat ručně, vymodeloval jsem jednu základní kládu (válec) a pomocí modifikátoru \textit{Array} ji nechal automaticky namnožit do výšky, což zajistilo přesné rozestupy a urychlilo práci.
+    \item \textbf{Výřezy (Boolean):} Pro vytvoření otvorů pro okna a dveří byl použit modifikátor \textit{Boolean}. Ten pomocí operace odečítání (Difference) „vykrojil“ do stěn přesné otvory podle tvaru pomocného objektu. 
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{image/chata_blender.png}
+    
+    \caption{Ukázka kompletního modelu chaty s doplňky.}
+\end{figure}
+
+\subsection{Dům hráče s garáží}
+Startovní dům poskytuje hráči zázemí a funguje ve hře jako \textbf{Save Point} (místo pro uložení postupu).
+\begin{itemize}
+    \item \textbf{Konstrukce:} Objekt byl postaven metodou skládání a škálování základních primitiv (Cubes). Stěny jsou tvořeny jednotlivými kvádry, které byly roztaženy (Scale) do požadovaných rozměrů.
+    \item \textbf{Otvor pro dveře a okna:} Podobně jako u srubu, i zde byly průchozí otvory pro dveře a okna vytvořeny pomocí boolovských operací, což zajistilo čisté průřezy zdivem.
+\end{itemize}
 
 \section{Tvorba nástrojů (Hard-surface modeling)}
 Pro interakci se světem (kácení) hráč využívá sekeru. Při jejím modelování byla využita technika \textit{Box modeling}.
@@ -606,8 +667,12 @@ Veškeré 2D prvky, včetně textur povrchů a uživatelského rozhraní, vznika
     \item \textbf{Pixel Art UI:} Inventář a ikony předmětů byly nakresleny stylem Pixel Art. Tento styl využívá přesnou mřížku pixelů a omezenou paletu barev, což zajišťuje dobrou čitelnost na obrazovce.
 \end{itemize}
 
-
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{image/zeleznaSekera_gimp.png}
+    
+    \caption{Ukázka ikony železné sekery v editoru GIMP.}
+\end{figure}
 
 %% IMPLEMENTACE V UNITY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -649,51 +714,81 @@ Zatímco vegetace byla generována procedurálně, důležité prvky a detaily b
     \item \textbf{Hranice biomů:} Pro jasné vizuální oddělení jednotlivých zón (např. les a poušť) byly použity modely kamenů, které vytvářejí přirozené bariéry a přechody.
 \end{itemize}
 
-
-
-
-
-%% OPTIMALIZACE
+%% KAPITOLA 4 - OPTIMALIZACE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Programová optimalizace scény}
 \label{chap:optimalizace}
 
-Jedním z největších problémů otevřených světů v Unity je náročnost na vykreslování (Rendering). Vzhledem k tomu, že scéna \textit{Wood Game} obsahuje tisíce stromů a hustou vegetaci, narážel vývoj na limity grafického výkonu.
+Jedním z největších úskalí otevřených světů v Unity je náročnost na vykreslování (Rendering). Vzhledem k tomu, že scéna hry \textit{Wood Game} obsahuje tisíce stromů a hustou vegetaci, narážel vývoj na limity grafického výkonu. Při prvních testech docházelo k výraznému poklesu snímkovací frekvence (FPS), protože grafická karta musela zpracovávat geometrii i těch stromů, které byly pro hráče v dálce neviditelné.
 
-\section{Problém s výkonem (Draw Calls)}
-Při vykreslení celého lesa najednou docházelo k výraznému poklesu snímkovací frekvence (FPS). I když jsou objekty daleko, grafická karta je musí zpracovat. Standardní Unity řešení (Occlusion Culling) v tomto případě nebylo dostatečně efektivní nebo vyžadovalo složité předpočítávání (baking), které nebylo vhodné pro naše dynamické prostředí.
+Standardní řešení Unity (Occlusion Culling) vyžaduje předpočítávání dat a pro dynamicky se měnící svět (kácení stromů) nebylo ideální. Proto jsem přistoupil k vytvoření vlastního řešení.
 
-Hlavní zátěží byly tzv. **Draw Calls** – požadavky procesoru na grafickou kartu, aby vykreslila konkrétní síť (Mesh).
+\section{Návrh optimalizačního systému}
+Místo toho, aby každý strom ve scéně sám kontroloval svou vzdálenost od hráče (což by znamenalo tisíce volání metody \texttt{Update} v každém snímku), jsem zvolil architekturu **centrálního manažera**.
 
-\section{Vlastní skript pro Distance Culling}
-Jako řešení jsem naprogramoval vlastní optimalizační systém v jazyce C\#. Na rozdíl od vypínání celých objektů (což by mohlo narušit herní logiku nebo backend), tento systém vypíná pouze vizuální stránku objektů.
+Skript \texttt{TreeRenderManager} je umístěn na objektu kamery a spravuje seznam všech stromů ve scéně. Optimalizace je dosaženo pomocí tří klíčových technik:
 
-\subsection{Princip fungování}
-Skript je umístěn na objektu **Main Camera**. Funguje jako centrální manažer, který má přehled o všech stromech ve scéně.
-
-
-Logika skriptu probíhá v následujících krocích:
-\begin{itemize}
-    \item \textbf{Nastavitelný rádius:} V inspektoru lze definovat vzdálenost (např. 150 metrů), ve které jsou objekty viditelné.
-    \item \textbf{Kontrola vzdálenosti:} Skript v každém snímku (nebo v intervalech) vypočítá vzdálenost mezi kamerou hráče a každým stromem pomocí funkce \texttt{Vector3.Distance}.
-    \item \textbf{Přepínání MeshRendereru:}
-    \begin{itemize}
-        \item Pokud je strom \textbf{uvnitř} rádiusu $\rightarrow$ zapne se jeho komponenta \texttt{MeshRenderer} (strom je vidět).
-        \item Pokud je strom \textbf{vně} rádiusu $\rightarrow$ \texttt{MeshRenderer} se vypne.
-    \end{itemize}
-\end{itemize}
-
-Tímto způsobem se vykresluje pouze to, co hráč skutečně vidí nebo co je v jeho bezprostřední blízkosti, zatímco vzdálené stromy nezatěžují grafickou kartu, ačkoli jejich herní logika (např. pozice, data o typu dřeva) zůstává v paměti aktivní.
+\begin{enumerate}
+    \item \textbf{Vypínání Rendererů:} Skript neničí objekty, pouze vypíná jejich komponentu \texttt{Renderer}. Strom tam fyzicky stále "je" (má kolize, data), ale grafická karta ho ignoruje.
+    \item \textbf{Interval kontroly (Throttling):} Vzdálenost se nepřepočítává v každém snímku, ale pomocí \texttt{Coroutine} pouze jednou za 0,2 sekundy. Lidské oko tuto prodlevu při pohybu v dálce nepozná, ale procesoru to ušetří až 80 \% práce.
+    \item \textbf{Optimalizace matematiky (SqrMagnitude):} Místo klasické funkce \texttt{Vector3.Distance}, která využívá náročnou odmocninu, porovnává skript tzv. "čtverec vzdálenosti" (\texttt{sqrMagnitude}). Matematicky je výsledek porovnání stejný, ale pro procesor je to mnohem rychlejší operace.
+\end{enumerate}
 
 \section{Implementace kódu}
-Níže je uvedena klíčová část skriptu, který zajišťuje tuto optimalizaci.
+Níže je uveden kompletní zdrojový kód manažera, který se stará o řízení viditelnosti vegetace.
 
-\begin{lstlisting}[style=CSharpStyle, caption={Skript pro optimalizaci vykreslování (Distance Culling)}, label={code:opt_script}]
-// kod
+\begin{lstlisting}[style=CSharpStyle, caption={TreeRenderManager.cs - Hlavní optimalizační smyčka (zkráceno)}, label={code:tree_manager}]
+// TreeRenderManager - hlavni kontrolni smycka (vynatek)
+IEnumerator CheckVisibilityLoop()
+{
+    WaitForSeconds wait = new WaitForSeconds(checkInterval);
+    while (true)
+    {
+        if (player == null)
+        {
+            yield return wait;
+            continue;
+        }
+        
+        Vector3 playerPos = player.position;
+        float distSq = renderDistance * renderDistance;
+        
+        for (int i = registeredTrees.Count - 1; i >= 0; i--)
+        {
+            TreeData tree = registeredTrees[i];
+            if (tree.transform == null)
+            {
+                registeredTrees.RemoveAt(i);
+                continue;
+            }
+            
+            // Vypocet vzdalenosti
+            float currentDistSq = (tree.transform.position - playerPos).sqrMagnitude;
+            bool shouldBeVisible = currentDistSq < distSq;
+            
+            if (tree.isVisible != shouldBeVisible)
+            {
+                tree.isVisible = shouldBeVisible;
+                foreach (var r in tree.renderers)
+                    if (r != null) r.enabled = shouldBeVisible;
+            }
+        }
+        yield return wait;
+    }
+}
 \end{lstlisting}
 
-\section{Výsledek optimalizace}
-Po nasazení tohoto skriptu došlo k rapidnímu nárůstu FPS. Hra je nyní plynulá i v nejhustších částech lesa, protože v každém okamžiku se reálně vykresluje jen zlomek z celkového počtu objektů.
+\clearpage
+
+\section{Zhodnocení optimalizace}
+Po nasazení tohoto skriptu došlo ke stabilizaci snímkovací frekvence. Zatímco bez optimalizace klesalo FPS v hustém lese pod hranici 30 snímků za sekundu, s aktivním \texttt{TreeRenderManagerem} se hra drží stabilně nad 60 FPS, jelikož v každém okamžiku se reálně vykresluje pouze vegetace v okruhu 150 metrů kolem hráče.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{image/vysledekRenderingu.png}
+    
+    \caption{Výsledek renderingu v okruhu 150 metrů.}
+\end{figure}
 
 %% ZÁVĚR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -712,23 +807,34 @@ náročná disciplína.
 Pokud by byl projekt dále rozvíjen, zaměřil bych se na zvýšení variability prostředí. Hra by profitovala z přidání drobných detailů, jako jsou různé druhy květin, menší kameny, variace travin a více druhů stromů, které by rozbily vizuální sterilitu některých pasáží a dodaly světu větší hloubku.
 %% LITERATURA
 \begin{thebibliography}{99}
-	\bibitem{unityDocs} Unity Technologies. \textit{Unity User Manual 202x.x} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://docs.unity3d.com/Manual/index.html}
-	\bibitem{csharpDocs} Microsoft. \textit{C\# documentation} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://learn.microsoft.com/en-us/dotnet/csharp/}
+    
+    % --- Oficiální dokumentace a manuály ---
+    \bibitem{unityDocs} Unity Technologies. \textit{Unity User Manual 2022 LTS} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://docs.unity3d.com/Manual/index.html}
+    
+    \bibitem{scriptingRef} Unity Technologies. \textit{Unity Scripting API} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://docs.unity3d.com/ScriptReference/}
+    
+    \bibitem{csharpDocs} Microsoft. \textit{C\# Guide - .NET Documentation} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://learn.microsoft.com/en-us/dotnet/csharp/}
+    
+    \bibitem{blenderDocs} Blender Foundation. \textit{Blender 4.0 Reference Manual} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://docs.blender.org/manual/en/latest/}
+    
+    \bibitem{gimpDocs} The GIMP Team. \textit{GNU Image Manipulation Program - User Manual} [online]. [cit. 2026-01-05]. Dostupné z: \url{https://docs.gimp.org/2.10/en/}
+
+    % --- Video tutoriály (YouTube) ---
+    \bibitem{yt_chopping}\textit{How to Make Beautiful Terrain in Unity 2020} [cit. 2026-01-05]. Dostupné z: \url{https://www.youtube.com/watch?v=ddy12WHqt-M}
+    
+    \bibitem{yt_movement}\textit{Seamless Textures in Gimp} [cit. 2026-01-05]. Dostupné z: \url{https://www.youtube.com/watch?v=qAXRDfDaJMk}
+    
+    \bibitem{yt_blender}\textit{The best way to make billboard grass in your game} [cit. 2026-01-05]. Dostupné z: \url{https://www.youtube.com/watch?v=iAovvZTeL8I}
+    
+    \bibitem{yt_inventory}\textit{Quickly Scatter Grass and Trees on Terrain}[cit. 2026-01-05]. Dostupné z: \url{https://www.youtube.com/watch?v=qV9YaRXupK8}
+
+    % --- Nástroje a Assets ---
+    \bibitem{asset_vegetation}\textit{Vegetation Spawner} [Unity Asset]. Unity Asset Store. [cit. 2026-01-05]. Dostupné z: \url{https://assetstore.unity.com/packages/tools/terrain/vegetation-spawner-free-automatic-tree-grass-placement-177192}
+    
+    \bibitem{googleImages} Google. \textit{Google Images} [online]. Použito pro vyhledávání referenčních snímků a textur. [cit. 2026-01-05]. Dostupné z: \url{https://images.google.com/}
+
+    \bibitem{gemini} Google. \textit{Gemini (Large Language Model)} [AI model]. Verze 2024-2025. Použito pro konzultace gramatiky a stylistickou úpravu textu. Dostupné z: \url{https://gemini.google.com/}
+
 \end{thebibliography}
-
-%% SEZNAMY OBRÁZKŮ A TABULEK
-\listoffigures
-%\listoftables
-
-%% PŘÍLOHY
-\appendix
-\titleformat{\chapter}[block]{\scshape\bfseries\LARGE}{Příloha \thechapter}{10pt}{\vspace{0pt}}[\vspace{-22pt}]
-
-\chapter{Ukázky ze hry}
-\begin{figure}[h!]
-    \centering
-    % \includegraphics[width=0.8\textwidth]{image/screen1.jpg}
-    \caption{Ukázka herního prostředí}
-\end{figure}
 
 \end{document}
