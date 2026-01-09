@@ -483,10 +483,10 @@ Na projektu jsme pracovali ve dvoučlenném týmu. Mé zaměření pokrývalo vi
 \clearpage
 
 \section{Teorie UX a UI ve hrách}
-Zkratka **UX** (User Experience) označuje celkový zážitek hráče a to, jak intuitivně se hra ovládá. **UI** (User Interface) představuje konkrétní prvky na obrazovce, jako jsou menu, ukazatele zdraví nebo inventář (HUD - Head-Up Display). Kvalitní UI musí být čitelné a konzistentní s vizuálním stylem hry.
+Zkratka \textit{UX} (User Experience) označuje celkový zážitek hráče a to, jak intuitivně se hra ovládá. \textit{UI} (User Interface) představuje konkrétní prvky na obrazovce, jako jsou menu, ukazatele zdraví nebo inventář (HUD – Head-Up Display). Kvalitní UI musí být čitelné a konzistentní s vizuálním stylem hry.
 
 \subsection{Implementace UI}
-Pro uživatelské rozhraní, konkrétně pro inventář a ikony nástrojů, byl zvolen styl **Pixel Art**. Tento retro styl založený na viditelných pixelech přináší do hry žádaný kontrast vůči 3D prostředí a zajišťuje jasnou čitelnost ikon. Pro jejich tvorbu byl využit rastrový editor GIMP, se kterým mám předchozí zkušenosti.
+Pro uživatelské rozhraní, konkrétně pro inventář a ikony nástrojů, byl zvolen styl \textit{Pixel Art}. Tento retro styl založený na viditelných pixelech přináší do hry žádaný kontrast vůči 3D prostředí a zajišťuje jasnou čitelnost ikon. Pro jejich tvorbu byl využit rastrový editor GIMP, se kterým mám předchozí zkušenosti.
 
 \clearpage
 
@@ -494,7 +494,7 @@ Pro uživatelské rozhraní, konkrétně pro inventář a ikony nástrojů, byl 
 Herní engine je softwarový framework určený pro tvorbu videoher. Poskytuje vývojářům sadu nástrojů pro rendering (vykreslování) grafiky, fyzikální simulace, detekci kolizí a správu zvuku. Mezi nejznámější současné enginy patří Unity, Unreal Engine a Godot.
 
 \subsection{Unity Engine}
-Pro realizaci projektu byl zvolen engine **Unity**. Důvody pro tuto volbu byly následující:
+Pro realizaci projektu byl zvolen engine Unity. Důvody pro tuto volbu byly následující:
 \begin{itemize}
     \item \textbf{Podpora jazyka C\#:} Jazyk C\# je standardem v oblasti vývoje aplikací na platformě .NET a jeho znalost je součástí mého studia.
     \item \textbf{Dostupnost a komunita:} Unity má rozsáhlou dokumentaci a aktivní komunitu, což usnadňuje řešení technických problémů.
@@ -502,7 +502,7 @@ Pro realizaci projektu byl zvolen engine **Unity**. Důvody pro tuto volbu byly 
 \end{itemize}
 
 \subsection{Grafické nástroje (Blender a GIMP)}
-Pro tvorbu 3D modelů byl využit open-source software **Blender**. Volba padla na tento nástroj díky předchozím zkušenostem nabytým během studia, což urychlilo proces modelování. Pro úpravu textur a 2D grafiky byl využit editor **GIMP**, který představuje efektivní bezplatnou alternativu k nástrojům jako Adobe Photoshop.
+Pro tvorbu 3D modelů byl využit open-source software Blender. Volba padla na tento nástroj díky předchozím zkušenostem nabytým během studia, což urychlilo proces modelování. Pro úpravu textur a 2D grafiky byl využit editor GIMP, který představuje efektivní bezplatnou alternativu k nástrojům jako Adobe Photoshop.
 
 \section{Herní mechaniky}
 Herní mechaniky definují pravidla a způsoby interakce hráče s herním světem. V žánru simulátorů je kladen důraz na uvěřitelnost těchto interakcí.
@@ -511,7 +511,7 @@ Herní mechaniky definují pravidla a způsoby interakce hráče s herním svět
 Jádrem hry je mechanika těžby dřeva. Na rozdíl od jednoduchého "kliknutí a zmizení stromu" využívá náš projekt fyzikální simulace pádu stromu a jeho následného zpracování. Další klíčovou mechanikou je ekonomický cyklus: \textit{Těžba $\rightarrow$ Transport $\rightarrow$ Prodej $\rightarrow$ Nákup lepšího vybavení}. Interakce s objekty je technicky řešena pomocí metody \textit{Raycasting} (vysílání paprsku z kamery hráče).
 
 \section{Grafická pipeline a rendering}
-Grafická pipeline (vykreslovací řetězec) je sekvence kroků, které grafická karta provádí, aby převedla 3D data (vertexy, textury) na 2D obraz na monitoru. Klíčovými pojmy jsou zde **Shader** (program určující vzhled povrchu) a **Draw Calls** (požadavky na vykreslení).
+Grafická pipeline (vykreslovací řetězec) je sekvence kroků, které grafická karta provádí, aby převedla 3D data (vertexy, textury) na 2D obraz na monitoru. Klíčovými pojmy jsou zde \textit{Shader} (program určující vzhled povrchu) a \textit{Draw Calls} (požadavky na vykreslení).
 
 \subsection{Workflow v projektu}
 Proces tvorby grafiky probíhal v krocích:
@@ -617,7 +617,7 @@ Stromy byly modelovány s cílem zachovat stylizovaný vzhled. Koruna stromu nen
 
 Pro zvýšení plasticity byla materiálům stromů přidána tzv. \textbf{Normal Map} (mapa normál), která i na plochém modelu simuluje nerovnosti kůry a listí pomocí hry světla a stínu.
 
-\section{Hranice biomů (Kameny)}
+\section{Hranice biomů}
 Pro vizuální i fyzické oddělení jednotlivých biomů (hranice mapy nebo přechody oblastí) jsem vytvořil sadu čtyř různých kamenů. Postup tvorby byl následující:
 \begin{enumerate}
     \item Vytvoření základní krychle (Cube).
@@ -714,7 +714,7 @@ Zatímco vegetace byla generována procedurálně, důležité prvky a detaily b
     \item \textbf{Hranice biomů:} Pro jasné vizuální oddělení jednotlivých zón (např. les a poušť) byly použity modely kamenů, které vytvářejí přirozené bariéry a přechody.
 \end{itemize}
 
-%% KAPITOLA 4 - OPTIMALIZACE
+%% OPTIMALIZACE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Programová optimalizace scény}
 \label{chap:optimalizace}
@@ -724,7 +724,7 @@ Jedním z největších úskalí otevřených světů v Unity je náročnost na 
 Standardní řešení Unity (Occlusion Culling) vyžaduje předpočítávání dat a pro dynamicky se měnící svět (kácení stromů) nebylo ideální. Proto jsem přistoupil k vytvoření vlastního řešení.
 
 \section{Návrh optimalizačního systému}
-Místo toho, aby každý strom ve scéně sám kontroloval svou vzdálenost od hráče (což by znamenalo tisíce volání metody \texttt{Update} v každém snímku), jsem zvolil architekturu **centrálního manažera**.
+Místo toho, aby každý strom ve scéně sám kontroloval svou vzdálenost od hráče (což by znamenalo tisíce volání metody \texttt{Update} v každém snímku), jsem zvolil architekturu \textit{centrálního manažera}.
 
 Skript \texttt{TreeRenderManager} je umístěn na objektu kamery a spravuje seznam všech stromů ve scéně. Optimalizace je dosaženo pomocí tří klíčových technik:
 
