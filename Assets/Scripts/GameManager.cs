@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
                 mainMenu.SetActive(true);
             }
         }
+        if (carObject.GetComponent<CarEntrySystem>().isDriving && !pauseMenu.activeSelf && !settingsMenu.activeSelf && carInput.enabled == false)
+        {
+            carInput.enabled = true;
+            playerInput.enabled = false;
+        }
     }
 
     public void TogglePauseMenu()

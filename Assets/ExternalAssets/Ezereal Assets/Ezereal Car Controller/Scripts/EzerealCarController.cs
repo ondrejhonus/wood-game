@@ -91,7 +91,7 @@ namespace Ezereal
             }
             
             // Force Gear Text to D on start
-            UpdateGearText("D");
+            UpdateGearText(" km/h");
         }
 
         // --- INPUTS ---
@@ -165,7 +165,7 @@ namespace Ezereal
                 if(currentGear != AutomaticGears.Reverse)
                 {
                     currentGear = AutomaticGears.Reverse;
-                    UpdateGearText("R");
+                    UpdateGearText(" km/h R");
                     if (ezerealLightController != null) ezerealLightController.ReverseLightsOn();
                 }
 
@@ -192,7 +192,7 @@ namespace Ezereal
                 if (currentGear != AutomaticGears.Drive)
                 {
                     currentGear = AutomaticGears.Drive;
-                    UpdateGearText("D");
+                    UpdateGearText(" km/h");
                     if (ezerealLightController != null) ezerealLightController.ReverseLightsOff();
                 }
 

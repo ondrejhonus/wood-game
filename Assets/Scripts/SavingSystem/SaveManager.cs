@@ -160,19 +160,40 @@ public class SaveManager : MonoBehaviour
         // save logs in save zone
         // get box collider of save zone
         BoxCollider zoneBox = saveZone.GetComponent<BoxCollider>();
+        // get collider of car trunk
+        BoxCollider trunkBox = truckTransform.GetComponent<BoxCollider>();
 
         // get world position, half extents and rotation of the box, this is because OverlapBox needs world coords, not local position
         Vector3 center = saveZone.transform.TransformPoint(zoneBox.center);
         Vector3 halfExtents = Vector3.Scale(zoneBox.size, saveZone.transform.lossyScale) * 0.5f;
         Quaternion rotation = saveZone.transform.rotation;
 
+        // get world position, half extents and rotation of the trunk box
+        Vector3 trunkCenter = truckTransform.TransformPoint(trunkBox.center);
+        Vector3 trunkHalfExtents = Vector3.Scale(trunkBox.size, truckTransform.lossyScale) * 0.5f;
+        Quaternion trunkRotation = truckTransform.rotation;
+
         // find all colliders in the box
         Collider[] hits = Physics.OverlapBox(center, halfExtents, rotation);
+        Collider[] trunkHits = Physics.OverlapBox(trunkCenter, trunkHalfExtents, trunkRotation);
 
         // Save a list of saved logs, so we only save once (because the log has two types of colliders)
         List<SaveableLog> processedLogs = new List<SaveableLog>();
+        // process trunk hits first
+        logSaveLoop(trunkHits, data, processedLogs);
 
-        foreach (Collider hit in hits)
+        // process zone hits
+        logSaveLoop(hits, data, processedLogs);
+
+        // write to file
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(saveFilePath, json);
+        Debug.Log($"Game Saved! Saved {data.allLogs.Count} logs in the zone.");
+    }
+
+    public void logSaveLoop(Collider[] hits, GameData data, List<SaveableLog> processedLogs)
+    {
+                foreach (Collider hit in hits)
         {
             // check if colision was a log or not
             SaveableLog logScript = hit.GetComponent<SaveableLog>();
@@ -198,11 +219,6 @@ public class SaveManager : MonoBehaviour
                 data.allLogs.Add(lData);
             }
         }
-
-        // write to file
-        string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(saveFilePath, json);
-        Debug.Log($"Game Saved! Saved {data.allLogs.Count} logs in the zone.");
     }
 
     public void LoadGame()

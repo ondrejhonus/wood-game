@@ -61,11 +61,11 @@ The map is divided into three distinct biomes, offering progression in difficult
 ✅️ Functional store, where you can buy axes     
 ✅️ Make each axe a different strength     
 ✅️ Add a popup to show the axe price    
-❌ Save objects in car trunk   
+✅️ Save objects in car trunk   
 ❌ Make functional doors in houses      
-❌ Fix controller bug when getting out of car      
-❌ Fix loading screen sprite quality      
-❌ Add option to show FPS in settings     
+✅️ Fix controller bug when getting out of car      
+⚠️ Fix loading screen sprite quality      
+▶️ Add option to show FPS in settings     
 ❌ Implement buying the car from the store      
 ❌ Implement fuel system for vehicles     
 ❌ Implement wood processing mechanics      

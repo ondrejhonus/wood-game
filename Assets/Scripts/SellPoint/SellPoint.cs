@@ -5,8 +5,15 @@ public class SellPoint : MonoBehaviour
     public PlayerStats playerStats;
     private class SoldMarker : MonoBehaviour { } // Prevent double selling by marking sold items
 
+    public AudioSource sellAudioSource;
+
     private void OnTriggerEnter(Collider other)
     {
+        if (sellAudioSource != null)
+        {
+            sellAudioSource.Play();
+        }
+
         if (!other.TryGetComponent<SellableObject>(out var item)) return;
         if (other.GetComponent<SoldMarker>() != null) return; // already sold
 
@@ -14,6 +21,8 @@ public class SellPoint : MonoBehaviour
 
         int value = CalculateValue(item);
         playerStats.AddMoney(value, item.transform.position);
+
+
 
         Destroy(other.gameObject);
     }
@@ -25,20 +34,20 @@ public class SellPoint : MonoBehaviour
         switch (item.objectType)
         {
             case "basicLog":
-                baseValue = 3;
+                baseValue = 20;
                 break;
             case "cacti":
-                baseValue = 15;
+                baseValue = 100;
                 break;
             case "winterLog":
-                baseValue = 36;
+                baseValue = 250;
                 break;
             default:
                 baseValue = 1;
                 break;
         }
 
-        return Mathf.RoundToInt(baseValue * item.transform.localScale.x * (item.transform.localScale.y)); // my custom formula that doesnt make that much 
-                                                                                                            // sense i just like it
+        return Mathf.RoundToInt(baseValue * 2 * (item.transform.localScale.x) * item.transform.localScale.y); // my custom formula that doesnt make that much
+                                                                                                          // sense i just like it
     }
 }
