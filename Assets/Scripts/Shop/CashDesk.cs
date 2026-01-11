@@ -3,6 +3,7 @@ using UnityEngine;
 public class CashDesk : MonoBehaviour 
 {
     public PlayerStats playerStats;
+    public AudioSource purchaseSound;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,7 @@ public class CashDesk : MonoBehaviour
             {
                 playerStats.RemoveMoney(item.price, item.transform.position);
                 item.isPurchased = true;
+                purchaseSound.Play();
             }
             else
             {

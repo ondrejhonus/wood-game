@@ -29,7 +29,9 @@ public class PlayerStats : MonoBehaviour
 
     public void RemoveMoney(int amount, Vector3 worldPosition)
     {
-        AddMoney(-amount, worldPosition);
+        money -= amount;
+        UpdateUI();
+        ShowPopup("-" + amount + "$H", worldPosition, Color.red);
     }
 
     public void TakeDamage(int amount, Vector3 worldPosition)

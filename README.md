@@ -87,7 +87,7 @@ The map is divided into three distinct biomes, offering progression in difficult
 ❌ Vehicle model for transporting logs   
 ❌ NPC models to interact with   
 ✅️ Create a calm game soundtrack   
-▶️ Add sound effects for chopping, walking, selling logs, etc.  
+✅️ Add sound effects for chopping, walking, selling logs, etc.  
 ✅️ Create a logo for the game
 
 ---
