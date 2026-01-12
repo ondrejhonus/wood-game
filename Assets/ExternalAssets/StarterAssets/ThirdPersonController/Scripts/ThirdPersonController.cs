@@ -35,7 +35,7 @@ namespace StarterAssets
 
         [Header("Audio Routing")]
         [Tooltip("Assign the SFX Group from your Audio Mixer here")]
-        public AudioMixerGroup SfxGroup; 
+        public AudioMixerGroup SfxGroup;
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
@@ -109,7 +109,7 @@ namespace StarterAssets
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        public GameObject _mainCamera;
 
         // audio
         private AudioSource _playerAudioSource; // Persistent source for routed audio
@@ -133,17 +133,29 @@ namespace StarterAssets
 
         private void Awake()
         {
-            // get a reference to our main camera
+            // Check if we manually assigned the camera in the inspector first
             if (_mainCamera == null)
             {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                // Fallback 1: Try the trusted Camera.main (most reliable)
+                if (Camera.main != null)
+                {
+                    _mainCamera = Camera.main.gameObject;
+                }
+                // Fallback 2: Old search method (only if Camera.main fails)
+                else
+                {
+                    _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                }
             }
         }
 
         private void Start()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();

@@ -21672,7 +21672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114275331932080648, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: horsePower
-      value: 500
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 7114275331932080648, guid: 9c8b1a896405b584e99933fce51d5688, type: 3}
       propertyPath: maxForwardSpeed
@@ -30351,6 +30351,7 @@ MonoBehaviour:
   LockCameraPosition: 0
   _cinemachineTargetYaw: 0
   _cinemachineTargetPitch: 0
+  _mainCamera: {fileID: 1790887477}
 --- !u!143 &4416926082273746321
 CharacterController:
   m_ObjectHideFlags: 0
@@ -30473,7 +30474,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 8944336655733072411}
 --- !u!1 &4416926082273746331
 GameObject:
   m_ObjectHideFlags: 0
@@ -30569,7 +30570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7173912b59fcfb3539ccbb2c6d1c50a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  money: 2147483647
+  money: 50
   health: 100
   moneyText: {fileID: 452868558}
   healthText: {fileID: 2073110095}
