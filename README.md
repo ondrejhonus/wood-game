@@ -17,6 +17,9 @@ A 3D first-person/third-person simulation game developed in Unity as a final hig
 ## About the Project ℹ️
 This project documents the development of a video game focused on wood harvesting, economic systems, and environmental physics. The user controls a character that interacts with the game world, uses purchased tools (axes), and manages resources (wood/money).
 
+## Documentary video for the game (in Czech)
+[![Documentary video for the game](https://img.youtube.com/vi/1sX3k6JWisU/0.jpg)](https://www.youtube.com/watch?v=1sX3k6JWisU)
+
 ## Key Features ✨
 * **Physics-Based Chopping**: Trees are cut based on where the player hits them. Logs fall dynamically and react to gravity.
 * **Economy System**: Earn "Shmeckles" ($H) by selling wood. Buy better axes and vehicles in the shop.
